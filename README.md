@@ -12,6 +12,7 @@ To showcase various job fields and advise someone on which field or job would be
 - the ultimate decision making algorithm should be done through openai (GPT). Not a long list of if-else statements.
 
 
+
 ## React Project Information:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
