@@ -39,6 +39,9 @@ function App() {
         >
           Learn React
         </a>
+        <p>
+          Group Members: Tristan Dendorfer, 
+        </p>
       </header>
       <Form>
         <Form.Label>API Key:</Form.Label>
