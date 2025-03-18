@@ -38,6 +38,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          By Jacob Gordon
         </a>
       </header>
       <Form>
