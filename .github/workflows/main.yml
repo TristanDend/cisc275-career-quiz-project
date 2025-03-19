@@ -1,53 +1,66 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: Node.js CI & Deploy
 
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [16.x]
-                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    strategy:
+      matrix:
+        node-version: [16.x]
 
-        steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v2
-              with:
-                  node-version: ${{ matrix.node-version }}
-                  cache: "npm"
-            - id: get-repo-values
-              run: |
-                  url=https://$(echo "${{github.repository}}" | sed "s/\//.github.io\//")
-                  echo "url=$url" >> $GITHUB_OUTPUT
-            - name: Update package.json homepage
-              uses: jossef/action-set-json-field@v1
-              with:
-                  file: package.json
-                  field: homepage
-                  value: ${{ steps.get-repo-values.outputs.url }}
-            - run: npm ci
-            - run: npm run test -- --coverage |& tee ./public/test_report.txt
-            - run: echo "<html><head><meta http-equiv='refresh' content='0; URL=${{github.server_url}}/${{github.repository}}' /></head><body>Redirecting to repository</body></html>" > ./public/github.html
-            - run: npm run build --if-present
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - id: get-repo-values
+        run: |
+          url=https://$(echo "${{github.repository}}" | sed "s/\//.github.io\//")
+          echo "url=$url" >> $GITHUB_OUTPUT
+      - name: Update package.json homepage
+        uses: jossef/action-set-json-field@v1
+        with:
+          file: package.json
+          field: homepage
+          value: ${{ steps.get-repo-values.outputs.url }}
+      - run: npm ci
+      - run: npm run test -- --coverage |& tee ./public/test_report.txt
+      - run: echo "<html><head><meta http-equiv='refresh' content='0; URL=${{github.server_url}}/${{github.repository}}' /></head><body>Redirecting to repository</body></html>" > ./public/github.html
+      - run: npm run build --if-present
 
-            - name: Setup SSH
-              run: |
-                mkdir -p ~/.ssh
-                echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-                chmod 600 ~/.ssh/id_rsa
-                ssh-keyscan github.com >> ~/.ssh/known_hosts
-            
-            - name: Deploy
-              run: |
-                git config --global user.name "github-actions[bot]"
-                git config --global user.email "github-actions[bot]@users.noreply.github.com"
-                git remote set-url origin git@github.com:${{ github.repository }}.git
-                npm run deploy
+      - name: Prepare GitHub Pages Output
+        run: |
+          mkdir -p ./public
+          echo "<html><head><meta http-equiv='refresh' content='0; URL=${{ github.server_url }}/${{ github.repository }}' /></head><body>Redirecting to repository</body></html>" > ./public/index.html
+          cp -r build/* ./public/
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@main
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
