@@ -43,6 +43,7 @@ function App() {
         </a>
         <p>
           Group Members: Tristan Dendorfer, 
+          Group Members: Zhenyuan Wang, 
         </p>
       </header>
       <Form>
