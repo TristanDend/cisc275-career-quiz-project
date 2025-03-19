@@ -39,8 +39,10 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          By Jacob Gordon
         </a>
         <p>
+          Group Members: Tristan Dendorfer, 
           Group Members: Zhenyuan Wang, 
         </p>
       </header>
