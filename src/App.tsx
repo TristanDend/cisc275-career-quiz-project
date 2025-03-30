@@ -31,7 +31,6 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <p>Jia Qi</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -39,11 +38,13 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-          By Jacob Gordon
         </a>
         <p>
-          Group Members: Tristan Dendorfer, 
-          Group Members: Zhenyuan Wang, 
+          Group Members: 
+          Tristan Dendorfer, 
+          Zhenyuan Wang,
+          Jacob Gordon, 
+          Jia Qi
         </p>
       </header>
       <Form>
