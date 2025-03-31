@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const BasicQuestions: React.FC = () => {
+  const goToHome = () => {
+    window.location.href = '/';
+  };
+
+  // 保存每道题的选中选项（1、2、3），初始均为 null 表示未选择
+  const [selectedOptions, setSelectedOptions] = useState<Array<number | null>>(new Array(7).fill(null));
+
+  // 当选择某个选项时，更新对应题目的选中值
+  const handleOptionSelect = (questionIndex: number, option: number) => {
+    const newSelections = [...selectedOptions];
+    newSelections[questionIndex] = option;
+    setSelectedOptions(newSelections);
+  };
+
+  // 计算已回答题目数量，更新进度条（总题数 7）
+  const answeredCount = selectedOptions.filter((option) => option !== null).length;
+  const progressPercentage = (answeredCount / selectedOptions.length) * 100;
+
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Arial, sans-serif' }}>
       {/* 顶部导航 */}
       <nav style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-        <button>Home</button>
+        <button onClick={goToHome}>Home</button>
         <button>Quizzes</button>
         <button>Information</button>
       </nav>
@@ -14,13 +32,26 @@ export const BasicQuestions: React.FC = () => {
       <h1 style={{ textAlign: 'center' }}>Basic Questions</h1>
 
       {/* 7 道题，每题 3 个选项 */}
-      {[1, 2, 3, 4, 5, 6, 7].map((questionNumber) => (
-        <div key={questionNumber} style={{ marginBottom: '1.5rem' }}>
-          <p>Question {questionNumber}:</p>
+      {Array.from({ length: 7 }, (_, index) => (
+        <div key={index} style={{ marginBottom: '1.5rem' }}>
+          <p>Question {index + 1}:</p>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <button>Option 1</button>
-            <button>Option 2</button>
-            <button>Option 3</button>
+            {[1, 2, 3].map((option) => (
+              <button
+                key={option}
+                onClick={() => handleOptionSelect(index, option)}
+                style={{
+                  padding: '0.5rem 1rem',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  backgroundColor: selectedOptions[index] === option ? '#4CAF50' : '',
+                  color: selectedOptions[index] === option ? 'white' : '',
+                }}
+              >
+                Option {option}
+              </button>
+            ))}
           </div>
         </div>
       ))}
@@ -38,7 +69,7 @@ export const BasicQuestions: React.FC = () => {
         >
           <div
             style={{
-              width: '40%', // 这里可以根据需要修改进度百分比
+              width: `${progressPercentage}%`, // 根据已回答题目数自动计算进度
               backgroundColor: 'green',
               height: '100%',
             }}
