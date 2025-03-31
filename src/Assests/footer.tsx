@@ -1,18 +1,16 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-export function Header(){
+export function Footer(){
     return (
         <div>
             <Button>
-                Home
+                About Us
             </Button>
             <Button>
-                Simple Quiz
+                Contact Us
             </Button>
-            <Button>
-                Detailed Quiz
-            </Button>
+            
         </div>
     )
     

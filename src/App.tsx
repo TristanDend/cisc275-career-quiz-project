@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Footer} from './Assests/footer'
+import {Header} from './Assests/header'
 import { Button, Form } from 'react-bootstrap';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
@@ -26,7 +28,7 @@ function App() {
   }
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -45,13 +47,15 @@ function App() {
           Group Members: Tristan Dendorfer, 
           Group Members: Zhenyuan Wang, 
         </p>
-      </header>
+      </header> */}
+      <Header></Header>
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
+      <Footer></Footer>
     </div>
   );
 }
