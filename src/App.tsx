@@ -4,6 +4,7 @@ import './App.css';
 import {Footer} from './Assests/footer'
 import {Header} from './Assests/header'
 import { Button, Form } from 'react-bootstrap';
+import { HomePage } from './Home_Page/HomePage'
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -33,7 +34,6 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <p>Jia Qi</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -41,11 +41,13 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-          By Jacob Gordon
         </a>
         <p>
-          Group Members: Tristan Dendorfer, 
-          Group Members: Zhenyuan Wang, 
+          Group Members: 
+          Tristan Dendorfer, 
+          Zhenyuan Wang,
+          Jacob Gordon, 
+          Jia Qi
         </p>
       </header> */}
       <Header></Header>
@@ -55,6 +57,7 @@ function App() {
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
+      <HomePage></HomePage>
       <Footer></Footer>
     </div>
   );
