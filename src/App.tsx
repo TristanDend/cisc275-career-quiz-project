@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import {Footer} from './Assests/footer'
+import {Header} from './Assests/header'
 import { Button, Form } from 'react-bootstrap';
 import { HomePage } from './Home_Page/HomePage'
 
@@ -27,9 +29,9 @@ function App() {
   }
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <p>
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a
@@ -47,15 +49,15 @@ function App() {
           Jacob Gordon, 
           Jia Qi
         </p>
-      </header>
-      <Form>
+      <Header></Header>
+      <Form className = 'App'>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
-      {/* home page down here */}
       <HomePage></HomePage>
+      <Footer></Footer>
     </div>
   );
 }
