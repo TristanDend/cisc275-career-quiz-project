@@ -59,8 +59,8 @@ function App() {
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
-      {/*false &&*/ <HomePage></HomePage>}
-      {false && <DetailedPage></DetailedPage>}
+      {false && <HomePage></HomePage>}
+      {/*false &&*/ <DetailedPage></DetailedPage>}
       <Footer></Footer>
     </div>
   );
