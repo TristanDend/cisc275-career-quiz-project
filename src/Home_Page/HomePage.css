@@ -1,22 +1,30 @@
 #squareImg {
+    display: block;
     width: 50%;
     height: 50%;
-    padding: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
 }
 
 #homePageTitle {
     padding: 3%;
+    text-align: center;
 }
 
 #homePageSubhead {
-    padding: 10px;
+    padding: 3%;
     font-size: large;
+    text-align: center;
 }
 
 #quizDescription {
     padding: 3%;
+    text-align: center;
+    display: block;
 }
 
 #questionButton {
     margin: 3%;
+    align-self: center;
 }
