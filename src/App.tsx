@@ -41,7 +41,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
         <p>
           Group Members: 
           Tristan Dendorfer, 
@@ -49,7 +49,6 @@ function App() {
           Jacob Gordon, 
           Jia Qi
         </p>
-      </header> */}
       <Header></Header>
       <Form className = 'App'>
         <Form.Label>API Key:</Form.Label>
