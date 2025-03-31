@@ -49,7 +49,7 @@ function App() {
         </p>
       </header> */}
       <Header></Header>
-      <Form>
+      <Form className = 'App'>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
