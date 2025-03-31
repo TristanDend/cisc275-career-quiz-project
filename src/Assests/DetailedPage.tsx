@@ -27,29 +27,29 @@ export function DetailedPage(): React.JSX.Element {
             <Container>
                 <Row>
                     <Col>
-                        <div>Question 1</div>
+                        <div>Detailed Question 1</div>
                         <Form.Control title="answer-1" type="answer" placeholder="Answer 1" onChange={changeAnswer}></Form.Control>
                     </Col>
                     <Col>
-                        <div>Question 2</div>
+                        <div>Detailed Question 2</div>
                         <Form.Control title="answer-2" type="answer" placeholder="Answer 2" onChange={changeAnswer}></Form.Control>
                     </Col>
                     <Col>
-                        <div>Question 3</div>
+                        <div>Detailed Question 3</div>
                         <Form.Control title="answer-3" type="answer" placeholder="Answer 3" onChange={changeAnswer}></Form.Control>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <div>Question 4</div>
+                        <div>Detailed Question 4</div>
                         <Form.Control title="answer-4" type="answer" placeholder="Answer 4" onChange={changeAnswer}></Form.Control>
                     </Col>
                     <Col>
-                        <div>Question 5</div>
+                        <div>Detailed Question 5</div>
                         <Form.Control title="answer-5" type="answer" placeholder="Answer 5" onChange={changeAnswer}></Form.Control>
                     </Col>
                     <Col>
-                        <div>Question 6</div>
+                        <div>Detailed Question 6</div>
                         <Form.Control title="answer-6" type="answer" placeholder="Answer 6" onChange={changeAnswer}></Form.Control>
                     </Col>
                 </Row>
