@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Container, Col, Row } from 'react-bootstrap';
 import './HomePage.css';
 import Square from '../assets/Square.png';
