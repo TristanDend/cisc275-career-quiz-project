@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import {Footer} from './Assests/footer'
-import {Header} from './Assests/header'
+import {Footer} from './Components/footer'
+import {Header} from './Components/header'
 import { Button, Form } from 'react-bootstrap';
-import { HomePage } from './Home_Page/HomePage'
-import { DetailedPage } from './Assests/DetailedPage';
-import Basic from './Home_Page/Basic';
+import { HomePage } from './Components/HomePage'
+import { DetailedPage } from './Components/DetailedPage';
+import Basic from './Components/Basic';
 
 // local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -60,6 +60,7 @@ function App() {
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
       {/*false &&*/ <HomePage></HomePage>}
+      {false && <Basic></Basic>}
       {false && <DetailedPage></DetailedPage>}
       <Footer></Footer>
     </div>
