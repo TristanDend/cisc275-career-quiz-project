@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import { HomePage } from './Home_Page/HomePage'
+import BasicPage  from './Home_Page/Basic'
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -50,12 +51,13 @@ function App() {
       </header>
       <Form>
         <Form.Label>API Key:</Form.Label>
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+        <Form.Control type="text" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
       {/* home page down here */}
       <HomePage></HomePage>
+      <BasicPage></BasicPage>
     </div>
   );
 }

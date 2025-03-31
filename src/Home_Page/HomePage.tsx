@@ -4,6 +4,7 @@ import './HomePage.css';
 
 export function HomePage(): React.JSX.Element {
     return (
+        
         <div>
             <h1>Da Quiz</h1>
             <Container>
@@ -13,6 +14,7 @@ export function HomePage(): React.JSX.Element {
                         <br></br>
                         More Simple Questions, Takes Less Time
                         <Button>Go to Basic Questions</Button>
+
                     </Col>
                     <Col>
                         <div>Detailed Questions</div>
