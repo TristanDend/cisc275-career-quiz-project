@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.diasbled{
+  cursor: not-allowed;
+  opacity: 0.5;
+}

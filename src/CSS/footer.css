@@ -3,10 +3,18 @@
   margin-bottom: 2.5vh;
   flex-direction: row-reverse;
   justify-content: left;
-  align-content: left;  
+  align-content: left;
 }
 
 .footer-button{
   margin-left: 0.5vh;
   margin-right: 0.5vh;
+  text-align: center;
+  background: #03b6fc;
+  padding: 10px 10px;
+  color: white;
+  font-size: 18px;
+  border-radius: 85%;
+  border: 2px #03b6fc;
 }
+
