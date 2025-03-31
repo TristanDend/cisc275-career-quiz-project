@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
+import { HomePage } from './Home_Page/HomePage'
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -53,6 +54,8 @@ function App() {
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
+      {/* home page down here */}
+      <HomePage></HomePage>
     </div>
   );
 }
