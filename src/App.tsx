@@ -5,6 +5,7 @@ import {Footer} from './Assests/footer'
 import {Header} from './Assests/header'
 import { Button, Form } from 'react-bootstrap';
 import { HomePage } from './Home_Page/HomePage'
+import { DetailedPage } from './Assests/DetailedPage';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -27,6 +28,7 @@ function App() {
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
+
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -57,7 +59,8 @@ function App() {
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
-      <HomePage></HomePage>
+      {/*false &&*/ <HomePage></HomePage>}
+      {false && <DetailedPage></DetailedPage>}
       <Footer></Footer>
     </div>
   );
