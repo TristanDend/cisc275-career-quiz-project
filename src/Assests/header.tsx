@@ -5,9 +5,9 @@ import '../CSS/header.css'
 
 export function Header(){
 
-    const[isHome, setHome] = useState<Boolean>(true);
-    const[isBasic, setBasic] = useState<Boolean>(false);
-    const[isDetailed, setDetailed] = useState<Boolean>(false);
+    const[isHome, setHome] = useState<boolean>(true);
+    const[isBasic, setBasic] = useState<boolean>(false);
+    const[isDetailed, setDetailed] = useState<boolean>(false);
 
     function changeActive(buttonName: string){
         if(buttonName === "home" && isHome === false){
@@ -20,7 +20,7 @@ export function Header(){
             setBasic(true);
             setDetailed(false);
         }
-        else if(buttonName === "basic" && isBasic === false){
+        else if(buttonName === "detailed" && isBasic === false){
             setHome(false);
             setBasic(false);
             setDetailed(true);
