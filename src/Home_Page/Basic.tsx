@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
 export const BasicQuestions: React.FC = () => {
-  const goToHome = () => {
-    window.location.href = '/';
-  };
-
   // 保存每道题的选中选项（1、2、3），初始均为 null 表示未选择
   const [selectedOptions, setSelectedOptions] = useState<Array<number | null>>(new Array(7).fill(null));
 
@@ -21,12 +17,6 @@ export const BasicQuestions: React.FC = () => {
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Arial, sans-serif' }}>
-      {/* 顶部导航 */}
-      <nav style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-        <button onClick={goToHome}>Home</button>
-        <button>Quizzes</button>
-        <button>Information</button>
-      </nav>
 
       {/* 标题 */}
       <h1 style={{ textAlign: 'center' }}>Basic Questions</h1>
