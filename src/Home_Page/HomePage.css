@@ -1,0 +1,22 @@
+#squareImg {
+    width: 50%;
+    height: 50%;
+    padding: 3%;
+}
+
+#homePageTitle {
+    padding: 3%;
+}
+
+#homePageSubhead {
+    padding: 10px;
+    font-size: large;
+}
+
+#quizDescription {
+    padding: 3%;
+}
+
+#questionButton {
+    margin: 3%;
+}
