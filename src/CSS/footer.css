@@ -1,0 +1,12 @@
+.footer{
+  margin-top: 5vh;
+  margin-bottom: 2.5vh;
+  flex-direction: row-reverse;
+  justify-content: left;
+  align-content: left;  
+}
+
+.footer-button{
+  margin-left: 0.5vh;
+  margin-right: 0.5vh;
+}

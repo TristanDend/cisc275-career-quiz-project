@@ -1,16 +1,17 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import '../CSS/header.css'
 
 export function Header(){
     return (
-        <div>
-            <Button>
+        <div className = 'header'>
+            <Button className = 'header-button'>
                 Home
             </Button>
-            <Button>
+            <Button className = 'header-button'>
                 Simple Quiz
             </Button>
-            <Button>
+            <Button className = 'header-button'>
                 Detailed Quiz
             </Button>
         </div>
