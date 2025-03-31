@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+//import logo from './logo.svg';
 import './App.css';
-import { HomePage } from './Home_Page/HomePage';
+import {Footer} from './Assests/footer'
+import {Header} from './Assests/header'
+import { Button, Form } from 'react-bootstrap';
+import { HomePage } from './Home_Page/HomePage'
+import { DetailedPage } from './Assests/DetailedPage';
 import Basic from './Home_Page/Basic';
 
 // local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
@@ -28,30 +31,38 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <div className="App">
- 
-          {/* 可以放入 logo 和其他 header 内容 */}
-        
-        <Form>
-          <Form.Label>API Key:</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Insert API Key Here"
-            onChange={changeKey}
-          />
-          <br />
-          <Button className="Submit-Button" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </Form>
-        {/* 路由配置 */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/Basic" element={<Basic />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a> */}
+        <p>
+          Group Members: 
+          Tristan Dendorfer, 
+          Zhenyuan Wang,
+          Jacob Gordon, 
+          Jia Qi
+        </p>
+      <Header></Header>
+      <Form className = 'App'>
+        <Form.Label>API Key:</Form.Label>
+        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+        <br></br>
+        <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
+      </Form>
+      {/*false &&*/ <HomePage></HomePage>}
+      {false && <DetailedPage></DetailedPage>}
+      <Footer></Footer>
+    </div>
   );
 }
 
