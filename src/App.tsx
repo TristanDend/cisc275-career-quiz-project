@@ -60,8 +60,8 @@ function App() {
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
       {/*false &&*/ <HomePage></HomePage>}
-      {false && <Basic></Basic>}
-      {false && <DetailedPage></DetailedPage>}
+      {/*false &&*/ <Basic></Basic>}
+      {/*false &&*/ <DetailedPage></DetailedPage>}
       <Footer></Footer>
     </div>
   );
