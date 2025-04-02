@@ -15,7 +15,7 @@ export function HomePage(): React.JSX.Element {
                         <br></br>
                         <span id="quizDescription">More Simple Questions, Takes Less Time</span>
                         <br></br>
-                        <Button id="questionButton">Go to Basic Questions</Button>
+                        <center><Button id="questionButton">Go to Basic Questions</Button></center>
                     </Col>
                     <Col>
                         <div id="homePageSubhead"><u>Detailed Questions</u></div>
@@ -23,7 +23,7 @@ export function HomePage(): React.JSX.Element {
                         <br></br>
                         <span id="quizDescription">Deeper Questions, Better Results</span>
                         <br></br>
-                        <Button id="questionButton">Go to Detailed Questions</Button>
+                        <center><Button id="questionButton">Go to Detailed Questions</Button></center>
                     </Col>
                 </Row>
             </Container>
