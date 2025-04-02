@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Col, Row } from 'react-bootstrap';
-import './HomePage.css';
+import '../CSS/HomePage.css';
 import Square from '../assets/Square.png';
 
 export function HomePage(): React.JSX.Element {
