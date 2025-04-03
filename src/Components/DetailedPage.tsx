@@ -12,7 +12,7 @@ export function DetailedPage(): React.JSX.Element {
         newAnswers[parseInt(event.target.title.split("-")[1]) - 1] = event.target.value;
         takeAnswers(newAnswers);
     }
- 
+
     return (
         <div id="page-style">
             <center>
@@ -26,6 +26,7 @@ export function DetailedPage(): React.JSX.Element {
                         id="answer-text-holder"
                         title={"answer-".concat((index + 1).toString())} 
                         type="answer" 
+                        value={answers[index]}
                         placeholder={"Answer ".concat((index + 1).toString())} 
                         onChange={changeAnswer}>
                     </Form.Control>
@@ -39,6 +40,7 @@ export function DetailedPage(): React.JSX.Element {
                 </div>
             </div>
             <center><Button>Get Answers</Button></center>
+            <Button onClick={() => takeAnswers(Array(answers.length).fill(""))}>Clear Answers</Button>
         </div>
     )
 }
