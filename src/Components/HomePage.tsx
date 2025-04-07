@@ -5,12 +5,12 @@ import Square from '../assets/Square.png';
 
 export function HomePage(): React.JSX.Element {
     return (
-        <div>
+        <div id="homePageWhole">
             <h1 id="homePageTitle"><strong>Da Quiz</strong></h1>
             {/* Container creates two columns, each column is for a quiz */}
             <Container>
                 <Row>
-                    <Col>
+                    <Col id="quizBlock">
                         {/* Quiz Title */}
                         <div id="homePageSubhead"><u>Basic Questions</u></div>
                         {/* Placeholder image */}
@@ -22,7 +22,7 @@ export function HomePage(): React.JSX.Element {
                         {/* Button to go to Basic Questions */}
                         <center><Button id="questionButton">Go to Basic Questions</Button></center>
                     </Col>
-                    <Col>
+                    <Col id="quizBlock">
                         {/* Quiz Title */}
                         <div id="homePageSubhead"><u>Detailed Questions</u></div>
                         {/* Placeholder image */}
