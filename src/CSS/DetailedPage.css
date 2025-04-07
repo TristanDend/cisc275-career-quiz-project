@@ -1,0 +1,23 @@
+#answer-text-holder {
+    max-width: 300px;
+}
+
+#page-style {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    align-self: center;
+}
+
+#progress-bar {
+    width: 100%;
+    background-color: #ccc;
+    height: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#progress-content {
+    background-color: green;
+    height: 100%;
+}
