@@ -7,7 +7,7 @@ Colors:
 
 Font:
     Georgia
-    rem: font-size based off root font size
+    rem: font-size based off root font-size (can scale with display)
 */
 
 #homePageSubhead {
