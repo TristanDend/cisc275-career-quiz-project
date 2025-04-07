@@ -12,7 +12,7 @@ export function HomePage(): React.JSX.Element {
                 <Row>
                     <Col id="quizBlock">
                         {/* Quiz Title */}
-                        <div id="homePageSubhead"><u>Basic Questions</u></div>
+                        <div id="homePageSubhead"><strong>Basic Questions</strong></div>
                         {/* Placeholder image */}
                         <img id="squareImg" src={Square} alt="empty square"/>
                         <br></br>
@@ -24,7 +24,7 @@ export function HomePage(): React.JSX.Element {
                     </Col>
                     <Col id="quizBlock">
                         {/* Quiz Title */}
-                        <div id="homePageSubhead"><u>Detailed Questions</u></div>
+                        <div id="homePageSubhead"><strong>Detailed Questions</strong></div>
                         {/* Placeholder image */}
                         <img id="squareImg" src={Square} alt="empty square"/>
                         <br></br>

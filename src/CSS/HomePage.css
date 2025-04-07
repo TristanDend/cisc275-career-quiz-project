@@ -7,11 +7,12 @@ Colors:
 
 Font:
     Georgia
+    rem: font-size based off root font size
 */
 
 #homePageSubhead {
     padding: 3%;
-    font-size: large;
+    font-size: 1.7rem;
     text-align: center;
     color: #328E6E;
     font-family: Georgia;
@@ -22,20 +23,32 @@ Font:
     text-align: center;
     color: #328E6E;
     font-family: Georgia;
+    font-size: 4rem;
 }
 
 #homePageWhole {
     background-color: white;
     border-style: solid;
-    border-width: 5px;
+    border-width: 0.3rem;
     border-color: #328E6E;
 }
 
 #questionButton {
-    margin: 4%;
+    margin: 3%;
     color: white;
     background-color: #328E6E;
     font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+#questionButton:hover {
+    margin: 3%;
+    color: white;
+    background-color: #67AE6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
 }
 
 #quizBlock {
@@ -43,7 +56,7 @@ Font:
     border-radius: 3%;
     margin: 3%;
     border-style: solid;
-    border-width: 3px;
+    border-width: 0.2rem;
     border-color: #328E6E;
 }
 
@@ -53,13 +66,13 @@ Font:
     display: block;
     color: #67AE6E;
     font-family: Georgia;
+    font-size: 1.2rem;
 }
 
 #squareImg {
     display: block;
     width: 50%;
-    height: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    aspect-ratio: 1 / 1;
+    margin: auto;
     align-content: center;
 }
