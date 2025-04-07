@@ -1,30 +1,78 @@
-#squareImg {
-    display: block;
-    width: 50%;
-    height: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    align-content: center;
-}
+/* 
+Colors:
+    328E6E
+    67AE6E
+    90C67C
+    E1EEBC
 
-#homePageTitle {
-    padding: 3%;
-    text-align: center;
-}
+Font:
+    Georgia
+    rem: font-size based off root font-size (can scale with display)
+*/
 
 #homePageSubhead {
     padding: 3%;
-    font-size: large;
+    font-size: 1.7rem;
     text-align: center;
+    color: #328E6E;
+    font-family: Georgia;
+}
+
+#homePageTitle {
+    padding: 1%;
+    text-align: center;
+    color: #328E6E;
+    font-family: Georgia;
+    font-size: 4rem;
+}
+
+#homePageWhole {
+    background-color: white;
+    border-style: solid;
+    border-width: 0.3rem;
+    border-color: #328E6E;
+}
+
+#questionButton {
+    margin: 3%;
+    color: white;
+    background-color: #328E6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+#questionButton:hover {
+    margin: 3%;
+    color: white;
+    background-color: #67AE6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+#quizBlock {
+    background-color: #E1EEBC;
+    border-radius: 3%;
+    margin: 3%;
+    border-style: solid;
+    border-width: 0.2rem;
+    border-color: #328E6E;
 }
 
 #quizDescription {
     padding: 3%;
     text-align: center;
     display: block;
+    color: #67AE6E;
+    font-family: Georgia;
+    font-size: 1.2rem;
 }
 
-#questionButton {
-    margin: 3%;
-    align-self: center;
+#squareImg {
+    display: block;
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    margin: auto;
+    align-content: center;
 }
