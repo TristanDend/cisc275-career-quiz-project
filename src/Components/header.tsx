@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-
 import { Button } from 'react-bootstrap';
 import '../CSS/header.css'
 
@@ -51,13 +50,13 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
     //The buttons are disabled if they are the active button
     return (
         <div className = 'header'>
-            <Button id = 'header-button' onClick={() => {changeActive("home")}} disabled = {setOnHome}> 
+            <Button id = 'header-button' onClick={() => {setOnHome(true); changeActive("home")}}> 
                 Home
             </Button>
-            <Button id = 'header-button' onClick={() => {changeActive("basic")}} disabled = {isBasic}>
+            <Button id = 'header-button' onClick={() => {changeActive("basic")}}>
                 Simple Quiz
             </Button>
-            <Button id = 'header-button' onClick={() => {changeActive("detailed")}} disabled = {isDetailed}>
+            <Button id = 'header-button' onClick={() => {changeActive("detailed")}}>
                 Detailed Quiz
             </Button>
         </div>
