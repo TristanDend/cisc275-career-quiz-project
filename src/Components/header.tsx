@@ -50,7 +50,7 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
     //The buttons are disabled if they are the active button
     return (
         <div className = 'header'>
-            <Button id = 'header-button' onClick={() => {setOnHome(true); changeActive("home")}}> 
+            <Button id = 'header-button' onClick={() => {changeActive("home")}}> 
                 Home
             </Button>
             <Button id = 'header-button' onClick={() => {changeActive("basic")}}>
