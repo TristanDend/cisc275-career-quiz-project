@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-render-in-setup */
 import React from 'react';
 import { act } from '@testing-library/react';
 import { render, screen } from '@testing-library/react';
