@@ -1,20 +1,36 @@
 .footer{
-  margin-top: 5vh;
-  margin-bottom: 2.5vh;
-  flex-direction: row-reverse;
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
+  flex-direction: row;
   justify-content: left;
   align-content: left;
+  display: flex;
+  background-color: #E1EEBC;
 }
 
-.footer-button{
-  margin-left: 0.5vh;
-  margin-right: 0.5vh;
-  text-align: center;
-  background: #03b6fc;
-  padding: 10px 10px;
+#footer-button {
+  margin: 0.5%;
   color: white;
-  font-size: 18px;
-  border-radius: 85%;
-  border: 2px #03b6fc;
+  background-color: #328E6E;
+  font-family: Georgia;
+  height: auto;
+  width: auto;
 }
 
+#footer-button:hover {
+  margin: 0.5%;
+  color: white;
+  background-color: #67AE6E;
+  font-family: Georgia;
+  height: auto;
+  width: auto;
+}
+
+.footer-popup{
+  background-color: #67AE6E;
+  color: white;
+  font-family: Georgia;
+  backdrop: blur(5px);
+  border-radius: 10px;
+  padding: 10px;
+}
