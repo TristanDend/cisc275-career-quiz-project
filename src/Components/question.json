@@ -1,0 +1,182 @@
+[
+    {
+      "questionId": "q001",
+      "questionText": "What topics interest you? (select all that apply)",
+      "allowMultiple": true,
+      "options": [
+        { "optionId": "o1", "optionText": "Math" },
+        { "optionId": "o2", "optionText": "Sciences" },
+        { "optionId": "o3", "optionText": "English" },
+        { "optionId": "o4", "optionText": "Social Studies and History" },
+        { "optionId": "o5", "optionText": "Art" },
+        { "optionId": "o6", "optionText": "Music" },
+        { "optionId": "o7", "optionText": "Foreign Language" }
+      ]
+    },
+    {
+      "questionId": "q002",
+      "questionText": "Indoors or Outside?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Indoors" },
+        { "optionId": "o2", "optionText": "Outside" }
+      ]
+    },
+    {
+      "questionId": "q003",
+      "questionText": "What age group would you want to work with? (a teacher works with children)",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Children" },
+        { "optionId": "o2", "optionText": "My age" },
+        { "optionId": "o3", "optionText": "Elderly" },
+        { "optionId": "o4", "optionText": "All ages" }
+      ]
+    },
+    {
+      "questionId": "q004",
+      "questionText": "Set Schedule or make your own hours?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Set Schedule" },
+        { "optionId": "o2", "optionText": "Make your own hours" }
+      ]
+    },
+    {
+      "questionId": "q005",
+      "questionText": "Salary vs Commission vs Hourly?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Salary" },
+        { "optionId": "o2", "optionText": "Commission" },
+        { "optionId": "o3", "optionText": "Hourly" }
+      ]
+    },
+    {
+      "questionId": "q006",
+      "questionText": "What work environment would you prefer?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Competitive" },
+        { "optionId": "o2", "optionText": "Collaborative" },
+        { "optionId": "o3", "optionText": "Independent" },
+        { "optionId": "o4", "optionText": "Organized" }
+      ]
+    },
+    {
+      "questionId": "q007",
+      "questionText": "Are you scared of heights?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yes" },
+        { "optionId": "o2", "optionText": "No" }
+      ]
+    },
+    {
+      "questionId": "q008",
+      "questionText": "Do you like construction work?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yes" },
+        { "optionId": "o2", "optionText": "No" }
+      ]
+    },
+    {
+      "questionId": "q009",
+      "questionText": "Do you want to be involved in healthcare?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yes" },
+        { "optionId": "o2", "optionText": "No" }
+      ]
+    },
+    {
+      "questionId": "q010",
+      "questionText": "Do you want to work with technology often?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yes" },
+        { "optionId": "o2", "optionText": "No" }
+      ]
+    },
+    {
+      "questionId": "q011",
+      "questionText": "Do you like socializing with people?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yes" },
+        { "optionId": "o2", "optionText": "No" }
+      ]
+    },
+    {
+      "questionId": "q012",
+      "questionText": "Do you want to create something new?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yes" },
+        { "optionId": "o2", "optionText": "No" }
+      ]
+    },
+    {
+      "questionId": "q013",
+      "questionText": "Do you want to work with food?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yes" },
+        { "optionId": "o2", "optionText": "No" }
+      ]
+    },
+    {
+      "questionId": "q014",
+      "questionText": "Do you want to work with nature?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yes" },
+        { "optionId": "o2", "optionText": "No" }
+      ]
+    },
+    {
+      "questionId": "q015",
+      "questionText": "You have a day off. How do you spend your time?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Relaxing" },
+        { "optionId": "o2", "optionText": "Socializing" },
+        { "optionId": "o3", "optionText": "Try new thing" },
+        { "optionId": "o4", "optionText": "Taking care of tasks (to-do list)" }
+      ]
+    },
+    {
+      "questionId": "q016",
+      "questionText": "Your family is making plans. What role do you take?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Do nothing and follow along" },
+        { "optionId": "o2", "optionText": "Help plan with them" },
+        { "optionId": "o3", "optionText": "Lead the effort" }
+      ]
+    },
+    {
+      "questionId": "q017",
+      "questionText": "How would you consume content?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Read books" },
+        { "optionId": "o2", "optionText": "Watch movies/videos" },
+        { "optionId": "o3", "optionText": "Listen to audiobooks/podcasts" },
+        { "optionId": "o4", "optionText": "Scroll on social media" }
+      ]
+    },
+    {
+      "questionId": "q018",
+      "questionText": "You are a food service worker and a customer complains about the food you serviced them. How do you respond?",
+      "allowMultiple": false,
+      "options": [
+        { "optionId": "o1", "optionText": "Yell back at them" },
+        { "optionId": "o2", "optionText": "Tell another coworker to deal with it" },
+        { "optionId": "o3", "optionText": "Get a manager" },
+        { "optionId": "o4", "optionText": "Try to calm the customer down and find a solution" }
+      ]
+    }
+  ]
+  
