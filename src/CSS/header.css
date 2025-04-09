@@ -1,19 +1,27 @@
 .header{
-    margin-top: 2.5vh;
-    margin-bottom: 5vh;
-    flex-direction: row-reverse;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    flex-direction: row;
     justify-content: left;
     align-content: left;
+    display: flex;
+    background-color: #E1EEBC;
 }
 
-.header-button{
-    margin-left: 0.5vh;
-    margin-right: 0.5vh;
-    text-align: center;
-    background: #03b6fc;
-    padding: 10px 10px;
+#header-button {
+    margin: 0.5%;
     color: white;
-    font-size: 18px;
-    border-radius: 85%;
-    border: 2px #03b6fc;
-  }
+    background-color: #328E6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+#header-button:hover {
+    margin: 0.5%;
+    color: white;
+    background-color: #67AE6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
