@@ -20,9 +20,7 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
     //Function changes the active button and sets the state of the other buttons to false
     //It also sets the state of the quiz to be displayed to true or false depending on which button is clicked
     function changeActive(buttonName: string){
-        //case for if the home button is clicked
-        //if the button clicked is not the active button, set the active button to true and the other buttons to false
-        if(buttonName === "home" && isHome === false){
+        if(buttonName === "home" && !isHome){
             setOnHome(true);
             setOnBasic(false);
             setOnDetailed(false);
@@ -30,9 +28,7 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
             setBasic(false);
             setDetailed(false);
         }
-        //case for if the basic button is clicked
-        //if the button clicked is not the active button, set the active button to true and the other buttons to false
-        else if(buttonName === "basic" && isBasic === false){
+        else if(buttonName === "basic" && !isBasic){
             setOnHome(false);
             setOnBasic(true);
             setOnDetailed(false);
@@ -40,9 +36,7 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
             setBasic(true);
             setDetailed(false);
         }
-        //case for if the detailed button is clicked
-        //if the button clicked is not the active button, set the active button to true and the other buttons to false
-        else if(buttonName === "detailed" && isDetailed === false){
+        else if(buttonName === "detailed" && !isDetailed){
             setOnHome(false);
             setOnBasic(false);
             setOnDetailed(true);

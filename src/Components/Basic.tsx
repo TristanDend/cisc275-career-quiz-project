@@ -11,13 +11,17 @@ export const BasicQuestions: React.FC = () => {
     setSelectedOptions(newSelections);
   };
 
+  // 清空所有题目的选中状态
+  const clearSelections = () => {
+    setSelectedOptions(new Array(7).fill(null));
+  };
+
   // 计算已回答题目数量，更新进度条（总题数 7）
   const answeredCount = selectedOptions.filter((option) => option !== null).length;
   const progressPercentage = (answeredCount / selectedOptions.length) * 100;
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Arial, sans-serif' }}>
-
       {/* 标题 */}
       <h1 style={{ textAlign: 'center' }}>Basic Questions</h1>
 
@@ -29,7 +33,7 @@ export const BasicQuestions: React.FC = () => {
             {[1, 2, 3].map((option) => (
               <button
                 key={option}
-                onClick={() => handleOptionSelect(index, option)}
+                onClick={() => {handleOptionSelect(index, option)}}
                 style={{
                   padding: '0.5rem 1rem',
                   border: '1px solid #ccc',
@@ -67,9 +71,10 @@ export const BasicQuestions: React.FC = () => {
         </div>
       </div>
 
-      {/* “Get Answers” 按钮 */}
+      {/* 按钮 */}
       <div style={{ textAlign: 'center' }}>
-        <button style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>Get Answers</button>
+        <button style={{ padding: '0.5rem 1rem', fontSize: '1rem', marginRight: '1rem' }}>Get Answers</button>
+        <button onClick={clearSelections} style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>Clear</button>
       </div>
     </div>
   );
