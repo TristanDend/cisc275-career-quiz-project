@@ -33,7 +33,7 @@ export const BasicQuestions: React.FC = () => {
             {[1, 2, 3].map((option) => (
               <button
                 key={option}
-                onClick={() => handleOptionSelect(index, option)}
+                onClick={() => {handleOptionSelect(index, option)}}
                 style={{
                   padding: '0.5rem 1rem',
                   border: '1px solid #ccc',

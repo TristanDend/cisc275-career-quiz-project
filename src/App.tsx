@@ -9,15 +9,16 @@ import { DetailedPage } from './Components/DetailedPage';
 import Basic from './Components/Basic';
 
 // local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
-let keyData = "";
-const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData);
-if (prevKey !== null) {
-  keyData = JSON.parse(prevKey);
+const saveKeyData: string = "MYKEY";
+function parseJson<T>(keyString: string | null): T {
+  if (keyString !== null) return JSON.parse(keyString) as T;
+  return "" as T;
 }
+const prevKey = localStorage.getItem(saveKeyData);
+const keyData: string = parseJson(prevKey);
 
 function App() {
-  const [key, setKey] = useState<string>(keyData);
+  const [key, setKey] = useState<string>(keyData.toString());
   const [isHome, setHome] = useState<boolean>(true);
   const [isBasic, setBasic] = useState<boolean>(false);
   const [isDetailed, setDetailed] = useState<boolean>(false);
