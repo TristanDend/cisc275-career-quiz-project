@@ -17,7 +17,7 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
     const [isDetailed, setDetailed] = useState<boolean>(false);
 
     function changeActive(buttonName: string){
-        if(buttonName === "home" && isHome === false){
+        if(buttonName === "home" && !isHome){
             setOnHome(true);
             setOnBasic(false);
             setOnDetailed(false);
@@ -25,7 +25,7 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
             setBasic(false);
             setDetailed(false);
         }
-        else if(buttonName === "basic" && isBasic === false){
+        else if(buttonName === "basic" && !isBasic){
             setOnHome(false);
             setOnBasic(true);
             setOnDetailed(false);
@@ -33,7 +33,7 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
             setBasic(true);
             setDetailed(false);
         }
-        else if(buttonName === "detailed" && isDetailed === false){
+        else if(buttonName === "detailed" && !isDetailed){
             setOnHome(false);
             setOnBasic(false);
             setOnDetailed(true);
