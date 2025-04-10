@@ -12,36 +12,24 @@ interface headerProps {
 
 export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
     //setting up states
-    const [isHome, setHome] = useState<boolean>(true);
-    const [isBasic, setBasic] = useState<boolean>(false);
-    const [isDetailed, setDetailed] = useState<boolean>(false);
 
     //Function changes the active button and sets the state of the other buttons to false
     //It also sets the state of the quiz to be displayed to true or false depending on which button is clicked
     function changeActive(buttonName: string){
-        if(buttonName === "home" && !isHome){
+        if(buttonName === "home"){
             setOnHome(true);
             setOnBasic(false);
             setOnDetailed(false);
-            setHome(true);
-            setBasic(false);
-            setDetailed(false);
         }
-        else if(buttonName === "basic" && !isBasic){
+        else if(buttonName === "basic"){
             setOnHome(false);
             setOnBasic(true);
             setOnDetailed(false);
-            setHome(false);
-            setBasic(true);
-            setDetailed(false);
         }
-        else if(buttonName === "detailed" && !isDetailed){
+        else if(buttonName === "detailed"){
             setOnHome(false);
             setOnBasic(false);
             setOnDetailed(true);
-            setHome(false);
-            setBasic(false);
-            setDetailed(true);
         }
 
     }
