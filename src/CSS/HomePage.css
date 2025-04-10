@@ -30,7 +30,8 @@ Font:
     background-color: white;
     border-style: solid;
     border-width: 0.3rem;
-    border-color: #328E6E;
+    border-color: #E1EEBC;
+    margin: 0rem;
 }
 
 #questionButton {
