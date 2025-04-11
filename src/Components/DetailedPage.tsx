@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import '../CSS/DetailedPage.css';
 import { Button, Form} from 'react-bootstrap';
 
-export function DetailedPage(): React.JSX.Element {
+interface DetailedPageProps {
+    setOnDetailed: (onDetailed: boolean) => void
+    setOnResults: (onResults: boolean) => void
+}
+
+export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps): React.JSX.Element {
     const [answers, takeAnswers] = useState<Array<string>>(new Array(6).fill("")); // for all questions and answers in page
     const answerPercent = (answers.filter((answer) => answer !== "").length / answers.length) * 100; // for progress bar answer check
 
@@ -11,6 +16,12 @@ export function DetailedPage(): React.JSX.Element {
         const newAnswers = [...answers];
         newAnswers[parseInt(event.target.title.split("-")[1]) - 1] = event.target.value;
         takeAnswers(newAnswers);
+    }
+
+    // turns the quiz off and turns home page on
+    function toResultsPage() {
+        setOnDetailed(false);
+        setOnResults(true);
     }
 
     return (
@@ -39,7 +50,7 @@ export function DetailedPage(): React.JSX.Element {
                         width: `${answerPercent}%`}}></div>
                 </div>
             </div>
-            <center><Button>Get Answers</Button></center>
+            <center><Button onClick={toResultsPage}>Get Answers</Button></center>
             <Button onClick={() => {takeAnswers(Array(answers.length).fill(""))}}>Clear Answers</Button>
         </div>
     )
