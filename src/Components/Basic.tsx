@@ -67,15 +67,15 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResul
   const progressPercentage: number = (answeredCount / (questions as Question[]).length) * 100;
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', font: 'Georgia' }}>
       {/* 标题 */}
       <h1 style={{ textAlign: 'center' }}>Basic Questions</h1>
 
       {/* 根据 JSON 模板动态渲染问题 */}
       {(questions as Question[]).map((question, qIndex) => (
-        <div key={question.questionId} style={{ marginBottom: '1.5rem' }}>
-          <p>{question.questionText}</p>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div key={question.questionId} style={{ marginBottom: '1.5rem'}}>
+          <p className = 'question-text'>{question.questionText}</p>
+          <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {question.options.map((option, oIndex) => {
               const isSelected = selectedOptions[qIndex].includes(oIndex);
               return (
@@ -89,11 +89,15 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResul
                     border: '1px solid #ccc',
                     borderRadius: '4px',
                     cursor: 'pointer',
-                    backgroundColor: isSelected ? '#4CAF50' : '',
-                    color: isSelected ? 'white' : ''
+                    backgroundColor: isSelected ? '#67AE6E' : '#328E6E',
+                    color: isSelected ? 'white' : 'white',
+                    font: 'Georgia',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
-                  {option.optionText}
+                  <span>{option.optionText}</span>
                 </button>
               );
             })}
