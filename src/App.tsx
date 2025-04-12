@@ -44,7 +44,7 @@ function App() {
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
-      <Header setOnHome = {setHome} setOnBasic = {setBasic} setOnDetailed = {setDetailed}></Header>
+      <Header setOnHome = {setHome} setOnBasic = {setBasic} setOnDetailed = {setDetailed} setOnResults={setResultPage}></Header>
       {isHome && <HomePage setOnBasic = {setBasic} setOnHome = {setHome} setOnDetailed = {setDetailed}></HomePage>}
       {isBasic && <Basic setOnBasic={setBasic} setOnResults={setResultPage}></Basic>}
       {isDetailed && <DetailedPage setOnDetailed={setDetailed} setOnResults={setResultPage}></DetailedPage>}

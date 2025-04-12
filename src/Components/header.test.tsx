@@ -9,7 +9,7 @@ import { DetailedPage } from './DetailedPage';
 
 describe('Header Component Tests', () => {
     beforeEach(() => {
-        render(<Header setOnHome={jest.fn()} setOnBasic={jest.fn()} setOnDetailed={jest.fn()} />);
+        render(<Header setOnHome={jest.fn()} setOnBasic={jest.fn()} setOnDetailed={jest.fn()} setOnResults={jest.fn()} />);
     });
     test("renders header buttons", () => {
         const homeButton = screen.getByText(/home/i);
