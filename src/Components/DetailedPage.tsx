@@ -4,7 +4,12 @@ import { Button, Form} from 'react-bootstrap';
 import { questions, Question, Option } from '../assets/DetailedPageQuestions'
 
 
-export function DetailedPage(): React.JSX.Element {
+interface DetailedPageProps {
+    setOnDetailed: (onDetailed: boolean) => void
+    setOnResults: (onResults: boolean) => void
+}
+
+export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps): React.JSX.Element {
     const [answers, takeAnswers] = useState<string[]>(new Array(questions.length).fill("")); // for all questions and answers in page
     const [q1Answers, q1TakeAnswers] = useState<string[]>([]); // for question 1 answers (specific due to being checklist)
     const answerPercent = ((answers.filter((answer) => answer !== "").length / answers.length) * 100); // for progress bar answer check
@@ -16,6 +21,12 @@ export function DetailedPage(): React.JSX.Element {
         takeAnswers(newAnswers);
     }
 
+    // turns the quiz off and turns results page on
+    function toResultsPage() {
+        setOnDetailed(false);
+        setOnResults(true);
+    }
+    
     // updates the answers values specfically for question 1 when the user makes an input
     function handleCheckBoxChange(event: React.ChangeEvent<HTMLInputElement>) {
         const currSelect = event.target.value;
@@ -99,7 +110,7 @@ export function DetailedPage(): React.JSX.Element {
                         width: `${answerPercent}%`}}></div>
                 </div>
             </div>
-            <center><Button>Get Answers</Button></center>
+            <center><Button onClick={toResultsPage}>Get Answers</Button></center>
             <Button onClick={handleClear}>Clear Answers</Button>
             {/* <div>Answers: {JSON.stringify(answers)}</div>
             <div>Q1 Answers: {JSON.stringify(q1Answers)}</div> */}

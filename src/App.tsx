@@ -5,6 +5,7 @@ import {Header} from './Components/header'
 import { Button, Form } from 'react-bootstrap';
 import { HomePage } from './Components/HomePage'
 import { DetailedPage } from './Components/DetailedPage';
+import { ResultPage } from './Components/Result';
 import Basic from './Components/Basic';
 
 // local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
@@ -21,6 +22,7 @@ function App() {
   const [isHome, setHome] = useState<boolean>(true);
   const [isBasic, setBasic] = useState<boolean>(false);
   const [isDetailed, setDetailed] = useState<boolean>(false);
+  const [isResultPage, setResultPage] = useState<boolean>(false);
 
 
   // sets the local storage item to the api key the user inputed
@@ -44,8 +46,9 @@ function App() {
       </Form>
       <Header setOnHome = {setHome} setOnBasic = {setBasic} setOnDetailed = {setDetailed}></Header>
       {isHome && <HomePage setOnBasic = {setBasic} setOnHome = {setHome} setOnDetailed = {setDetailed}></HomePage>}
-      {isBasic && <Basic></Basic>}
-      {isDetailed && <DetailedPage></DetailedPage>}
+      {isBasic && <Basic setOnBasic={setBasic} setOnResults={setResultPage}></Basic>}
+      {isDetailed && <DetailedPage setOnDetailed={setDetailed} setOnResults={setResultPage}></DetailedPage>}
+      {isResultPage && <ResultPage></ResultPage>}
       <Footer></Footer>
     </div>
   );

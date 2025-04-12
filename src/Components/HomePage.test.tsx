@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { HomePage } from '../Components/HomePage';
-import BasicQuestions from '../Components/Basic';
+import { HomePage } from './HomePage';
 
 // renders the home page before each test
 beforeEach(() => {
