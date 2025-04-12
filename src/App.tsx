@@ -46,7 +46,7 @@ function App() {
       </Form>
       <Header setOnHome = {setHome} setOnBasic = {setBasic} setOnDetailed = {setDetailed}></Header>
       {isHome && <HomePage setOnBasic = {setBasic} setOnHome = {setHome} setOnDetailed = {setDetailed}></HomePage>}
-      {isBasic && <Basic></Basic>}
+      {isBasic && <Basic setOnBasic={setBasic} setOnResults={setResultPage}></Basic>}
       {isDetailed && <DetailedPage setOnDetailed={setDetailed} setOnResults={setResultPage}></DetailedPage>}
       {isResultPage && <ResultPage></ResultPage>}
       <Footer></Footer>

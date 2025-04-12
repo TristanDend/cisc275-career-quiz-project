@@ -108,3 +108,32 @@ test('main page quiz button + home button = home', () => {
   const mainPageTitle = screen.getByRole("heading", {level: 1, name: /da quiz/i});
   expect(mainPageTitle).toBeInTheDocument();
 });
+
+test('navigating to results page and back', () => {
+  //find basic quiz button and click it
+  const basicQuizButton = screen.getByRole("button", {name: /go to basic questions/i});
+  act(() => {
+    basicQuizButton.click();
+  });
+
+  //then find get answers button and click it, to go to results page
+  const resultsPageButton = screen.getByRole("button", {name: /get answers/i});
+
+  act(() => {
+    resultsPageButton.click();
+  });
+
+  //identify results page by the heading, check if it's correct
+  const resultsPageTitle = screen.getByRole("heading", {level: 1, name: /results/i});
+  expect(resultsPageTitle).toBeInTheDocument();
+
+  //find and press the home button
+  const homeButton = screen.getByRole("button", {name: /home/i});
+  act(() => {
+    homeButton.click();
+  });
+
+  // check for home page title
+  const mainPageTitle = screen.getByRole("heading", {level: 1, name: /da quiz/i});
+  expect(mainPageTitle).toBeInTheDocument();
+});

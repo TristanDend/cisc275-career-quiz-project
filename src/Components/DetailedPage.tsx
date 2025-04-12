@@ -18,7 +18,7 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
         takeAnswers(newAnswers);
     }
 
-    // turns the quiz off and turns home page on
+    // turns the quiz off and turns results page on
     function toResultsPage() {
         setOnDetailed(false);
         setOnResults(true);

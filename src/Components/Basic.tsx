@@ -14,12 +14,24 @@ interface Question {
   options: Option[];
 }
 
-export const BasicQuestions: React.FC = () => {
+// interface to hold the functions for navigation
+interface BasicPageProps {
+  setOnBasic: (onBasic: boolean) => void
+  setOnResults: (onResults: boolean) => void
+}
+
+export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResults}) => {
   // questions 数据来自 question.json 文件，类型为 Question[]
   // 为每个问题初始化一个空数组，用于保存选中选项的索引（即使是单选，也统一使用数组）
   const [selectedOptions, setSelectedOptions] = useState<number[][]>(
     (questions as Question[]).map(() => [])
   );
+
+    // turns the quiz off and turns results page on
+    function toResultsPage() {
+      setOnBasic(false);
+      setOnResults(true);
+    }
 
   // 当某个选项被点击时，更新对应问题的选中值
   const handleOptionSelect = (questionIndex: number, optionIndex: number): void => {
@@ -112,7 +124,7 @@ export const BasicQuestions: React.FC = () => {
 
       {/* 底部按钮 */}
       <div style={{ textAlign: 'center' }}>
-        <button style={{ padding: '0.5rem 1rem', fontSize: '1rem', marginRight: '1rem' }}>
+        <button style={{ padding: '0.5rem 1rem', fontSize: '1rem', marginRight: '1rem' }} onClick={toResultsPage}>
           Get Answers
         </button>
         <button
