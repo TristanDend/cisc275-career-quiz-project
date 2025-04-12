@@ -56,10 +56,11 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
             {/* adds all the questions and answers for Detailed Question page */}
             {Array.from({length: questions.length}, (_, index: number) => (
                 <div key={index} style={{marginBottom: '1.5rem'}}>
-                    <p role="question">{questions[index].questionText}</p>
+                    <p className = 'question-text' role="question">{questions[index].questionText}</p>
                     {questions[index].questionType === "checkbox" && 
                         Array.from({length: questions[index].options.length}, (_, ind: number) => (
-                            <Form.Check
+                            <Form.Check 
+                                className ='question-text'
                                 name={questions[index].questionId.toString()}
                                 key={ind}
                                 type="checkbox"
@@ -73,6 +74,7 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
                     }
                     {questions[index].questionType === "short-answer" && 
                         <Form.Control
+                            className = 'question-text'
                             id={questions[index].questionId.toString()}
                             title={"answer-".concat((index + 1).toString())} 
                             role="answer"
@@ -110,8 +112,8 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
                         width: `${answerPercent}%`}}></div>
                 </div>
             </div>
-            <center><Button onClick={toResultsPage}>Get Answers</Button></center>
-            <Button onClick={handleClear}>Clear Answers</Button>
+            <center><Button onClick={toResultsPage} id = "questionButton">Get Answers</Button></center>
+            <Button onClick={handleClear} id='questionButton'>Clear Answers</Button>
             {/* <div>Answers: {JSON.stringify(answers)}</div>
             <div>Q1 Answers: {JSON.stringify(q1Answers)}</div> */}
         </div>
