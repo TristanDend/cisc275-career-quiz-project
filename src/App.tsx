@@ -46,12 +46,14 @@ function App() {
       {isDetailed && <DetailedPage setOnDetailed={setDetailed} setOnResults={setResultPage}></DetailedPage>}
       {isResultPage && <ResultPage></ResultPage>}
       <Footer setApiOpen = {setApiShow}></Footer>
-      {apiKeyShow && <Form className = 'App' data-testid='APIKeyForm'>
-        <Form.Label>API Key:</Form.Label>
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-        <br></br>
-        <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-      </Form>}
+      <div className="App-footer">
+        {apiKeyShow && <Form className = 'App' data-testid='APIKeyForm'>
+          <Form.Label>API Key:</Form.Label>
+          <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+          <br></br>
+          <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
+        </Form>}
+      </div>
     </div>
   );
 }
