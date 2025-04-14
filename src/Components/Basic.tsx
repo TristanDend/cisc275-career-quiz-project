@@ -14,12 +14,24 @@ interface Question {
   options: Option[];
 }
 
-export const BasicQuestions: React.FC = () => {
+// interface to hold the functions for navigation
+interface BasicPageProps {
+  setOnBasic: (onBasic: boolean) => void
+  setOnResults: (onResults: boolean) => void
+}
+
+export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResults}) => {
   // questions 数据来自 question.json 文件，类型为 Question[]
   // 为每个问题初始化一个空数组，用于保存选中选项的索引（即使是单选，也统一使用数组）
   const [selectedOptions, setSelectedOptions] = useState<number[][]>(
     (questions as Question[]).map(() => [])
   );
+
+    // turns the quiz off and turns results page on
+    function toResultsPage() {
+      setOnBasic(false);
+      setOnResults(true);
+    }
 
   // 当某个选项被点击时，更新对应问题的选中值
   const handleOptionSelect = (questionIndex: number, optionIndex: number): void => {
@@ -55,15 +67,15 @@ export const BasicQuestions: React.FC = () => {
   const progressPercentage: number = (answeredCount / (questions as Question[]).length) * 100;
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', font: 'Georgia' }}>
       {/* 标题 */}
       <h1 style={{ textAlign: 'center' }}>Basic Questions</h1>
 
       {/* 根据 JSON 模板动态渲染问题 */}
       {(questions as Question[]).map((question, qIndex) => (
-        <div key={question.questionId} style={{ marginBottom: '1.5rem' }}>
-          <p>{question.questionText}</p>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div key={question.questionId} style={{ marginBottom: '1.5rem'}}>
+          <p className = 'question-text'>{question.questionText}</p>
+          <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {question.options.map((option, oIndex) => {
               const isSelected = selectedOptions[qIndex].includes(oIndex);
               return (
@@ -77,11 +89,15 @@ export const BasicQuestions: React.FC = () => {
                     border: '1px solid #ccc',
                     borderRadius: '4px',
                     cursor: 'pointer',
-                    backgroundColor: isSelected ? '#4CAF50' : '',
-                    color: isSelected ? 'white' : ''
+                    backgroundColor: isSelected ? '#67AE6E' : '#328E6E',
+                    color: isSelected ? 'white' : 'white',
+                    font: 'Georgia',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
-                  {option.optionText}
+                  <span>{option.optionText}</span>
                 </button>
               );
             })}

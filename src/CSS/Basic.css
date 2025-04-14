@@ -1,0 +1,24 @@
+#questionButton {
+    margin: 3%;
+    color: white;
+    background-color: #328E6E;
+    font-family: Georgia;
+    border-radius: 25%;
+    height: auto;
+    width: auto;
+}
+
+#questionButton:hover {
+    margin: 3%;
+    color: white;
+    background-color: #67AE6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    font-family: Georgia;
+    text-align: center;
+}

@@ -21,3 +21,41 @@
     background-color: green;
     height: 100%;
 }
+
+#scale {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    justify-content: space-between;
+    
+    /* justify-content: space-evenly; */
+    width: 75%;
+}
+
+input[type=range] {
+    width: 75%;
+}
+
+#questionButton {
+    margin: 3%;
+    color: white;
+    background-color: #328E6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+#questionButton:hover {
+    margin: 3%;
+    color: white;
+    background-color: #67AE6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    font-family: Georgia;
+    text-align: center;
+}
