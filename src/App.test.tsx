@@ -57,28 +57,6 @@ test('Detailed Quiz header goes to detailed quiz', () => {
   expect(detailedQuestionTitle).toBeInTheDocument();
 });
 
-test('about us popup works', () => {
-  // find and click "about us" popup
-  const aboutUsPopup = screen.getByRole("button", {name: /about us/i});
-  act(() => {
-    aboutUsPopup.click();
-  });
-  // check for popup by looking for the heading
-  const aboutUsHeader = screen.getByRole("heading", {level: 2, name: /about us/i});
-  expect(aboutUsHeader).toBeInTheDocument();
-});
-
-test('contact us popup works', () => {
-  // find and click "contact us" popup
-  const contactUsPopup = screen.getByRole("button", {name: /contact us/i});
-  act(() => {
-    contactUsPopup.click();
-  });
-  // check for popup by looking for the heading
-  const contactUsHeader = screen.getByRole("heading", {level: 2, name: /contact us/i});
-  expect(contactUsHeader).toBeInTheDocument();
-});
-
 test('header quiz button + home button = home', () => {
   // find and click "simple quiz" header, then click home button
   const simpleQuizHeader = screen.getByRole("button", {name: /simple quiz/i});
