@@ -38,17 +38,18 @@ function App() {
 
   return (
     <div className="App">
+      
+      <Header setOnHome = {setHome} setOnBasic = {setBasic} setOnDetailed = {setDetailed} setOnResults={setResultPage}></Header>
+      {isHome && <HomePage setOnBasic = {setBasic} setOnHome = {setHome} setOnDetailed = {setDetailed}></HomePage>}
+      {isBasic && <Basic setOnBasic={setBasic} setOnResults={setResultPage}></Basic>}
+      {isDetailed && <DetailedPage setOnDetailed={setDetailed} setOnResults={setResultPage}></DetailedPage>}
+      {isResultPage && <ResultPage></ResultPage>}
       <Form className = 'App'>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
-      <Header setOnHome = {setHome} setOnBasic = {setBasic} setOnDetailed = {setDetailed} setOnResults={setResultPage}></Header>
-      {isHome && <HomePage setOnBasic = {setBasic} setOnHome = {setHome} setOnDetailed = {setDetailed}></HomePage>}
-      {isBasic && <Basic setOnBasic={setBasic} setOnResults={setResultPage}></Basic>}
-      {isDetailed && <DetailedPage setOnDetailed={setDetailed} setOnResults={setResultPage}></DetailedPage>}
-      {isResultPage && <ResultPage></ResultPage>}
       <Footer></Footer>
     </div>
   );

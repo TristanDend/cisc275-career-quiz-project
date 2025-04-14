@@ -36,39 +36,26 @@ input[type=range] {
     width: 75%;
 }
 
-#submit-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    margin-right: 1rem;
-    background-color: #4CAF50;
+#questionButton {
+    margin: 3%;
     color: white;
+    background-color: #328E6E;
     font-family: Georgia;
     height: auto;
     width: auto;
 }
 
-#submit-button:hover {
-    background-color: forestgreen;
+#questionButton:hover {
+    margin: 3%;
     color: white;
+    background-color: #67AE6E;
     font-family: Georgia;
     height: auto;
     width: auto;
 }
 
-#clear-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #4CAF50;
-    color: white;
+.question-text {
+    font-size: 1.1rem;
     font-family: Georgia;
-    height: auto;
-    width: auto;
-}
-
-#clear-button:hover {
-    background-color: forestgreen;
-    color: white;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
+    text-align: center;
 }
