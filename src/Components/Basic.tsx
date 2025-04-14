@@ -128,7 +128,9 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResul
 
       {/* 底部按钮 */}
       <div style={{ textAlign: 'center' }}>
-        <button style={{
+        <button 
+            disabled={progressPercentage !== 100}
+            style={{
             padding: '0.5rem 1rem',
             border: '1px solid #ccc',
             borderRadius: '4px',
