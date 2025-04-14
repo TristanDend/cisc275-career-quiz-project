@@ -112,14 +112,27 @@ export const BasicQuestions: React.FC = () => {
 
       {/* 底部按钮 */}
       <div style={{ textAlign: 'center' }}>
-        <button style={{ padding: '0.5rem 1rem', fontSize: '1rem', marginRight: '1rem' }}>
+        <button style={{
+            padding: '0.5rem 1rem',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            marginRight: '1rem'
+          }}>
           Get Answers
         </button>
+
         <button
           onClick={() => { 
             clearSelections(); 
           }}
-          style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}
+
+          style={{
+            padding: '0.5rem 1rem',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
         >
           Clear
         </button>
