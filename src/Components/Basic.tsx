@@ -136,7 +136,7 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResul
             borderRadius: '4px',
             cursor: 'pointer',
             marginRight: '1rem'
-          }}>
+          }} onClick={toResultsPage}>
           Get Answers
         </button>
 
