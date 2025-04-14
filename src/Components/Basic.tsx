@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import questions from './question.json'; // load question
+import questions from '../assets/question.json'; // load question
 
 // 定义数据接口（可选）
 interface Option {
@@ -128,7 +128,9 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResul
 
       {/* 底部按钮 */}
       <div style={{ textAlign: 'center' }}>
-        <button style={{
+        <button 
+            disabled={progressPercentage !== 100}
+            style={{
             padding: '0.5rem 1rem',
             border: '1px solid #ccc',
             borderRadius: '4px',
@@ -139,6 +141,7 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResul
         </button>
 
         <button
+          disabled={!progressPercentage}
           onClick={() => { 
             clearSelections(); 
           }}
