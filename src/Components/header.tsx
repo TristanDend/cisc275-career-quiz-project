@@ -7,10 +7,11 @@ interface headerProps {
     setOnHome: (onHome: boolean) => void
     setOnBasic: (onBasic: boolean) => void
     setOnDetailed: (onDetailed: boolean) => void
+    setOnResults: (onResults: boolean) => void
   }
   
 
-export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
+export function Header({setOnHome, setOnBasic, setOnDetailed, setOnResults}: headerProps) {
     //setting up states
 
     //Function changes the active button and sets the state of the other buttons to false
@@ -20,16 +21,19 @@ export function Header({setOnHome, setOnBasic, setOnDetailed}: headerProps) {
             setOnHome(true);
             setOnBasic(false);
             setOnDetailed(false);
+            setOnResults(false);
         }
         else if(buttonName === "basic"){
             setOnHome(false);
             setOnBasic(true);
             setOnDetailed(false);
+            setOnResults(false);
         }
         else if(buttonName === "detailed"){
             setOnHome(false);
             setOnBasic(false);
             setOnDetailed(true);
+            setOnResults(false);
         }
 
     }

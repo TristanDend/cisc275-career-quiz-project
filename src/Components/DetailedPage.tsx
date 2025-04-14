@@ -18,6 +18,7 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
     function changeAnswer(event: React.ChangeEvent<HTMLInputElement>) {
         const newAnswers = [...answers];
         newAnswers[parseInt(event.target.id) - 1] = event.target.value;
+        // instead of top two lines, could it be const newAnswers = [...answers, event.target.value];
         takeAnswers(newAnswers);
     }
 
@@ -69,6 +70,20 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
                                 label={questions[index].options[ind].optionText}
                                 checked={q1Answers.includes(questions[index].options[ind].optionText)}
                                 onChange={handleCheckBoxChange}
+                            />
+                        ))
+                    }
+                    {questions[index].questionType === "radio" && 
+                        Array.from({length: questions[index].options.length}, (_, ind: number) => (
+                            <Form.Check
+                                name={questions[index].questionId.toString()}
+                                key={ind}
+                                type="radio"
+                                value={questions[index].options[ind].optionText}
+                                id={questions[index].questionId.toString()}
+                                label={questions[index].options[ind].optionText}
+                                checked={answers[questions[index].questionId - 1] === questions[index].options[ind].optionText}
+                                onChange={changeAnswer}
                             />
                         ))
                     }
