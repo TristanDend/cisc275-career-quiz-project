@@ -18,7 +18,6 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
     function changeAnswer(event: React.ChangeEvent<HTMLInputElement>) {
         const newAnswers = [...answers];
         newAnswers[parseInt(event.target.id) - 1] = event.target.value;
-        // instead of top two lines, could it be const newAnswers = [...answers, event.target.value];
         takeAnswers(newAnswers);
     }
 
@@ -125,10 +124,10 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
                         width: `${answerPercent}%`}}></div>
                 </div>
             </div>
-            <center><Button onClick={toResultsPage}>Get Answers</Button></center>
-            <Button onClick={handleClear}>Clear Answers</Button>
-            {/* <div>Answers: {JSON.stringify(answers)}</div>
-            <div>Q1 Answers: {JSON.stringify(q1Answers)}</div> */}
+            <center><Button id="submit-button" disabled={answerPercent !== 100} onClick={toResultsPage}>Submit Answers</Button></center>
+            <Button id="clear-button" disabled={!answerPercent} onClick={handleClear}>Clear Answers</Button>
+            <div>Answers: {JSON.stringify(answers)}</div>
+            <div>Q1 Answers: {JSON.stringify(q1Answers)}</div>
         </div>
     )
 }

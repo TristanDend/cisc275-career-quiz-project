@@ -124,10 +124,11 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({setOnBasic, setOnResul
 
       {/* 底部按钮 */}
       <div style={{ textAlign: 'center' }}>
-        <button style={{ padding: '0.5rem 1rem', fontSize: '1rem', marginRight: '1rem' }} onClick={toResultsPage}>
+        <button disabled={progressPercentage !== 100} style={{ padding: '0.5rem 1rem', fontSize: '1rem', marginRight: '1rem' }} onClick={toResultsPage}>
           Get Answers
         </button>
         <button
+          disabled={!progressPercentage}
           onClick={() => { 
             clearSelections(); 
           }}
