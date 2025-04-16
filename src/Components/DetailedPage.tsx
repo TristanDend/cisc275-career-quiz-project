@@ -48,6 +48,10 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
         q1TakeAnswers([]);
     }
 
+    function sliderColor(value: any): string {
+        return "green";
+    }
+
     return (
         <div id="page-style">
             <center>
@@ -100,6 +104,7 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
                     {questions[index].questionType === "slider" && 
                         <div>
                             <input 
+                                style={{accentColor: "green"}}
                                 id={questions[index].questionId.toString()}
                                 type="range"
                                 role="answer"
