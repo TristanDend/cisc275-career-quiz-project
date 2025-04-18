@@ -3,18 +3,37 @@ import { Button} from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import '../CSS/footer.css'
 
+interface FooterProps {
+  setApiOpen: (isApiOpen: boolean) => void
+}
 
 
-export function Footer(){
+export function Footer({setApiOpen}: FooterProps) {
+    //setting up states
     const [aboutOpen, setAboutOpen] = React.useState(false);
     const [contactOpen, setContactOpen] = React.useState(false);
+    const [apiOpen, setisApiOpen] = React.useState(false);
 
+    //Function changes the active button and sets the state of the about us button to false
     function aboutClose(){
         setAboutOpen(false)
     }
     
+    //Function changes the active button and sets the state of the contact us button to false
     function contactClose(){
         setContactOpen(false)
+    }
+
+    //Function flips the state of the Api Key button to show or be hidden
+    function apiToggle(){
+        if (apiOpen) {
+            setisApiOpen(false);
+            setApiOpen(false);
+        }
+        else {
+            setisApiOpen(true);
+            setApiOpen(true);
+        }
     }
 
     return (
@@ -60,6 +79,9 @@ export function Footer(){
                   </div>
                 }
               </Popup>
+              <Button id = 'footer-button' onClick = {() => {apiToggle()}}>
+                Enter API Key
+              </Button>
             
         </div>
     )

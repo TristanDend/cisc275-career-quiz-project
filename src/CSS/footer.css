@@ -1,6 +1,4 @@
 .footer{
-  /* margin-top: 0.5%; */
-  margin-bottom: 0.5%;
   flex-direction: row;
   justify-content: left;
   align-content: left;
@@ -30,7 +28,7 @@
   background-color: #67AE6E;
   color: white;
   font-family: Georgia;
-  backdrop: blur(5px);
+  backdrop-filter: blur(50%);
   border-radius: 10px;
   padding: 10px;
 }

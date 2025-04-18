@@ -1,51 +1,117 @@
-#answer-text-holder {
-    max-width: 300px;
+.title {
+    margin-bottom: 2rem;
+    font-weight: bold;
+    font-size: 4rem;
+    font-family: Georgia;
+    color: #328E6E;
 }
 
 #page-style {
+    background-color: #E1EEBC;
+    border-top: .5rem solid #90C67C;
+    border-bottom: .5rem solid #90C67C;
+}
+
+#quiz-style {
     max-width: 800px;
     margin: 0 auto;
     padding: 1rem;
     align-self: center;
+    background-color: white;
+    border: 1px solid darkgreen;
 }
 
-#progress-bar {
+.progress-wrapper {
+    position: sticky;
+    bottom: 0px;
+}
+
+.progress-bar {
     width: 100%;
+    z-index: 1000;
     background-color: #ccc;
-    height: 20px;
-    border-radius: 4px;
-    overflow: hidden;
+    height: 25px;
+    border: 1px solid black;
+    order: top;
 }
 
 #progress-content {
-    background-color: green;
+    background: repeating-linear-gradient(150deg, rgb(0, 115, 0) 0%, rgb(1, 241, 1) 1%);
+    transition: width 0.4s ease;
     height: 100%;
+    background-size: 10px 10px;
+    animation: stripeForward 1s linear infinite;
+}
+
+@keyframes stripeForward {
+    0% { background-position: 0px 0px};
+    100% { background-position: 10px 0px};
+}
+
+.progress-text {
+    color: white;
+    display: flex;
+    position: relative;
+    transform: translate(47%, -2px);
 }
 
 #scale {
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
     justify-content: space-between;
-    
-    /* justify-content: space-evenly; */
-    width: 75%;
+    width: 100%;
 }
 
-input[type=range] {
-    width: 75%;
-}
-
-#questionButton {
+#submitButton {
     margin: 3%;
+    font-size: 25px;
     color: white;
     background-color: #328E6E;
     font-family: Georgia;
     height: auto;
     width: auto;
+    border: 2px solid #216e53;
 }
 
-#questionButton:hover {
+#submitButton:hover {
+    margin: 3%;
+    color: white;
+    background-color: #67AE6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+#submitButton:disabled {
+    margin: 3%;
+    color: white;
+    background-color: #67AE6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+#clearButton {
+    margin: 3%;
+    font-size: 25px;
+    color: white;
+    background-color: #328E6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+    border: 2px solid #216e53;
+}
+
+#clearButton:disabled {
+    margin: 3%;
+    color: white;
+    background-color: #67AE6E;
+    font-family: Georgia;
+    height: auto;
+    width: auto;
+}
+
+#clearButton:hover {
     margin: 3%;
     color: white;
     background-color: #67AE6E;
@@ -55,7 +121,72 @@ input[type=range] {
 }
 
 .question-text {
+    font-weight: bold;
     font-size: 1.1rem;
     font-family: Georgia;
     text-align: center;
+    color: #328E6E;
+}
+
+.short-text {
+    border: 1px solid black;
+    font-size: 1.1rem;
+    font-family: Georgia;
+    text-align: center;
+}
+
+.answer-text {
+    font-size: 1.1rem;
+    font-family: Georgia;
+    gap: 1rem;
+    line-height: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.answer-text input {
+    background-color: white;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.answer-text input:checked {
+    background-color: #00cb00;
+    border: 2px solid black;
+}
+
+#answer-text-holder {
+    max-width: 300px;
+}
+
+.slider {
+    width: 100%;
+    background-color: lightgreen;
+}
+
+.slider::-moz-range-progress {
+    background: rgb(35, 176, 0);
+    border: 1px solid #000;
+    height: 7px;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    background: lightgray;
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+}
+
+.slider::-moz-range-track {
+    background: gray;
+    height: 5px;
+}
+
+.slider::-moz-range-thumb:hover {
+    background: white;
+}
+
+.slider::-moz-range-thumb:active {
+    background: white;
 }

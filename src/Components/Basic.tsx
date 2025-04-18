@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import questions from './question.json'; // load questions data from JSON file
+import questions from '../assets/question.json'; // load question
 
 // data interfaces
 type Option = {
@@ -111,16 +111,30 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({ setOnBasic, setOnResu
 
       {/* bottom buttons */}
       <div style={{ textAlign: 'center' }}>
-        <button
-          onClick={() => { toResultsPage(); }}
-          style={{ marginRight: '1rem', padding: '0.5rem 1rem', border: '1px solid #ccc', borderRadius: '4px', cursor: 'pointer' }}
-        >
+        <button 
+            disabled={progressPercentage !== 100}
+            style={{
+            padding: '0.5rem 1rem',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            marginRight: '1rem'
+          }} onClick={toResultsPage}>
           Get Answers
         </button>
 
         <button
-          onClick={() => { clearSelections(); }}
-          style={{ padding: '0.5rem 1rem', border: '1px solid #ccc', borderRadius: '4px', cursor: 'pointer' }}
+          disabled={!progressPercentage}
+          onClick={() => { 
+            clearSelections(); 
+          }}
+
+          style={{
+            padding: '0.5rem 1rem',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
         >
           Clear
         </button>

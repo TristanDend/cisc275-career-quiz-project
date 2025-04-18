@@ -1,6 +1,6 @@
 .header{
-    margin-top: 0.5%;
-    /* margin-bottom: 0.5%; */
+    width: auto;
+    height: auto;
     flex-direction: row;
     justify-content: left;
     align-content: left;
