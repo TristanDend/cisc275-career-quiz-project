@@ -2,10 +2,14 @@
     margin-bottom: 2rem;
     font-weight: bold;
     font-size: 4rem;
+    font-family: Georgia;
+    color: #328E6E;
 }
 
 #page-style {
-    background-color: rgb(255, 255, 255);
+    background-color: #E1EEBC;
+    border-top: .5rem solid #90C67C;
+    border-bottom: .5rem solid #90C67C;
 }
 
 #quiz-style {
@@ -13,7 +17,7 @@
     margin: 0 auto;
     padding: 1rem;
     align-self: center;
-    background-color: lightgreen;
+    background-color: white;
     border: 1px solid darkgreen;
 }
 
@@ -121,6 +125,7 @@
     font-size: 1.1rem;
     font-family: Georgia;
     text-align: center;
+    color: #328E6E;
 }
 
 .short-text {
