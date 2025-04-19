@@ -31,7 +31,7 @@
     z-index: 1000;
     background-color: #ccc;
     height: 25px;
-    border: 1px solid black;
+    border-top: 1px solid black;
     order: top;
 }
 
@@ -71,6 +71,7 @@
     height: auto;
     width: auto;
     border: 2px solid #216e53;
+    cursor: pointer;
 }
 
 #submitButton:hover {
@@ -80,6 +81,7 @@
     font-family: Georgia;
     height: auto;
     width: auto;
+    cursor: pointer;
 }
 
 #submitButton:disabled {
@@ -100,6 +102,7 @@
     height: auto;
     width: auto;
     border: 2px solid #216e53;
+    cursor: pointer;
 }
 
 #clearButton:disabled {
@@ -118,6 +121,7 @@
     font-family: Georgia;
     height: auto;
     width: auto;
+    cursor: pointer;
 }
 
 .question-text {
@@ -161,7 +165,6 @@
 
 .slider {
     width: 100%;
-    background-color: lightgreen;
 }
 
 .slider::-moz-range-progress {

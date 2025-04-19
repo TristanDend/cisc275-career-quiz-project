@@ -56,7 +56,7 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
                 </center>
                 {/* adds all the questions and answers for Detailed Question page */}
                 {Array.from({length: questions.length}, (_, index: number) => (
-                    <div key={index} style={{marginBottom: '1.5rem'}}>
+                    <div key={index} style={{marginBottom: '2rem'}}>
                         <p className='question-text' role="question">{questions[index].questionText}</p>
                         {questions[index].questionType === "checkbox" && 
                             Array.from({length: questions[index].options.length}, (_, ind: number) => (
@@ -127,7 +127,7 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
                     </div>
                 ))}
                 <center>
-                    <Button disabled={answerPercent !== 100} onClick={toResultsPage} id="submitButton">Get Answers</Button>
+                    <Button disabled={answerPercent !== 100} onClick={toResultsPage} id="submitButton">Submit Answers</Button>
                     <Button disabled={!answerPercent} onClick={handleClear} id='clearButton'>Clear Answers</Button>
                 </center>
                 {/* Elements to display chosen answers for debugging purposes */}

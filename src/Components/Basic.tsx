@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import questions from '../assets/question.json'; // load question
+import '../CSS/Basic.css'
 
 // data interfaces
 type Option = {
@@ -66,78 +67,62 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({ setOnBasic, setOnResu
   const progressPercentage = (answeredCount / (questions as Question[]).length) * 100;
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Georgia' }}>
-      {/* Title */}
-      <h1 style={{ textAlign: 'center' }}>Basic Questions</h1>
-
-      {/* render questions dynamically based on the JSON template */}
-      {(questions as Question[]).map((question, qIndex) => (
-        <div key={question.questionId} style={{ marginBottom: '1.5rem' }}>
-          <p className='question-text'>{question.questionText}</p>
-          <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {question.options.map((option, oIndex) => {
-              const isSelected = selectedOptions[qIndex].includes(oIndex);
-              return (
-                <button
-                  key={option.optionId}
-                  onClick={() => { handleOptionSelect(qIndex, oIndex); }}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    border: '1px solid #ccc',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    backgroundColor: isSelected ? '#67AE6E' : '#328E6E',
-                    color: 'white',
-                    fontFamily: 'Georgia',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  {option.optionText}
-                </button>
-              );
-            })}
+    <div id="page-style">
+      <div id="quiz-style">
+        {/* Title */}
+        <center>
+          <h1 className='title'>Basic Questions</h1>
+        </center>
+        {/* render questions dynamically based on the JSON template */}
+        {(questions as Question[]).map((question, qIndex) => (
+          <div key={question.questionId} style={{ marginBottom: '2rem' }}>
+            <p className='question-text'>{question.questionText}</p>
+            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              {question.options.map((option, oIndex) => {
+                const isSelected = selectedOptions[qIndex].includes(oIndex);
+                return (
+                  <button
+                    key={option.optionId}
+                    style={{
+                      backgroundColor: isSelected ? 'rgb(35, 176, 0)' : 'rgb(236, 236, 236)',
+                      color: isSelected ? "white" : "black",
+                      fontFamily: "Georgia",
+                      height: "auto",
+                      width: "auto",
+                      border: "1px solid black",
+                    }}
+                    onClick={() => { handleOptionSelect(qIndex, oIndex); }}>
+                      {option.optionText}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+        {/* bottom buttons */}
+        <center>
+          <button 
+              id='submitButton'
+              disabled={progressPercentage !== 100}
+              onClick={toResultsPage}>
+            Submit Answers
+          </button>
+          <button
+            id='clearButton'
+            disabled={!progressPercentage}
+            onClick={() => { clearSelections() }}>
+            Clear Answers
+          </button>
+        </center>
+      </div>
+      {/* progress bar */}
+      <div className="progress-wrapper">
+        <div className="progress-bar">
+          <div id="progress-content" style={{ 
+            width: `${progressPercentage}%`}}>
+            <p className="progress-text">{progressPercentage.toFixed(0)}%</p>
           </div>
         </div>
-      ))}
-
-      {/* progress bar */}
-      <div style={{ marginBottom: '1rem' }}>
-        <div style={{ width: '100%', backgroundColor: '#ccc', height: '20px', borderRadius: '4px', overflow: 'hidden' }}>
-          <div style={{ width: `${progressPercentage}%`, backgroundColor: 'green', height: '100%' }}></div>
-        </div>
-      </div>
-
-      {/* bottom buttons */}
-      <div style={{ textAlign: 'center' }}>
-        <button 
-            disabled={progressPercentage !== 100}
-            style={{
-            padding: '0.5rem 1rem',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            marginRight: '1rem'
-          }} onClick={toResultsPage}>
-          Get Answers
-        </button>
-
-        <button
-          disabled={!progressPercentage}
-          onClick={() => { 
-            clearSelections(); 
-          }}
-
-          style={{
-            padding: '0.5rem 1rem',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          Clear
-        </button>
       </div>
     </div>
   );
