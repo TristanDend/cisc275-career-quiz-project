@@ -10,46 +10,51 @@
         { "optionId": "o4", "optionText": "Social Studies and History" },
         { "optionId": "o5", "optionText": "Art" },
         { "optionId": "o6", "optionText": "Music" },
-        { "optionId": "o7", "optionText": "Foreign Language" }
+        { "optionId": "o7", "optionText": "Foreign Language" },
+        { "optionId": "o8", "optionText": "I don't know" }
       ]
     },
     {
       "questionId": "q002",
-      "questionText": "Indoors or Outside?",
+      "questionText": "Do you prefer Indoors or Outside?",
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Indoors" },
-        { "optionId": "o2", "optionText": "Outside" }
+        { "optionId": "o2", "optionText": "Outside" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
       "questionId": "q003",
-      "questionText": "What age group would you want to work with? (a teacher works with children)",
+      "questionText": "What age group would you want to work with? (e.g. A teacher works with children.)",
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Children" },
         { "optionId": "o2", "optionText": "My age" },
         { "optionId": "o3", "optionText": "Elderly" },
-        { "optionId": "o4", "optionText": "All ages" }
+        { "optionId": "o4", "optionText": "All ages" },
+        { "optionId": "o5", "optionText": "I don't know" }
       ]
     },
     {
       "questionId": "q004",
-      "questionText": "Set Schedule or make your own hours?",
+      "questionText": "Would you rather have a Set Schedule or Make your own hours?",
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Set Schedule" },
-        { "optionId": "o2", "optionText": "Make your own hours" }
+        { "optionId": "o2", "optionText": "Make your own hours" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
       "questionId": "q005",
-      "questionText": "Salary vs Commission vs Hourly?",
+      "questionText": "Do you want to get paid by Salary, Commission, or Hourly?",
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Salary" },
         { "optionId": "o2", "optionText": "Commission" },
-        { "optionId": "o3", "optionText": "Hourly" }
+        { "optionId": "o3", "optionText": "Hourly" },
+        { "optionId": "o4", "optionText": "I don't know" }
       ]
     },
     {
@@ -60,7 +65,8 @@
         { "optionId": "o1", "optionText": "Competitive" },
         { "optionId": "o2", "optionText": "Collaborative" },
         { "optionId": "o3", "optionText": "Independent" },
-        { "optionId": "o4", "optionText": "Organized" }
+        { "optionId": "o4", "optionText": "Organized" },
+        { "optionId": "o5", "optionText": "I don't know" }
       ]
     },
     {
@@ -69,7 +75,8 @@
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Yes" },
-        { "optionId": "o2", "optionText": "No" }
+        { "optionId": "o2", "optionText": "No" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
@@ -78,7 +85,8 @@
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Yes" },
-        { "optionId": "o2", "optionText": "No" }
+        { "optionId": "o2", "optionText": "No" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
@@ -87,7 +95,8 @@
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Yes" },
-        { "optionId": "o2", "optionText": "No" }
+        { "optionId": "o2", "optionText": "No" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
@@ -96,7 +105,8 @@
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Yes" },
-        { "optionId": "o2", "optionText": "No" }
+        { "optionId": "o2", "optionText": "No" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
@@ -105,7 +115,8 @@
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Yes" },
-        { "optionId": "o2", "optionText": "No" }
+        { "optionId": "o2", "optionText": "No" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
@@ -114,7 +125,8 @@
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Yes" },
-        { "optionId": "o2", "optionText": "No" }
+        { "optionId": "o2", "optionText": "No" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
@@ -123,7 +135,8 @@
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Yes" },
-        { "optionId": "o2", "optionText": "No" }
+        { "optionId": "o2", "optionText": "No" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
@@ -132,7 +145,8 @@
       "allowMultiple": false,
       "options": [
         { "optionId": "o1", "optionText": "Yes" },
-        { "optionId": "o2", "optionText": "No" }
+        { "optionId": "o2", "optionText": "No" },
+        { "optionId": "o3", "optionText": "I don't know" }
       ]
     },
     {
