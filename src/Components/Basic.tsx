@@ -17,18 +17,22 @@ type Question = {
 
 // props interface for navigation functions
 interface BasicPageProps {
+  setBasicAns: (basicAns: string[][]) => void;
   setOnBasic: (onBasic: boolean) => void;
   setOnResults: (onResults: boolean) => void;
+  setQuizAnswered: (quizAnswered: string) => void;
 }
 
-export const BasicQuestions: React.FC<BasicPageProps> = ({ setOnBasic, setOnResults }) => {
+export const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, setOnResults, setQuizAnswered}) => {
   // initialize state: an empty array for each question to track selected option indices
-  const [selectedOptions, setSelectedOptions] = useState<number[][]>(
+  const [selectedOptions, setSelectedOptions] = useState<string[][]>(
     (questions as Question[]).map(() => [])
   );
 
-  // switch from quiz to results page
+  // switch from quiz to results page and brings answers over
   function toResultsPage(): void {
+    setBasicAns(selectedOptions);
+    setQuizAnswered("Basic Quiz");
     setOnBasic(false);
     setOnResults(true);
   }
@@ -38,18 +42,18 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({ setOnBasic, setOnResu
     const currentSelections = selectedOptions[questionIndex];
     const question = (questions as Question[])[questionIndex];
 
-    let newSelectionsForQuestion: number[];
+    let newSelectionsForQuestion: string[];
 
     if (question.allowMultiple) {
       // if multiple selections allowed, toggle the option
-      if (currentSelections.includes(optionIndex)) {
-        newSelectionsForQuestion = currentSelections.filter(val => val !== optionIndex);
+      if (currentSelections.includes(question.options[optionIndex].optionText)) {
+        newSelectionsForQuestion = currentSelections.filter(val => val !== question.options[optionIndex].optionText);
       } else {
-        newSelectionsForQuestion = [...currentSelections, optionIndex];
+        newSelectionsForQuestion = [...currentSelections, question.options[optionIndex].optionText];
       }
     } else {
       // single selection: replace with the current option
-      newSelectionsForQuestion = [optionIndex];
+      newSelectionsForQuestion = [question.options[optionIndex].optionText];
     }
 
     const newSelections = [...selectedOptions];
@@ -79,7 +83,7 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({ setOnBasic, setOnResu
             <p className='question-text'>{question.questionText}</p>
             <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               {question.options.map((option, oIndex) => {
-                const isSelected = selectedOptions[qIndex].includes(oIndex);
+                const isSelected = selectedOptions[qIndex].includes(option.optionText);
                 return (
                   <button
                     key={option.optionId}
