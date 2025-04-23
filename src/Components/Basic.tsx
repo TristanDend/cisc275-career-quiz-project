@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import questions from '../assets/question.json'; // load question
-import '../CSS/Basic.css'
+import '../CSS/Basic.css';
 
 // data interfaces
 type Option = {
@@ -23,19 +23,45 @@ interface BasicPageProps {
   setQuizAnswered: (quizAnswered: string) => void;
 }
 
-export const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, setOnResults, setQuizAnswered}) => {
-  // initialize state: an empty array for each question to track selected option indices
+export const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, setOnResults, setQuizAnswered }) => {
+  // initialize state: an empty array for each question to track selected option texts
   const [selectedOptions, setSelectedOptions] = useState<string[][]>(
     (questions as Question[]).map(() => [])
   );
 
-  // switch from quiz to results page and brings answers over
+  // check if running on local test environment
+  const hostname = window.location.hostname;
+  const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+
+  // switch from quiz to results page and send answers over
   function toResultsPage(): void {
     setBasicAns(selectedOptions);
     setQuizAnswered("Basic Quiz");
     setOnBasic(false);
     setOnResults(true);
   }
+
+  // randomly select answers for testing
+  const randomizeSelections = (): void => {
+    const newSelections = (questions as Question[]).map((question) => {
+      if (question.allowMultiple) {
+        // random subset, ensure at least one option
+        let picks = question.options
+          .filter(() => Math.random() > 0.5)
+          .map(opt => opt.optionText);
+        if (picks.length === 0) {
+          const randomIndex = Math.floor(Math.random() * question.options.length);
+          picks = [question.options[randomIndex].optionText];
+        }
+        return picks;
+      } else {
+        // single random choice
+        const randomIndex = Math.floor(Math.random() * question.options.length);
+        return [question.options[randomIndex].optionText];
+      }
+    });
+    setSelectedOptions(newSelections);
+  };
 
   // update selection when an option is clicked
   const handleOptionSelect = (questionIndex: number, optionIndex: number): void => {
@@ -46,10 +72,11 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBas
 
     if (question.allowMultiple) {
       // if multiple selections allowed, toggle the option
-      if (currentSelections.includes(question.options[optionIndex].optionText)) {
-        newSelectionsForQuestion = currentSelections.filter(val => val !== question.options[optionIndex].optionText);
+      const optionText = question.options[optionIndex].optionText;
+      if (currentSelections.includes(optionText)) {
+        newSelectionsForQuestion = currentSelections.filter(val => val !== optionText);
       } else {
-        newSelectionsForQuestion = [...currentSelections, question.options[optionIndex].optionText];
+        newSelectionsForQuestion = [...currentSelections, optionText];
       }
     } else {
       // single selection: replace with the current option
@@ -77,6 +104,7 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBas
         <center>
           <h1 className='title'>Basic Questions</h1>
         </center>
+
         {/* render questions dynamically based on the JSON template */}
         {(questions as Question[]).map((question, qIndex) => (
           <div key={question.questionId} style={{ marginBottom: '2rem' }}>
@@ -89,41 +117,51 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBas
                     key={option.optionId}
                     style={{
                       backgroundColor: isSelected ? 'rgb(35, 176, 0)' : 'rgb(236, 236, 236)',
-                      color: isSelected ? "white" : "black",
-                      fontFamily: "Georgia",
-                      height: "auto",
-                      width: "auto",
-                      border: "1px solid black",
+                      color: isSelected ? 'white' : 'black',
+                      fontFamily: 'Georgia',
+                      height: 'auto',
+                      width: 'auto',
+                      border: '1px solid black',
                     }}
-                    onClick={() => { handleOptionSelect(qIndex, oIndex); }}>
-                      {option.optionText}
+                    onClick={() => { handleOptionSelect(qIndex, oIndex); }}
+                  >{option.optionText}
                   </button>
                 );
               })}
             </div>
           </div>
         ))}
+
         {/* bottom buttons */}
         <center>
-          <button 
-              id='submitButton'
-              disabled={progressPercentage !== 100}
-              onClick={toResultsPage}>
-            Submit Answers
-          </button>
+          <button
+            id='submitButton'
+            disabled={progressPercentage !== 100}
+            onClick={toResultsPage}
+            style={{ marginRight: '1rem', padding: '0.5rem 1rem', cursor: 'pointer' }}
+          >Submit Answers</button>
+
+          {isLocalhost && (
+            <button
+              id='randomizeButton'
+              style={{ margin: '0 1rem', padding: '0.5rem 1rem', cursor: 'pointer' }}
+              onClick={randomizeSelections}
+            >Random Answers</button>
+          )}
+
           <button
             id='clearButton'
-            disabled={!progressPercentage}
-            onClick={() => { clearSelections() }}>
-            Clear Answers
-          </button>
+            disabled={!(progressPercentage > 0)}
+            onClick={clearSelections}
+            style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}
+          >Clear Answers</button>
         </center>
       </div>
+
       {/* progress bar */}
       <div className="progress-wrapper">
         <div className="progress-bar">
-          <div id="progress-content" style={{ 
-            width: `${progressPercentage}%`}}>
+          <div id="progress-content" style={{ width: `${progressPercentage}%` }}>
             <p className="progress-text">{progressPercentage.toFixed(0)}%</p>
           </div>
         </div>
