@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import '../CSS/Result.css'
+import React, {useState, useEffect} from 'react';
+import Popup from 'reactjs-popup';
+import '../CSS/Result.css';
+import leafLoad from '../assets/leaf_loading.gif'
 import OpenAI from 'openai';
 
 // props interface for user answers
@@ -24,10 +26,18 @@ async function processResults(userAnswers: string[][], apiKey: string): Promise<
 
 export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPageProps): React.JSX.Element {
     const [response, setResponse] = useState<Awaited<ReturnType<typeof processResults>> | null>(null);
+    const [loadResults, setLoadResults] = useState<boolean>(true);
 
     // Turns response into a useable value
     useEffect(() => {
         processResults(userAnswers, apiKey).then(setResponse)
+
+        // Sets loadResults to false after 5 seconds
+        const timer = setTimeout(() => {
+            setLoadResults(false);
+        }, 5000); // 5 seconds
+
+        return () => {clearTimeout(timer)}; // cleanup
     }, [userAnswers, apiKey]);
 
     return (
@@ -36,6 +46,14 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
             {!response && <div>Loading...</div>}
             {response && <div>ChatGPT Response: {response.output_text}</div>}
             <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
+            <Popup open={loadResults} closeOnDocumentClick={false}>
+                {
+                  <div id="ResultsInitialPopup">
+                    <p id="ResultsInitialPopupText">Processing Your Answers</p>
+                    <img id="loadingImage" src={leafLoad} alt="leaf loading..."/>
+                  </div>
+                }
+            </Popup>
         </div>
     )
 }
