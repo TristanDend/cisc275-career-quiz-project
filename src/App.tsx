@@ -45,7 +45,7 @@ function App() {
       {isHome && <HomePage setOnBasic={setBasic} setOnHome={setHome} setOnDetailed={setDetailed}></HomePage>}
       {isBasic && <Basic setBasicAns={setUserAnswers} setOnBasic={setBasic} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></Basic>}
       {isDetailed && <DetailedPage setDetailedAns={setUserAnswers} setOnDetailed={setDetailed} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></DetailedPage>}
-      {isResultPage && <ResultPage userAnswers={userAnswers} quizAnswered={quizAnswered}></ResultPage>}
+      {isResultPage && <ResultPage userAnswers={userAnswers} quizAnswered={quizAnswered} apiKey={key}></ResultPage>}
       <Footer setApiOpen = {setApiShow}></Footer>
       {apiKeyShow && <Form className = 'App' data-testid='APIKeyForm'>
         <Form.Label>API Key:</Form.Label>

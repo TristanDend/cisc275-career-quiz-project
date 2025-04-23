@@ -25,7 +25,8 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
 
     // turns the quiz off and turns results page on and brings answers over
     function toResultsPage() {
-        setDetailedAns([answers]);
+        const answerArray: string[][] = new Array<string[]>(answers.length).fill([])
+        setDetailedAns(answerArray.map((answer: string[], index: number) => answer = [answers[index]]))
         setQuizAnswered("Detailed Quiz");
         setOnDetailed(false);
         setOnResults(true);
