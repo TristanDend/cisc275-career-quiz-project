@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Popup from 'reactjs-popup';
 import '../CSS/Result.css';
+import leafLoad from '../assets/leaf_loading.gif'
 
 export function ResultPage(): React.JSX.Element {
     const [loadResults, setLoadResults] = useState<boolean>(true);
@@ -28,7 +29,8 @@ export function ResultPage(): React.JSX.Element {
             <Popup open={loadResults} closeOnDocumentClick={false}>
                 {
                   <div id="ResultsInitialPopup">
-                    Processing Your Answers...
+                    <p id="ResultsInitialPopupText">Processing Your Answers</p>
+                    <img id="loadingImage" src={leafLoad} alt="leaf loading..."/>
                   </div>
                 }
             </Popup>
