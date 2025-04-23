@@ -5,11 +5,13 @@ import { questions, Question, Option } from '../assets/DetailedPageQuestions'
 
 // Transferred state variables for page transitions
 interface DetailedPageProps {
-    setOnDetailed: (onDetailed: boolean) => void
-    setOnResults: (onResults: boolean) => void
+    setDetailedAns: (detailedAns: string[][]) => void;
+    setOnDetailed: (onDetailed: boolean) => void;
+    setOnResults: (onResults: boolean) => void;
+    setQuizAnswered: (quizAnswered: string) => void;
 }
 
-export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps): React.JSX.Element {
+export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQuizAnswered} : DetailedPageProps): React.JSX.Element {
     const [answers, takeAnswers] = useState<string[]>(new Array(questions.length).fill("")); // for all questions and answers in page
     const [q1Answers, q1TakeAnswers] = useState<string[]>([]); // for question 1 answers (specific due to being checklist)
     const answerPercent = ((answers.filter((answer) => answer !== "").length / answers.length) * 100); // for progress bar answer check
@@ -21,8 +23,11 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
         takeAnswers(newAnswers);
     }
 
-    // turns the quiz off and turns results page on
+    // turns the quiz off and turns results page on and brings answers over
     function toResultsPage() {
+        const answerArray: string[][] = new Array<string[]>(answers.length).fill([])
+        setDetailedAns(answerArray.map((answer: string[], index: number) => answer = [answers[index]]))
+        setQuizAnswered("Detailed Quiz");
         setOnDetailed(false);
         setOnResults(true);
     }
@@ -130,9 +135,6 @@ export function DetailedPage({setOnDetailed, setOnResults} : DetailedPageProps):
                     <Button disabled={answerPercent !== 100} onClick={toResultsPage} id="submitButton">Submit Answers</Button>
                     <Button disabled={!answerPercent} onClick={handleClear} id='clearButton'>Clear Answers</Button>
                 </center>
-                {/* Elements to display chosen answers for debugging purposes */}
-                {/* <div>Answers: {JSON.stringify(answers)}</div>
-                <div>Q1 Answers: {JSON.stringify(q1Answers)}</div> */}
             </div>
             {/* All elements necessary to display the progress bar */}
             <div className="progress-wrapper">
