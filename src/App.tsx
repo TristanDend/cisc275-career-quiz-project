@@ -24,7 +24,8 @@ function App() {
   const [isDetailed, setDetailed] = useState<boolean>(false);
   const [isResultPage, setResultPage] = useState<boolean>(false);
   const [apiKeyShow, setApiShow] = useState<boolean>(false);
-
+  const [userAnswers, setUserAnswers] = useState<string[][]>([]);
+  const [quizAnswered, setQuizAnswered] = useState<string>("");
 
   // sets the local storage item to the api key the user inputed
   function handleSubmit() {
@@ -32,19 +33,19 @@ function App() {
     window.location.reload();
   }
 
-  // whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
+  /* whenever there's a change it'll store the api key in a local state called key but 
+  it won't be set in the local storage until the user clicks the submit button */
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
 
   return (
     <div className="App">
-      
-      <Header setOnHome = {setHome} setOnBasic = {setBasic} setOnDetailed = {setDetailed} setOnResults = {setResultPage}></Header>
-      {isHome && <HomePage setOnBasic = {setBasic} setOnHome = {setHome} setOnDetailed = {setDetailed}></HomePage>}
-      {isBasic && <Basic setOnBasic={setBasic} setOnResults={setResultPage}></Basic>}
-      {isDetailed && <DetailedPage setOnDetailed={setDetailed} setOnResults={setResultPage}></DetailedPage>}
-      {isResultPage && <ResultPage></ResultPage>}
+      <Header setOnHome={setHome} setOnBasic={setBasic} setOnDetailed={setDetailed} setOnResults={setResultPage}></Header>
+      {isHome && <HomePage setOnBasic={setBasic} setOnHome={setHome} setOnDetailed={setDetailed}></HomePage>}
+      {isBasic && <Basic setBasicAns={setUserAnswers} setOnBasic={setBasic} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></Basic>}
+      {isDetailed && <DetailedPage setDetailedAns={setUserAnswers} setOnDetailed={setDetailed} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></DetailedPage>}
+      {isResultPage && <ResultPage userAnswers={userAnswers} quizAnswered={quizAnswered} apiKey={key}></ResultPage>}
       <Footer setApiOpen = {setApiShow}></Footer>
       {apiKeyShow && <Form className = 'App' data-testid='APIKeyForm'>
         <Form.Label>API Key:</Form.Label>

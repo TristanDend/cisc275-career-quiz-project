@@ -1,3 +1,17 @@
+.resultsPage-Style {
+    background-color: #E1EEBC;
+    border-top: .5rem solid #90C67C;
+    border-bottom: .5rem solid #90C67C;
+}
+
+.resultsPage-Title {
+    margin-bottom: 2rem;
+    font-weight: bold;
+    font-size: 4rem;
+    font-family: Georgia;
+    color: #328E6E;
+}
+
 #loadingImage {
     height: 20%;
     width: 20%
@@ -21,10 +35,4 @@
     font-size: 3rem;
     width: 100%;
     text-align: center;
-}
-
-#resultsPageTitle {
-    font-family: Georgia;
-    font-weight: bold;
-    color: #328E6E;
 }

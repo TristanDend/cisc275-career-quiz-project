@@ -2,30 +2,50 @@ import React, {useState, useEffect} from 'react';
 import Popup from 'reactjs-popup';
 import '../CSS/Result.css';
 import leafLoad from '../assets/leaf_loading.gif'
+import OpenAI from 'openai';
 
-export function ResultPage(): React.JSX.Element {
+// props interface for user answers
+interface ResultsPageProps {
+    userAnswers: string[][];
+    quizAnswered: string;
+    apiKey: string;
+}
+
+// allows time for ChatGPT to get response without stopping the website
+async function processResults(userAnswers: string[][], apiKey: string): Promise<OpenAI.Responses.Response & {
+    _request_id?: string | null;
+}> {
+    const client = new OpenAI({apiKey: apiKey, dangerouslyAllowBrowser: true});
+    const response = await client.responses.create({
+        model: "gpt-4.1-mini",
+        instructions: "Use only one to two words.",
+        input: `Give a career recommendation based on these answers ${userAnswers}`
+    })
+    return response;
+}
+
+export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPageProps): React.JSX.Element {
+    const [response, setResponse] = useState<Awaited<ReturnType<typeof processResults>> | null>(null);
     const [loadResults, setLoadResults] = useState<boolean>(true);
 
-    // creates the loading sequence
-    // const loadingHandler = async () => {
-    //     await Promise.all([
-    //         new Promise(resolveTimer => setTimeout(resolveTimer, 5000)),
-    //     ]);
-    // }
-
-    // useEffect runs when the component is rendered. Sets loadResults to false after 5 seconds
+    // Turns response into a useable value
     useEffect(() => {
+        processResults(userAnswers, apiKey).then(setResponse)
+
+        // Sets loadResults to false after 5 seconds
         const timer = setTimeout(() => {
             setLoadResults(false);
         }, 5000); // 5 seconds
 
         return () => {clearTimeout(timer)}; // cleanup
-    }, []);
+    }, [userAnswers, apiKey]);
 
     return (
-        <div>
-            <h1 id="resultsPageTitle">Results</h1>
-            
+        <div className="resultsPage-Style">
+            <center><h1 className='resultsPage-Title'>{quizAnswered} Results</h1></center>
+            {!response && <div>Loading...</div>}
+            {response && <div>ChatGPT Response: {response.output_text}</div>}
+            <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
             <Popup open={loadResults} closeOnDocumentClick={false}>
                 {
                   <div id="ResultsInitialPopup">

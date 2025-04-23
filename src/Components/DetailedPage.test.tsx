@@ -5,7 +5,7 @@ import { DetailedPage } from "./DetailedPage";
 
 describe("DetailedPage Component Tests", () => {
     beforeEach(() => {  
-        render(<DetailedPage setOnResults={jest.fn()} setOnDetailed={jest.fn()}></DetailedPage>);
+        render(<DetailedPage setDetailedAns={jest.fn()} setOnResults={jest.fn()} setOnDetailed={jest.fn()} setQuizAnswered={jest.fn()}></DetailedPage>);
     });    
 
     test("Necessary elements appear (Clear, Submit, Title).", () => {
