@@ -1,8 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
-import '../CSS/Result.css';
+import '../CSS/Result.css'
 import leafLoad from '../assets/leaf_loading.gif'
-import OpenAI from 'openai';
+import OpenAI, { APIConnectionError, APIConnectionTimeoutError, APIError, AuthenticationError, BadRequestError, InternalServerError, OpenAIError } from 'openai';
+import basicQuestions from '../assets/question.json';
+import { questions, Question, Option } from '../assets/DetailedPageQuestions'
+import { ChatCompletion } from 'openai/resources/chat';
+
+type yesResponse = { worked: true; response: ChatCompletion & 
+    { _request_id?: string | null | undefined; }};
+type noError = { worked: false; error: Error };
 
 // props interface for user answers
 interface ResultsPageProps {
@@ -12,16 +19,20 @@ interface ResultsPageProps {
 }
 
 // allows time for ChatGPT to get response without stopping the website
-async function processResults(userAnswers: string[][], apiKey: string): Promise<OpenAI.Responses.Response & {
-    _request_id?: string | null;
-}> {
+async function processResults(quizAnswered: string, userAnswers: string[][], apiKey: string): Promise<yesResponse | noError | undefined>  {
     const client = new OpenAI({apiKey: apiKey, dangerouslyAllowBrowser: true});
-    const response = await client.responses.create({
-        model: "gpt-4.1-mini",
-        instructions: "Use only one to two words.",
-        input: `Give a career recommendation based on these answers ${userAnswers}`
-    })
-    return response;
+    try {
+        const response = await client.chat.completions.create({
+            model: "gpt-4.1-mini",
+            messages: [
+                { role: "system", content: "Use only one to two words." },
+                { role: "user", content: `Give a career recommendation based on these answers: ${userAnswers}, to the following questions: ${
+                    quizAnswered === "Basic Quiz" ? basicQuestions : questions}`
+        }]});
+        return { worked: true, response: response };
+    } catch (error) {
+        if (error instanceof OpenAI.APIError) return { worked: false, error: error};
+    }
 }
 
 export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPageProps): React.JSX.Element {
@@ -30,7 +41,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
 
     // Turns response into a useable value
     useEffect(() => {
-        processResults(userAnswers, apiKey).then(setResponse)
+        processResults(quizAnswered, userAnswers, apiKey).then(setResponse)
 
         // Sets loadResults to false after 5 seconds
         const timer = setTimeout(() => {
@@ -38,13 +49,13 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
         }, 5000); // 5 seconds
 
         return () => {clearTimeout(timer)}; // cleanup
-    }, [userAnswers, apiKey]);
+    }, [quizAnswered, userAnswers, apiKey]);
 
     return (
         <div className="resultsPage-Style">
             <center><h1 className='resultsPage-Title'>{quizAnswered} Results</h1></center>
             {!response && <div>Loading...</div>}
-            {response && <div>ChatGPT Response: {response.output_text}</div>}
+            {response && <div>ChatGPT Response: {response.worked ? response.response.choices[3].message.content : response.error.message}</div>}
             <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
             <Popup open={loadResults} closeOnDocumentClick={false}>
                 {
