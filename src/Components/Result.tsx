@@ -54,9 +54,6 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
     return (
         <div className="resultsPage-Style">
             <center><h1 className='resultsPage-Title'>{quizAnswered} Results</h1></center>
-            {!response && <div>Loading...</div>}
-            {response && <div>ChatGPT Response: {response.worked ? response.response.choices[3].message.content : response.error.message}</div>}
-            <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
             <Popup open={loadResults} closeOnDocumentClick={false}>
                 {
                   <div id="ResultsInitialPopup">
@@ -65,6 +62,8 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                   </div>
                 }
             </Popup>
+            {response && <div>ChatGPT Response: {response.worked ? response.response.choices[0].message.content : response.error.message}</div>}
+            <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
         </div>
     )
 }
