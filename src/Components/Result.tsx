@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import fs from 'fs/promises';
 import '../CSS/Result.css'
 import OpenAI from 'openai';
 
@@ -10,13 +11,23 @@ interface ResultsPageProps {
 }
 
 // allows time for ChatGPT to get response without stopping the website
-async function processResults(userAnswers: string[][], apiKey: string): Promise<OpenAI.Responses.Response & {
+async function processResults(userAnswers: string[][], apiKey: string, quizAnswered: string): Promise<OpenAI.Responses.Response & {
     _request_id?: string | null;
 }> {
+    if (!apiKey) {
+        throw new Error("API key is required");
+    }
+    if(quizAnswered === "basic") {
+        const instructions = await fs.readFile('src/Components/basicInstructions.txt', 'utf-8');
+    }
+    else{
+        const instructions = await fs.readFile('src/Components/detailedInstructions.txt', 'utf-8');
+    }
+    
     const client = new OpenAI({apiKey: apiKey, dangerouslyAllowBrowser: true});
     const response = await client.responses.create({
         model: "gpt-4.1-mini",
-        instructions: "Use only one to two words.",
+        instructions,
         input: `Give a career recommendation based on these answers ${userAnswers}`
     })
     return response;
@@ -27,8 +38,8 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
 
     // Turns response into a useable value
     useEffect(() => {
-        processResults(userAnswers, apiKey).then(setResponse)
-    }, [userAnswers, apiKey]);
+        processResults(userAnswers, apiKey, quizAnswered).then(setResponse)
+    }, [userAnswers, apiKey, quizAnswered]);
 
     return (
         <div className="resultsPage-Style">
