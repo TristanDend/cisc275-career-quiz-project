@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
+import fs from 'fs/promises';
 import '../CSS/Result.css'
 import leafLoad from '../assets/leaf_loading.gif'
 import OpenAI, { APIConnectionError, APIConnectionTimeoutError, APIError, AuthenticationError, BadRequestError, InternalServerError, OpenAIError } from 'openai';
@@ -20,12 +21,25 @@ interface ResultsPageProps {
 
 // allows time for ChatGPT to get response without stopping the website
 async function processResults(quizAnswered: string, userAnswers: string[][], apiKey: string): Promise<yesResponse | noError | undefined>  {
+
+    if (!apiKey) {
+        throw new Error("API key is required");
+    }
+
+    const instructions = await fs.readFile('src/Components/instructions.txt', 'utf-8');
+    if(quizAnswered === "basic") {
+        const instructions = await fs.readFile('src/Components/basicInstructions.txt', 'utf-8');
+    }
+    else{
+        const instructions = await fs.readFile('src/Components/detailedInstructions.txt', 'utf-8');
+    }
+
     const client = new OpenAI({apiKey: apiKey, dangerouslyAllowBrowser: true});
     try {
         const response = await client.chat.completions.create({
             model: "gpt-4.1-mini",
             messages: [
-                { role: "system", content: "Use only one to two words." },
+                { role: "system", content: instructions },
                 { role: "user", content: `Give a career recommendation based on these answers: ${userAnswers}, to the following questions: ${
                     quizAnswered === "Basic Quiz" ? basicQuestions : questions}`
         }]});

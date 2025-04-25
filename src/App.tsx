@@ -47,12 +47,14 @@ function App() {
       {isDetailed && <DetailedPage setDetailedAns={setUserAnswers} setOnDetailed={setDetailed} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></DetailedPage>}
       {isResultPage && <ResultPage userAnswers={userAnswers} quizAnswered={quizAnswered} apiKey={key}></ResultPage>}
       <Footer setApiOpen = {setApiShow}></Footer>
-      {apiKeyShow && <Form className='App' data-testid='APIKeyForm'>
-        <Form.Label>API Key:</Form.Label>
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-        <br></br>
-        <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-      </Form>}
+      <div className="App-footer">
+        {apiKeyShow && <Form className = 'App' data-testid='APIKeyForm'>
+          <Form.Label>API Key:</Form.Label>
+          <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+          <br></br>
+          <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
+        </Form>}
+      </div>
     </div>
   );
 }
