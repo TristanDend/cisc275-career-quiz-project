@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
-import fs from 'fs/promises';
 import '../CSS/Result.css'
 import leafLoad from '../assets/leaf_loading.gif'
 import OpenAI, { APIConnectionError, APIConnectionTimeoutError, APIError, AuthenticationError, BadRequestError, InternalServerError, OpenAIError } from 'openai';
 import basicQuestions from '../assets/question.json';
 import { questions, Question, Option } from '../assets/DetailedPageQuestions'
 import { ChatCompletion } from 'openai/resources/chat';
+import basicInstructions from '../assets/BasicInstructions';
+import detailedInstructions from '../assets/DetailedInstructions';
 
 type yesResponse = { worked: true; response: ChatCompletion & 
     { _request_id?: string | null | undefined; }};
@@ -26,12 +27,13 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
         throw new Error("API key is required");
     }
 
-    const instructions = await fs.readFile('src/Components/instructions.txt', 'utf-8');
-    if(quizAnswered === "basic") {
-        const instructions = await fs.readFile('src/Components/basicInstructions.txt', 'utf-8');
-    }
-    else{
-        const instructions = await fs.readFile('src/Components/detailedInstructions.txt', 'utf-8');
+    // empty string as detail instructions
+    let instructions: string = "";
+
+    if (quizAnswered === "basic") {
+        instructions = basicInstructions;
+    } else {
+        instructions = detailedInstructions;
     }
 
     const client = new OpenAI({apiKey: apiKey, dangerouslyAllowBrowser: true});
