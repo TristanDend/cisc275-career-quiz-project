@@ -17,6 +17,7 @@ async function processResults(userAnswers: string[][], apiKey: string, quizAnswe
     if (!apiKey) {
         throw new Error("API key is required");
     }
+    const instructions = await fs.readFile('src/Components/instructions.txt', 'utf-8');
     if(quizAnswered === "basic") {
         const instructions = await fs.readFile('src/Components/basicInstructions.txt', 'utf-8');
     }
