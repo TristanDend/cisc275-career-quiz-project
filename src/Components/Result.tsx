@@ -20,6 +20,21 @@ interface ResultsPageProps {
     apiKey: string;
 }
 
+interface Career {
+    title: string;
+    salary: number;
+    education_level?: string; // optional if not always included
+    description: string;
+    reason: string;
+  }
+  
+  interface CareerResponse {
+    career_one: Career;
+    career_two: Career;
+    career_three: Career;
+  }
+  
+
 // allows time for ChatGPT to get response without stopping the website
 async function processResults(quizAnswered: string, userAnswers: string[][], apiKey: string): Promise<yesResponse | noError | undefined>  {
 
@@ -180,7 +195,50 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                   </div>
                 }
             </Popup>
-            {response && <div>ChatGPT Response: {response.worked ? response.response.choices[0].message.content : response.error.message}</div>}
+            {response && response.worked && (
+                    (() => {
+                        const data = JSON.parse(response.response.choices[0].message.content ?? '{}') as CareerResponse;
+                        
+                        // Parse the response to extract career information
+                        // Assuming the response is in the format you provided, you can access the careers like this:
+                        const careers = [data.career_one, data.career_two, data.career_three];
+
+                        return (
+                        <div className='career-results'>
+                            <h1>Career Recommendations</h1>
+                            {careers.map((career, index) => (
+                            <div key={index}>
+                                <h2>Career {index + 1}: {career.title}</h2>
+
+                                <h3>Description</h3>
+                                <p>{career.description}</p>
+
+                                <h3>Salary</h3>
+                                <p>${career.salary.toLocaleString()}</p>
+
+                                {career.education_level && (
+                                <>
+                                    <h3>Education Level</h3>
+                                    <p>{career.education_level}</p>
+                                </>
+                                )}
+
+                                <h3>Reason</h3>
+                                <p>{career.reason}</p>
+                            </div>
+                            ))}
+                        </div>
+                        );
+                    })()
+                )
+            }
+            {/*runs if response is not successful*/}
+            {response && !response.worked && (
+                <div className="error-message">
+                    <h2>Error</h2>
+                    <p>{response.error.message}</p>
+                </div>
+            )}
             <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
         </div>
     )

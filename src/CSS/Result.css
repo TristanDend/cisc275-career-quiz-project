@@ -36,3 +36,12 @@
     width: 100%;
     text-align: center;
 }
+
+#career-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Georgia;
+}
