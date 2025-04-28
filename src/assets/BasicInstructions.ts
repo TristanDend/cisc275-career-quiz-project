@@ -11,15 +11,18 @@ user should consider based on their answers to the specified questions.
 * You need to give a reason as to why the user should pursue the careers that you suggest.
 * Provide only one career
 
-* Format the career as a big, bold heading
-* Write each section on a new line
-* Use bullet points for the sections "Job Overview" and "Why it Fits"
+* The format for the output should follow the text below, using \n when necessary
 
-* The format for the output should follow:
+Career 1
+    Job Overview: {Provides description of job}
+        {Description 1}
+        {Description 2}
+        {Description 3}
+    Matchs: {Describes how does the career fit the user}
+        {Reason 1}
+        {Reason 2}
+        {Reason 3}
 
-**Career 1**   
-    # Job Overview: {Description of Job}
-    # Why it Fits: {Why it fits, based off of their quiz answers}
 `
 export default basicInstructions;
     
