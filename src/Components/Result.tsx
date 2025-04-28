@@ -30,7 +30,7 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
     // empty string as detail instructions
     let instructions: string = "";
 
-    if (quizAnswered === "basic") {
+    if (quizAnswered.toLowerCase() === "basic quiz") {
         instructions = basicInstructions;
     } else {
         instructions = detailedInstructions;
@@ -41,8 +41,8 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
         const response = await client.chat.completions.create({
             model: "gpt-4.1-mini",
             messages: [
-                { role: "system", content: "You are a helpful career assistant who will analyze the answers to provide insight on what career the user should consider based on their answers to the specified questions." },
-                { role: "user", content: `Give a career recommendation based on these answers: ${userAnswers}, to the following questions: ${
+                { role: "system", content: instructions},
+                { role: "user", content: `Give me three career recommendations based on these answers: ${userAnswers}, to the following questions: ${
                     quizAnswered === "basic" ? basicQuestions : questions}`
                     
                 }],
@@ -52,54 +52,95 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
                     type: "json_schema",
                     json_schema: {
                         name: "Career-Recommendation",
-                        description: "A recommendation for a career based on the user's answers to the quiz.",
+                        description: "A list of 3 recommendations for a career based on the user's answers to the quiz.",
                         schema: {
                             type: "object",
                             properties: {
-                                career_title: {
-                                    type: "string",
-                                    description: "The recommended career for the user.",
-                                },
-                                salary: {
-                                    type: "number",
-                                    description: "The average yearly salary for the recommended career.",
-                                },
-                                education_level: {
-                                    type: "string",
-                                    description: "The education level required for the recommended career.",
-                                },
-                                description: {
-                                    type: "string",
-                                    description: "A description of the recommended career.",
-                                },
-                                reason: {
-                                    type: "string",
-                                    description: "The reason why the recommended career fits the user's answers.",
-                                },
-                                adjacent_careers: {
-                                    type: "array",
-                                    items: {
-                                        type: "object",
-                                        properties: {
-                                            career_one: {
-                                                type: "string",
-                                                description: "The title of the adjacent career.",
-                                            },
-                                            career_two:{
-                                                type: "string",
-                                                description: "The title of the adjacent career.",
-                                            },
-                                            career_three:{
-                                                type: "string",
-                                                description: "The title of the adjacent career.",
-                                            }
+                                career_one: {
+                                    type: "object",
+                                    description: "The best recommended career for the user.",
+                                    properties: {
+                                        title: {
+                                            type: "string",
+                                            description: "The title of the recommended career.",
                                         },
-                                        required: ["career_one", "career_two", "career_three"],
+                                        salary: {
+                                            type: "number",
+                                            description: "The average yearly salary for the recommended career.",
+                                        },
+                                        education_level: {
+                                            type: "string",
+                                            description: "The education level required for the recommended career.",
+                                        },
+                                        description: {
+                                            type: "string",
+                                            description: "A description of the recommended career.",
+                                        },
+                                        reason: {
+                                            type: "string",
+                                            description: "The reason why the recommended career fits the user's answers.",
+                                        },
                                     },
+                                    required: ["title", "description", "salary", "reason"],
+                                },
 
+                                career_two: {
+                                    type: "object",
+                                    description: "The second best recommended career for the user.",
+                                    properties: {
+                                        title: {
+                                            type: "string",
+                                            description: "The title of the recommended career.",
+                                        },
+                                        salary: {
+                                            type: "number",
+                                            description: "The average yearly salary for the recommended career.",
+                                        },
+                                        education_level: {
+                                            type: "string",
+                                            description: "The education level required for the recommended career.",
+                                        },
+                                        description: {
+                                            type: "string",
+                                            description: "A description of the recommended career.",
+                                        },
+                                        reason: {
+                                            type: "string",
+                                            description: "The reason why the recommended career fits the user's answers.",
+                                        },
+                                    },
+                                    required: ["title", "description", "salary", "reason"],
+                                },
+
+                                career_three: {
+                                    type: "object",
+                                    description: "The third best recommended career for the user.",
+                                    properties: {
+                                        title: {
+                                            type: "string",
+                                            description: "The title of the recommended career.",
+                                        },
+                                        salary: {
+                                            type: "number",
+                                            description: "The average yearly salary for the recommended career.",
+                                        },
+                                        education_level: {
+                                            type: "string",
+                                            description: "The education level required for the recommended career.",
+                                        },
+                                        description: {
+                                            type: "string",
+                                            description: "A description of the recommended career.",
+                                        },
+                                        reason: {
+                                            type: "string",
+                                            description: "The reason why the recommended career fits the user's answers.",
+                                        },
+                                    },
+                                    required: ["title", "description", "salary", "reason"],
                                 }
                             },
-                            required: quizAnswered === "basic" ? ["career_title", "description", "salary", "reason"] : ["career", "description", "education_level", "salary", "reason"],
+                            required: quizAnswered.toLowerCase() === "Basic Quiz" ? ["career_title", "description", "salary", "reason"] : ["career", "description", "education_level", "salary", "reason", "adjacent_careers"],
 
                         }
                     }
