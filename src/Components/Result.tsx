@@ -30,7 +30,7 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
     // empty string as detail instructions
     let instructions: string = "";
 
-    if (quizAnswered === "basic") {
+    if (quizAnswered.toLowerCase() === "basic quiz") {
         instructions = basicInstructions;
     } else {
         instructions = detailedInstructions;
@@ -69,6 +69,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
 
     return (
         <div className="resultsPage-Style">
+            <span>{quizAnswered}</span>
             <center><h1 className='resultsPage-Title'>{quizAnswered} Results</h1></center>
             <Popup open={loadResults} closeOnDocumentClick={false}>
                 {
