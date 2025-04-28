@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import '../CSS/DetailedPage.css';
 import { Button, Form} from 'react-bootstrap';
-import { questions, Question, Option } from '../assets/DetailedPageQuestions'
+import { questions } from '../assets/DetailedPageQuestions'
 
 // Transferred state variables for page transitions
 interface DetailedPageProps {
@@ -16,6 +16,12 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
     const [q1Answers, q1TakeAnswers] = useState<string[]>([]); // for question 1 answers (specific due to being checklist)
     const answerPercent = ((answers.filter((answer) => answer !== "").length / answers.length) * 100); // for progress bar answer check
     
+    function changeTextAnswer(event: React.ChangeEvent<HTMLTextAreaElement>) {
+        const newAnswers = [...answers];
+        newAnswers[parseInt(event.target.id) - 1] = event.target.value;
+        takeAnswers(newAnswers);
+    }
+
     // updates the answers values when the user makes an input
     function changeAnswer(event: React.ChangeEvent<HTMLInputElement>) {
         const newAnswers = [...answers];
@@ -97,14 +103,13 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         }
                         {questions[index].questionType === "short-answer" && 
                             // Question 4 & Questions 6 - 9
-                            <Form.Control
+                            <textarea
                                 className='short-text'
                                 id={questions[index].questionId.toString()}
                                 title={"answer-".concat((index + 1).toString())} 
                                 role="answer"
-                                type="textbox"
                                 value={answers[index]}
-                                onChange={changeAnswer}
+                                onChange={changeTextAnswer}
                                 />
                             }
                         {questions[index].questionType === "slider" && 
