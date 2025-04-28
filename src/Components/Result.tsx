@@ -51,7 +51,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
             setFinishResults(true);
             const finishTimer = setTimeout(() => {
                 setFinishResults(false);
-            }, 1750) // 1 second
+            }, 1750) // 1.75 seconds
             return () => {clearTimeout(finishTimer)}
         }, 5000); // 5 seconds
 
