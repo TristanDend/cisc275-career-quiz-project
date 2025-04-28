@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import '../CSS/Result.css'
 import leafLoad from '../assets/leaf_loading.gif'
+import checkMark from '../assets/checkmark.gif'
 import OpenAI, { APIConnectionError, APIConnectionTimeoutError, APIError, AuthenticationError, BadRequestError, InternalServerError, OpenAIError } from 'openai';
 import basicQuestions from '../assets/question.json';
 import { questions, Question, Option } from '../assets/DetailedPageQuestions'
@@ -27,7 +28,7 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
             messages: [
                 { role: "system", content: "Use only one to two words." },
                 { role: "user", content: `Give a career recommendation based on these answers: ${userAnswers}, to the following questions: ${
-                    quizAnswered === "Basic Quiz" ? basicQuestions : questions}`
+                    quizAnswered === "Basic Quiz" ? basicQuestions.map((basicQuestion) => basicQuestion.questionText) : questions.map((question) => question.questionText)}`
         }]});
         return { worked: true, response: response };
     } catch (error) {
@@ -38,17 +39,23 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
 export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPageProps): React.JSX.Element {
     const [response, setResponse] = useState<Awaited<ReturnType<typeof processResults>> | null>(null);
     const [loadResults, setLoadResults] = useState<boolean>(true);
+    const [finishResults, setFinishResults] = useState<boolean>(false);
 
     // Turns response into a useable value
     useEffect(() => {
         processResults(quizAnswered, userAnswers, apiKey).then(setResponse)
 
-        // Sets loadResults to false after 5 seconds
-        const timer = setTimeout(() => {
+        // Sets loadResults to false and finishResults to true after 5 seconds
+        const loadTimer = setTimeout(() => {
             setLoadResults(false);
+            setFinishResults(true);
+            const finishTimer = setTimeout(() => {
+                setFinishResults(false);
+            }, 1750) // 1 second
+            return () => {clearTimeout(finishTimer)}
         }, 5000); // 5 seconds
 
-        return () => {clearTimeout(timer)}; // cleanup
+        return () => {clearTimeout(loadTimer)}; // cleanup
     }, [quizAnswered, userAnswers, apiKey]);
 
     return (
@@ -60,6 +67,14 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                     <p id="ResultsInitialPopupText">Processing Your Answers</p>
                     <img id="loadingImage" src={leafLoad} alt="leaf loading..."/>
                   </div>
+                }
+            </Popup>
+            <Popup open={finishResults} closeOnDocumentClick={false}>
+                {
+                    <div id="ResultsInitialPopup">
+                        <p id="ResultsInitialPopupText">Your Results Are In!</p>
+                        <img id="loadingImage" src={checkMark} alt="Checkmark"></img>
+                    </div>
                 }
             </Popup>
             {response && <div>ChatGPT Response: {response.worked ? response.response.choices[0].message.content : response.error.message}</div>}
