@@ -20,6 +20,21 @@ interface ResultsPageProps {
     apiKey: string;
 }
 
+interface Career {
+    title: string;
+    salary: number;
+    education_level?: string; // optional if not always included
+    description: string;
+    reason: string;
+  }
+  
+  interface CareerResponse {
+    career_one: Career;
+    career_two: Career;
+    career_three: Career;
+  }
+  
+
 // allows time for ChatGPT to get response without stopping the website
 async function processResults(quizAnswered: string, userAnswers: string[][], apiKey: string): Promise<yesResponse | noError | undefined>  {
 
@@ -41,10 +56,112 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
         const response = await client.chat.completions.create({
             model: "gpt-4.1-mini",
             messages: [
-                { role: "system", content: instructions },
-                { role: "user", content: `Give a career recommendation based on these answers: ${userAnswers}, to the following questions: ${
-                    quizAnswered === "Basic Quiz" ? basicQuestions : questions}`
-        }]});
+                { role: "system", content: instructions},
+                { role: "user", content: `Give me three career recommendations based on these answers: ${userAnswers}, to the following questions: ${
+                    quizAnswered === "basic" ? basicQuestions : questions}`
+                    
+                }],
+                store: false,
+                //format of response to clearly express results
+                response_format: {
+                    type: "json_schema",
+                    json_schema: {
+                        name: "Career-Recommendation",
+                        description: "A list of 3 recommendations for a career based on the user's answers to the quiz.",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                career_one: {
+                                    type: "object",
+                                    description: "The best recommended career for the user.",
+                                    properties: {
+                                        title: {
+                                            type: "string",
+                                            description: "The title of the recommended career.",
+                                        },
+                                        salary: {
+                                            type: "number",
+                                            description: "The average yearly salary for the recommended career.",
+                                        },
+                                        education_level: {
+                                            type: "string",
+                                            description: "The education level required for the recommended career.",
+                                        },
+                                        description: {
+                                            type: "string",
+                                            description: "A description of the recommended career.",
+                                        },
+                                        reason: {
+                                            type: "string",
+                                            description: "The reason why the recommended career fits the user's answers.",
+                                        },
+                                    },
+                                    required: ["title", "description", "salary", "reason"],
+                                },
+
+                                career_two: {
+                                    type: "object",
+                                    description: "The second best recommended career for the user.",
+                                    properties: {
+                                        title: {
+                                            type: "string",
+                                            description: "The title of the recommended career.",
+                                        },
+                                        salary: {
+                                            type: "number",
+                                            description: "The average yearly salary for the recommended career.",
+                                        },
+                                        education_level: {
+                                            type: "string",
+                                            description: "The education level required for the recommended career.",
+                                        },
+                                        description: {
+                                            type: "string",
+                                            description: "A description of the recommended career.",
+                                        },
+                                        reason: {
+                                            type: "string",
+                                            description: "The reason why the recommended career fits the user's answers.",
+                                        },
+                                    },
+                                    required: ["title", "description", "salary", "reason"],
+                                },
+
+                                career_three: {
+                                    type: "object",
+                                    description: "The third best recommended career for the user.",
+                                    properties: {
+                                        title: {
+                                            type: "string",
+                                            description: "The title of the recommended career.",
+                                        },
+                                        salary: {
+                                            type: "number",
+                                            description: "The average yearly salary for the recommended career.",
+                                        },
+                                        education_level: {
+                                            type: "string",
+                                            description: "The education level required for the recommended career.",
+                                        },
+                                        description: {
+                                            type: "string",
+                                            description: "A description of the recommended career.",
+                                        },
+                                        reason: {
+                                            type: "string",
+                                            description: "The reason why the recommended career fits the user's answers.",
+                                        },
+                                    },
+                                    required: ["title", "description", "salary", "reason"],
+                                }
+                            },
+                            required: quizAnswered.toLowerCase() === "Basic Quiz" ? ["career_title", "description", "salary", "reason"] : ["career", "description", "education_level", "salary", "reason", "adjacent_careers"],
+
+                        }
+                    }
+                }
+
+        });
         return { worked: true, response: response };
     } catch (error) {
         if (error instanceof OpenAI.APIError) return { worked: false, error: error};
@@ -79,18 +196,51 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                   </div>
                 }
             </Popup>
-            {/* check if there is a response, response worked is true, and content isn't empty */}
-            {response && response.worked && response.response.choices[0].message.content &&
-                (<div>
-                    {response.response.choices[0].message.content
-                    .split("\n")
-                    .map((paragraph: string, index: number) => (<p key={index}>{paragraph}</p>))}
-                </div>)}
-            {/* runs if response did not work */}
+            {response && response.worked && (
+                    (() => {
+                        const data = JSON.parse(response.response.choices[0].message.content ?? '{}') as CareerResponse;
+                        
+                        // Parse the response to extract career information
+                        // Assuming the response is in the format you provided, you can access the careers like this:
+                        const careers = [data.career_one, data.career_two, data.career_three];
+
+                        return (
+                        <div className='career-results'>
+                            <h1>Career Recommendations</h1>
+                            {careers.map((career, index) => (
+                            <div key={index}>
+                                <h2>Career {index + 1}: {career.title}</h2>
+
+                                <h3>Description</h3>
+                                <p>{career.description}</p>
+
+                                <h3>Salary</h3>
+                                <p>${career.salary.toLocaleString()}</p>
+
+                                {career.education_level && (
+                                <>
+                                    <h3>Education Level</h3>
+                                    <p>{career.education_level}</p>
+                                </>
+                                )}
+
+                                <h3>Reason</h3>
+                                <p>{career.reason}</p>
+                            </div>
+                            ))}
+                        </div>
+                        );
+                    })()
+                )
+            }
+            {/*runs if response is not successful*/}
             {response && !response.worked && (
-                <div>{response.error.message}</div>
+                <div className="error-message">
+                    <h2>Error</h2>
+                    <p>{response.error.message}</p>
+                </div>
             )}
-            {/* <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div> */}
+            <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
         </div>
     )
 }

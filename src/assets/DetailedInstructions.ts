@@ -19,7 +19,39 @@ Career 1
     
     Job Overview: {Description of Job}
 
-    Why it Fits: {Why it fits, based off of their quiz answers}
+    {Why it fits, based off of their quiz answers}
+
+<heading>Career 2</heading>
+    Yearly Salary: {average yearly salary}
+    Education Level: {level needed for job}
+    
+    {Description of Job}
+
+    {Why it fits, based off of their quiz answers}
+
+<heading>Career 3</heading>
+    Yearly Salary: {average yearly salary}
+    Education Level: {level needed for job}
+    
+    {Description of Job}
+
+    {Why it fits, based off of their quiz answers}
+
+
+# Example input
+* userAnswers = [[Math, Sciences, English], [Math, Enlgish], [Bachelor's], [My favorite hobby is puzzles because I like to solve problems], [8], [I hope to gain experience], [I spend my time reading], [My deepest fear is failure], [My best soft skills are communication and teamwork]];
+
+
+
+
+
+
+
+
+
+
+
+
 `
 
 export default detailedInstructions;
