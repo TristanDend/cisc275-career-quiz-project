@@ -82,7 +82,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
             {/* check if there is a response, response worked is true, and content isn't empty */}
             {response && response.worked && response.response.choices[0].message.content &&
                 (<div>
-                    ChatGPT Response: {response.response.choices[0].message.content
+                    {response.response.choices[0].message.content
                     .split("\n")
                     .map((paragraph: string, index: number) => (<p key={index}>{paragraph}</p>))}
                 </div>)}
@@ -90,7 +90,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
             {response && !response.worked && (
                 <div>{response.error.message}</div>
             )}
-            <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
+            {/* <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div> */}
         </div>
     )
 }

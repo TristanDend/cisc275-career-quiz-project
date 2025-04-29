@@ -15,13 +15,13 @@ user should consider based on their answers to the specified questions.
 
 Career 1
     Job Overview: {Provides description of job}
-        {Description 1}
-        {Description 2}
-        {Description 3}
+        • {Description 1}
+        • {Description 2}
+        • {Description 3}
     Matchs: {Describes how does the career fit the user}
-        {Reason 1}
-        {Reason 2}
-        {Reason 3}
+        • {Reason 1}
+        • {Reason 2}
+        • {Reason 3}
 
 `
 export default basicInstructions;
