@@ -53,7 +53,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                 setFinishResults(false);
             }, 1750) // 1.75 seconds
             return () => {clearTimeout(finishTimer)}
-        }, 5000); // 5 seconds
+        }, 8000); // 5 seconds
 
         return () => {clearTimeout(loadTimer)}; // cleanup
     }, [quizAnswered, userAnswers, apiKey]);
