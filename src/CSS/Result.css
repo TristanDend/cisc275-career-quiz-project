@@ -37,11 +37,27 @@
     text-align: center;
 }
 
-#career-results {
+.career-results {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-family: Georgia;
+}
+
+.career_section {
+    background-color: white;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    width: 80%;
+}
+
+.career_name {
+    color: #328E6E;
+}
+
+.career_subheading {
+    color: #67AE6E;
 }

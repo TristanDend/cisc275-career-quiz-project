@@ -208,23 +208,23 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                         <div className='career-results'>
                             <h1>Career Recommendations</h1>
                             {careers.map((career, index) => (
-                            <div key={index}>
-                                <h2>Career {index + 1}: {career.title}</h2>
+                            <div key={index} className="career_section">
+                                <h2 className="career_name">Career {index + 1}: {career.title}</h2>
 
-                                <h3>Description</h3>
+                                <h3 className="career_subheading">Description</h3>
                                 <p>{career.description}</p>
 
-                                <h3>Salary</h3>
+                                <h3 className="career_subheading">Salary</h3>
                                 <p>${career.salary.toLocaleString()}</p>
 
                                 {career.education_level && (
                                 <>
-                                    <h3>Education Level</h3>
+                                    <h3 className="career_subheading">Education Level</h3>
                                     <p>{career.education_level}</p>
                                 </>
                                 )}
 
-                                <h3>Reason</h3>
+                                <h3 className="career_subheading">Reason</h3>
                                 <p>{career.reason}</p>
                             </div>
                             ))}
