@@ -137,6 +137,8 @@
     font-size: 1.1rem;
     font-family: Georgia;
     text-align: center;
+    width: 100%;
+    height: 10rem;
 }
 
 .answer-text {
