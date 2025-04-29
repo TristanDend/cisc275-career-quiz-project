@@ -61,3 +61,8 @@
 .career_subheading {
     color: #67AE6E;
 }
+
+.career_text_list {
+    list-style-type: square;
+    list-style-position: inside;
+}

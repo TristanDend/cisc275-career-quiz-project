@@ -24,8 +24,8 @@ interface Career {
     title: string;
     salary: number;
     education_level?: string; // optional if not always included
-    description: string;
-    reason: string;
+    description: string[];
+    reason: string[];
   }
   
   interface CareerResponse {
@@ -88,12 +88,12 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
                                             description: "The education level required for the recommended career.",
                                         },
                                         description: {
-                                            type: "string",
-                                            description: "A description of the recommended career.",
+                                            type: ["string"],
+                                            description: "The tasks performed by the recommended career. Each element of array is a seperate task",
                                         },
                                         reason: {
-                                            type: "string",
-                                            description: "The reason why the recommended career fits the user's answers.",
+                                            type: ["string"],
+                                            description: "The reasons why the recommended career fits the user's answers. Each element of array is a seperate reason",
                                         },
                                     },
                                     required: ["title", "description", "salary", "reason"],
@@ -116,12 +116,12 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
                                             description: "The education level required for the recommended career.",
                                         },
                                         description: {
-                                            type: "string",
-                                            description: "A description of the recommended career.",
+                                            type: ["string"],
+                                            description: "The tasks performed by the recommended career. Each element of array is a seperate task",
                                         },
                                         reason: {
-                                            type: "string",
-                                            description: "The reason why the recommended career fits the user's answers.",
+                                            type: ["string"],
+                                            description: "The reasons why the recommended career fits the user's answers. Each element of array is a seperate reason",
                                         },
                                     },
                                     required: ["title", "description", "salary", "reason"],
@@ -144,12 +144,12 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
                                             description: "The education level required for the recommended career.",
                                         },
                                         description: {
-                                            type: "string",
-                                            description: "A description of the recommended career.",
+                                            type: ["string"],
+                                            description: "The tasks performed by the recommended career. Each element of array is a seperate task",
                                         },
                                         reason: {
-                                            type: "string",
-                                            description: "The reason why the recommended career fits the user's answers.",
+                                            type: ["string"],
+                                            description: "The reasons why the recommended career fits the user's answers. Each element of array is a seperate reason",
                                         },
                                     },
                                     required: ["title", "description", "salary", "reason"],
@@ -186,7 +186,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
 
     return (
         <div className="resultsPage-Style">
-            <span>{quizAnswered}</span>
+            {/* <span>{quizAnswered}</span> */}
             <center><h1 className='resultsPage-Title'>{quizAnswered} Results</h1></center>
             <Popup open={loadResults} closeOnDocumentClick={false}>
                 {
@@ -212,7 +212,9 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                                 <h2 className="career_name">Career {index + 1}: {career.title}</h2>
 
                                 <h3 className="career_subheading">Description</h3>
-                                <p>{career.description}</p>
+                                <ul className="career_text_list">{career.description.map((des_sentence, index) => (
+                                    <li key={index}>{des_sentence}</li>
+                                ))}</ul>
 
                                 <h3 className="career_subheading">Salary</h3>
                                 <p>${career.salary.toLocaleString()}</p>
@@ -225,7 +227,9 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                                 )}
 
                                 <h3 className="career_subheading">Reason</h3>
-                                <p>{career.reason}</p>
+                                <ul className="career_text_list">{career.reason.map((reason_sentence, index) => (
+                                    <li key={index}>{reason_sentence}</li>
+                                ))}</ul>
                             </div>
                             ))}
                         </div>
@@ -240,7 +244,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                     <p>{response.error.message}</p>
                 </div>
             )}
-            <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div>
+            {/* <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div> */}
         </div>
     )
 }
