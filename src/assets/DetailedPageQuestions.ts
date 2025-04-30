@@ -48,7 +48,7 @@ export const questions: Question[] = [
             { optionId: 2, optionText: "Associate's" },
             { optionId: 3, optionText: "Bachelor's" },
             { optionId: 4, optionText: "Master's" },
-            { optionId: 1, optionText: "PHD" }
+            { optionId: 5, optionText: "PHD" }
         ]
     },
     {  
