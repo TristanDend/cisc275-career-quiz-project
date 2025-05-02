@@ -4,6 +4,7 @@ import '../CSS/header.css'
 
 interface headerProps {
     // The type is "a function that consumes a boolean and returns nothing"
+    apiKeyWork: number
     setOnHome: (onHome: boolean) => void
     setOnBasic: (onBasic: boolean) => void
     setOnDetailed: (onDetailed: boolean) => void
@@ -11,7 +12,7 @@ interface headerProps {
   }
   
 
-export function Header({setOnHome, setOnBasic, setOnDetailed, setOnResults}: headerProps) {
+export function Header({apiKeyWork, setOnHome, setOnBasic, setOnDetailed, setOnResults}: headerProps) {
     //setting up states
 
     //Function changes the active button and sets the state of the other buttons to false
@@ -45,10 +46,10 @@ export function Header({setOnHome, setOnBasic, setOnDetailed, setOnResults}: hea
             <Button id = 'header-button' onClick={() => {changeActive("home")}}> 
                 Home
             </Button>
-            <Button id = 'header-button' onClick={() => {changeActive("basic")}}>
+            <Button id = 'header-button' onClick={() => {changeActive("basic")}} disabled={apiKeyWork !== 2}>
                 Simple Quiz
             </Button>
-            <Button id = 'header-button' onClick={() => {changeActive("detailed")}}>
+            <Button id = 'header-button' onClick={() => {changeActive("detailed")}} disabled={apiKeyWork !== 2}>
                 Detailed Quiz
             </Button>
         </div>

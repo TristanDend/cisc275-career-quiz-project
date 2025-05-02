@@ -4,13 +4,14 @@ import '../CSS/HomePage.css';
 import Square from '../assets/Square.png';
 
 interface HomePageProps {
+    apiKeyWork: number
     setOnBasic: (onBasic: boolean) => void
     setOnHome: (onHome: boolean) => void
     setOnDetailed: (onDetailed: boolean) => void
 }
 
 
-export function HomePage({setOnBasic, setOnHome, setOnDetailed} : HomePageProps): React.JSX.Element {
+export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : HomePageProps): React.JSX.Element {
 
 
     function changeActive(buttonName: string) {
@@ -46,7 +47,7 @@ export function HomePage({setOnBasic, setOnHome, setOnDetailed} : HomePageProps)
                         <span id="quizDescription">More Simple Questions, Takes Less Time</span>
                         <br></br>
                         {/* Button to go to Basic Questions */}
-                        <center><Button id="questionButton" onClick = {() => {changeActive('basic')}}>Go to Basic Questions</Button></center>
+                        <center><Button id="questionButton" onClick = {() => {changeActive('basic')}} disabled={apiKeyWork !== 2}>Go to Basic Questions</Button></center>
                     </Col>
                     <Col id="quizBlock">
                         {/* Quiz Title */}
@@ -58,7 +59,7 @@ export function HomePage({setOnBasic, setOnHome, setOnDetailed} : HomePageProps)
                         <span id="quizDescription">Deeper Questions, Better Results</span>
                         <br></br>
                         {/* Button to go to Detailed Questions */}
-                        <center><Button id="questionButton" onClick = {() => {changeActive("detailed")}}>Go to Detailed Questions</Button></center>
+                        <center><Button id="questionButton" onClick = {() => {changeActive("detailed")}} disabled={apiKeyWork !== 2}>Go to Detailed Questions</Button></center>
                     </Col>
                 </Row>
             </Container>
