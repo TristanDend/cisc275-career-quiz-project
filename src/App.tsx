@@ -89,7 +89,7 @@ function App() {
       {isResultPage && <ResultPage userAnswers={userAnswers} quizAnswered={quizAnswered} apiKey={key}></ResultPage>}
       <Footer setApiOpen = {setApiShow}></Footer>
       <div className="App-footer">
-        {apiKeyShow && <Form className = 'App' data-testid='APIKeyForm'>
+        {apiKeyShow && <Form className = "apiKeyEntry" data-testid='APIKeyForm'>
           <Form.Label>API Key:</Form.Label>
           <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
           <br></br>

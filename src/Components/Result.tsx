@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import '../CSS/Result.css'
-import leafyVideo from '../assets/leafy_loading.mp4'
+import leafyVideo from '../assets/leafy_loading.mp4'; // Ensure TypeScript recognizes this as a string
 import OpenAI from 'openai';
 import basicQuestions from '../assets/question.json';
 import { questions } from '../assets/DetailedPageQuestions'
