@@ -122,3 +122,9 @@
   height: auto;
   width: auto;
 }
+
+.apiKeyEntry {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content; /* or set a specific width if needed */
+}
