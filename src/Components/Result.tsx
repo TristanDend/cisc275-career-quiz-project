@@ -230,12 +230,12 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                                 ))}</ul>
 
                                 <h3 className="career_subheading">Salary</h3>
-                                <p>${career.salary.toLocaleString()}</p>
+                                <p className="career_text_list">${career.salary.toLocaleString()}</p>
 
                                 {career.education_level && (
                                 <>
                                     <h3 className="career_subheading">Education Level</h3>
-                                    <p>{career.education_level}</p>
+                                    <p className="career_text_list">{career.education_level}</p>
                                 </>
                                 )}
 

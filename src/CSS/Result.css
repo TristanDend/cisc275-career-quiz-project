@@ -39,6 +39,7 @@
 }
 
 .career-results {
+    color: whitesmoke;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -64,6 +65,7 @@
 }
 
 .career_text_list {
+    color: black;
     list-style-type: square;
     list-style-position: inside;
 }
