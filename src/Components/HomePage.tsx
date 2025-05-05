@@ -33,9 +33,10 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
 
     return (
         <div id="homePageWhole">
-            <h1 id="homePageTitle"><strong>Da Quiz</strong></h1>
+            <h1 id="homePageTitle"><strong>Career Pathfind</strong></h1>
+            <h2 id="homePageSubhead"><strong>Unearth Your Own Path</strong></h2>
             {/* Container creates two columns, each column is for a quiz */}
-            <Container>
+            <Container id="homePageContainer">
                 <Row>
                     <Col id="quizBlock">
                         {/* Quiz Title */}
