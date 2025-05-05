@@ -11,8 +11,8 @@ Font:
 */
 
 #homePageSubhead {
-    padding: 3%;
-    font-size: 1.7rem;
+    padding: 1.2%;
+    font-size: 1.9rem;
     text-align: center;
     color: #328E6E;
     font-family: Georgia;
@@ -55,6 +55,10 @@ Font:
     width: auto;
 }
 
+#homePageContainer{
+    padding-bottom: 4.45%;
+}
+
 #quizBlock {
     /* background-color: #E1EEBC; */
     border-radius: 3%;
@@ -63,6 +67,7 @@ Font:
     border-width: 0.2rem;
     border-color: #328E6E;
     background-color: white;
+    
 }
 
 #quizDescription {
