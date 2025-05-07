@@ -3,11 +3,12 @@ import { Button, Container, Col, Row } from 'react-bootstrap';
 import '../CSS/HomePage.css';
 import Square from '../assets/Square.png';
 
+// homepage props to import state
 interface HomePageProps {
-    apiKeyWork: number
-    setOnBasic: (onBasic: boolean) => void
-    setOnHome: (onHome: boolean) => void
-    setOnDetailed: (onDetailed: boolean) => void
+    apiKeyWork: number // whether api key works
+    setOnBasic: (onBasic: boolean) => void // function to turn on basic page
+    setOnHome: (onHome: boolean) => void // function to turn on home page
+    setOnDetailed: (onDetailed: boolean) => void // function to turn on detailed page
 }
 
 
@@ -33,10 +34,12 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
 
     return (
         <div id="homePageWhole">
+            {/* Title and Caption */}
             <h1 id="homePageTitle"><strong>Career Pathfind</strong></h1>
             <h2 id="titleCaption"><strong>Unearth Your Own Path</strong></h2>
+
             <div id="quizBlock">
-                {/* Quiz Title */}
+                {/* Basic Quiz Title */}
                 <div id="homePageSubhead"><strong>Short Trail</strong></div>
                 {/* Quiz Description */}
                 <span id="quizDescription">More Simple Questions, Takes Less Time</span>
@@ -45,7 +48,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
                 <center><Button id="questionButton" onClick = {() => {changeActive('basic')}}>Take Short Trail =={'>'}</Button></center>
             </div>
             <div id="quizBlock">
-                {/* Quiz Title */}
+                {/* Detailed Quiz Title */}
                 <div id="homePageSubhead"><strong>Longer Trail</strong></div>
                 {/* Quiz Description */}
                 <span id="quizDescription">Deeper Questions, Better Results</span>
@@ -58,6 +61,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
 }
 
 `
+Commented code from original homepage
  * {/* Container creates two columns, each column is for a quiz */}
 <Container>
         <Row>
