@@ -4,6 +4,8 @@ import '../CSS/header.css'
 
 interface headerProps {
     // The type is "a function that consumes a boolean and returns nothing"
+    //apiKeyWork: number represents the API key status in the form of a three value boolean
+    // 0 = no API key, 1 = API key is invalid, 2 = API key is valid
     apiKeyWork: number
     setOnHome: (onHome: boolean) => void
     setOnBasic: (onBasic: boolean) => void
@@ -24,12 +26,14 @@ export function Header({apiKeyWork, setOnHome, setOnBasic, setOnDetailed, setOnR
             setOnDetailed(false);
             setOnResults(false);
         }
+        //Case for the basic quiz button
         else if(buttonName === "basic"){
             setOnHome(false);
             setOnBasic(true);
             setOnDetailed(false);
             setOnResults(false);
         }
+        //Case for the detailed quiz button
         else if(buttonName === "detailed"){
             setOnHome(false);
             setOnBasic(false);
@@ -40,7 +44,7 @@ export function Header({apiKeyWork, setOnHome, setOnBasic, setOnDetailed, setOnR
     }
 
     //What is actually shown on the screen
-    //The buttons are disabled if they are the active button
+    //The buttons are disabled if they are the active screen
     return (
         <div className = 'header'>
             <Button id = 'header-button' onClick={() => {changeActive("home")}}> 
