@@ -27,11 +27,12 @@ Font:
 }
 
 #homePageWhole {
-    /* background-color: white; */
-    background-color: #E1EEBC;
-    /*border-style: solid;
-    border-width: 0.3rem;
-    border-color: #E1EEBC;*/
+    background-image: url("../assets/SignpostScene.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 87vw 87vh;
+    height: 87vh;
+    width: 100vw;
     border-top: .5rem solid #90C67C;
     border-bottom: .5rem solid #90C67C;
     margin: 0rem;
