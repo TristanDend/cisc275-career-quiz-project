@@ -138,23 +138,21 @@ export const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBas
             id='submitButton'
             disabled={progressPercentage !== 100}
             onClick={toResultsPage}
-            style={{ marginRight: '1rem', padding: '0.5rem 1rem', cursor: 'pointer' }}
           >Submit Answers</button>
-
-          {isLocalhost && (
-            <button
-              id='randomizeButton'
-              style={{ margin: '0 1rem', padding: '0.5rem 1rem', cursor: 'pointer' }}
-              onClick={randomizeSelections}
-            >Random Answers</button>
-          )}
 
           <button
             id='clearButton'
             disabled={!(progressPercentage > 0)}
             onClick={clearSelections}
-            style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}
           >Clear Answers</button>
+
+          {/* {isLocalhost && ( */}
+          <button
+              id='submitButton'
+              onClick={randomizeSelections}
+            >Randomize Answers</button>
+          {/* )} */}
+
         </center>
       </div>
 

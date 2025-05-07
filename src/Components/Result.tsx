@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import '../CSS/Result.css'
-import leafLoad from '../assets/leaf_loading.gif'
-import checkMark from '../assets/checkmark.gif'
-import OpenAI, { APIConnectionError, APIConnectionTimeoutError, APIError, AuthenticationError, BadRequestError, InternalServerError, OpenAIError } from 'openai';
+import leafyVideo from '../assets/leafy_loading.mp4'; // Ensure TypeScript recognizes this as a string
+import OpenAI from 'openai';
 import basicQuestions from '../assets/question.json';
-import { questions, Question, Option } from '../assets/DetailedPageQuestions'
+import { questions } from '../assets/DetailedPageQuestions'
 import { ChatCompletion } from 'openai/resources/chat';
 import basicInstructions from '../assets/BasicInstructions';
 import detailedInstructions from '../assets/DetailedInstructions';
@@ -38,10 +37,6 @@ interface Career {
 
 // allows time for ChatGPT to get response without stopping the website
 async function processResults(quizAnswered: string, userAnswers: string[][], apiKey: string): Promise<yesResponse | noError | undefined>  {
-
-    if (!apiKey) {
-        throw new Error("API key is required");
-    }
 
     // empty string as detail instructions
     let instructions: string = "";
@@ -184,23 +179,34 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
             setFinishResults(true);
             const finishTimer = setTimeout(() => {
                 setFinishResults(false);
-            }, 1750) // 1.75 seconds
+            }, 4000) // 4 seconds
             return () => {clearTimeout(finishTimer)}
-        }, 5000); // 5 seconds
+        }, 5530); // 5.53 seconds
 
         return () => {clearTimeout(loadTimer)}; // cleanup
     }, [quizAnswered, userAnswers, apiKey]);
 
     return (
         <div className="resultsPage-Style">
-            {/* <span>{quizAnswered}</span> */}
             <center><h1 className='resultsPage-Title'>{quizAnswered} Results</h1></center>
             <Popup open={loadResults} closeOnDocumentClick={false}>
                 {
                   <div id="ResultsInitialPopup">
                     <p id="ResultsInitialPopupText">Processing Your Answers</p>
-                    <img id="loadingImage" src={leafLoad} alt="leaf loading..."/>
+                    <video id="loadingImage" width="129" height="129" autoPlay muted>
+                        <source src={leafyVideo}/>
+                    </video>
                   </div>
+                }
+            </Popup>
+            <Popup open={finishResults} closeOnDocumentClick={false}>
+                {
+                    <div id="ResultsInitialPopup">
+                        <p id="ResultsInitialPopupText">Your Results Are In!</p>
+                        <video id="loadingImage" width="129" height="129" autoPlay muted>
+                            <source src={`${leafyVideo}#t=5.53`}/>
+                        </video>
+                    </div>
                 }
             </Popup>
             {response && response.worked && (
@@ -224,12 +230,12 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                                 ))}</ul>
 
                                 <h3 className="career_subheading">Salary</h3>
-                                <p>${career.salary.toLocaleString()}</p>
+                                <p className="career_text_list">${career.salary.toLocaleString()}</p>
 
                                 {career.education_level && (
                                 <>
                                     <h3 className="career_subheading">Education Level</h3>
-                                    <p>{career.education_level}</p>
+                                    <p className="career_text_list">{career.education_level}</p>
                                 </>
                                 )}
 

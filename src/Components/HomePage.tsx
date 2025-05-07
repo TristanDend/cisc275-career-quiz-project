@@ -4,13 +4,14 @@ import '../CSS/HomePage.css';
 import Square from '../assets/Square.png';
 
 interface HomePageProps {
+    apiKeyWork: number
     setOnBasic: (onBasic: boolean) => void
     setOnHome: (onHome: boolean) => void
     setOnDetailed: (onDetailed: boolean) => void
 }
 
 
-export function HomePage({setOnBasic, setOnHome, setOnDetailed} : HomePageProps): React.JSX.Element {
+export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : HomePageProps): React.JSX.Element {
 
 
     function changeActive(buttonName: string) {

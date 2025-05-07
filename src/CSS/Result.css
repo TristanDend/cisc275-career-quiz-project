@@ -1,5 +1,6 @@
 .resultsPage-Style {
-    background-color: #E1EEBC;
+    background-image: url('../assets/12953563_Scene-25.jpg');
+    background-size: cover;
     border-top: .5rem solid #90C67C;
     border-bottom: .5rem solid #90C67C;
 }
@@ -9,7 +10,7 @@
     font-weight: bold;
     font-size: 4rem;
     font-family: Georgia;
-    color: #328E6E;
+    color: whitesmoke;
 }
 
 #loadingImage {
@@ -38,6 +39,7 @@
 }
 
 .career-results {
+    color: whitesmoke;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -63,6 +65,7 @@
 }
 
 .career_text_list {
+    color: black;
     list-style-type: square;
     list-style-position: inside;
 }

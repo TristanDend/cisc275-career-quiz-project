@@ -4,7 +4,7 @@ import { HomePage } from './HomePage';
 
 // renders the home page before each test
 beforeEach(() => {
-    render(<HomePage setOnHome={jest.fn()} setOnBasic={jest.fn()} setOnDetailed={jest.fn()}/>)
+    render(<HomePage apiKeyWork={2} setOnHome={jest.fn()} setOnBasic={jest.fn()} setOnDetailed={jest.fn()}/>)
 });
 
 test('Can find certain text', () => {
