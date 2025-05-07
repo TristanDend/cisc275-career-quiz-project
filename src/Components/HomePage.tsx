@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Container, Col, Row } from 'react-bootstrap';
 import '../CSS/HomePage.css';
-import Square from '../assets/Square.png';
 
 // homepage props to import state
 interface HomePageProps {
@@ -40,7 +39,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
 
             <div id="quizBlock">
                 {/* Basic Quiz Title */}
-                <div id="homePageSubhead"><strong>Short Trail</strong></div>
+                <div id="homePageSubhead">Short Trail</div>
                 {/* Quiz Description */}
                 <span id="quizDescription">More Simple Questions, Takes Less Time</span>
                 <span id="quizDescription">18 Questions, ~2 minutes</span>
@@ -49,7 +48,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
             </div>
             <div id="quizBlock">
                 {/* Detailed Quiz Title */}
-                <div id="homePageSubhead"><strong>Longer Trail</strong></div>
+                <div id="homePageSubhead">Longer Trail</div>
                 {/* Quiz Description */}
                 <span id="quizDescription">Deeper Questions, Better Results</span>
                 <span id="quizDescription">9 Questions, ~5 minutes</span>

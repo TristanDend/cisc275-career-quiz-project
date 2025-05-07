@@ -21,6 +21,7 @@ Font:
     text-align: center;
     color: black;
     font-family: SignboardFont;
+    font-weight: bolder;
     text-decoration: underline;
 }
 
@@ -74,12 +75,18 @@ Font:
 
 #quizBlock {
     margin-top: 2.5%;   
+    background-image: url('../assets/pinPaper.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: auto;
+    height: auto;
 }
 
 #quizDescription {
     text-align: center;
     display: block;
-    color: black;
+    color: darkgrey;
+    font-weight: bold;
     font-family: SignboardFont;
     font-size: 1.5rem;
 }
