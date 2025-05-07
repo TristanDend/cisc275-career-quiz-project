@@ -30,7 +30,7 @@ Font:
     background-image: url("../assets/SignpostScene.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 87vw 87vh;
+    background-size: 100vw 87vh;
     height: 87vh;
     width: 100vw;
     border-top: .5rem solid #90C67C;
