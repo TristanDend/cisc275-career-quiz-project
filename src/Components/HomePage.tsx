@@ -34,7 +34,25 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
     return (
         <div id="homePageWhole">
             <h1 id="homePageTitle"><strong>Career Pathfind</strong></h1>
-            <h2 id="homePageSubhead"><strong>Unearth Your Own Path</strong></h2>
+            <h2 id="titleCaption"><strong>Unearth Your Own Path</strong></h2>
+            <div id="quizBlock">
+                {/* Quiz Title */}
+                <div id="homePageSubhead"><strong>Short Trail</strong></div>
+                {/* Quiz Description */}
+                <span id="quizDescription">More Simple Questions, Takes Less Time</span>
+                <span id="quizDescription">18 Questions, ~2 minutes</span>
+                {/* Button to go to Basic Questions */}
+                <center><Button id="questionButton" onClick = {() => {changeActive('basic')}}>Take Short Trail =={'>'}</Button></center>
+            </div>
+            <div id="quizBlock">
+                {/* Quiz Title */}
+                <div id="homePageSubhead"><strong>Longer Trail</strong></div>
+                {/* Quiz Description */}
+                <span id="quizDescription">Deeper Questions, Better Results</span>
+                <span id="quizDescription">9 Questions, ~5 minutes</span>
+                {/* Button to go to Detailed Questions */}
+                <center><Button id="questionButton" onClick = {() => {changeActive("detailed")}}>{'<'}== Take Longer Trail</Button></center>
+            </div>
         </div>
     )
 }
