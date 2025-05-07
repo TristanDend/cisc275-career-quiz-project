@@ -12,7 +12,7 @@ Font:
 
 /* import font */
 @font-face {
-    font-family: SignboardFont;
+    font-family: SignboardFont; /* Name given to this font */
     src: url('../assets/wooden-log/Wodden\ Log/Wooden\ Log.ttf');
 }
 
@@ -43,7 +43,7 @@ Font:
     background-image: url("../assets/SignpostScene.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100vw 87vh;
+    background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
     height: 87vh;
     width: 100vw;
     border-top: .5rem solid #90C67C;
