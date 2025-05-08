@@ -74,19 +74,20 @@ Font:
 }
 
 #quizBlock {
-    margin-top: 2.5%;   
-    background-image: url('../assets/pinPaper.png');
+    margin-top: 2%;   
+    background-image: url('../assets/metalPlate.png');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-position: center;
+    background-size: 40vw 60vh;
+    position: center;
     width: auto;
-    height: auto;
+    height: auto; 
 }
 
 #quizDescription {
     text-align: center;
     display: block;
-    color: darkgrey;
-    font-weight: bold;
+    color: black;
     font-family: SignboardFont;
     font-size: 1.5rem;
 }
