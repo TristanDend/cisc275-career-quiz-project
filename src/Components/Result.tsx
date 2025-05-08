@@ -211,15 +211,16 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
             </Popup>
             {response && response.worked && (
                     (() => {
-                        const data = JSON.parse(response.response.choices[0].message.content ?? '{}') as CareerResponse;
-                        
+                        const content: string = response.response.choices[0].message.content ?? '{}';
+                        let data: CareerResponse = JSON.parse(content) as CareerResponse;
+
                         // Parse the response to extract career information
                         // Assuming the response is in the format you provided, you can access the careers like this:
                         const careers = [data.career_one, data.career_two, data.career_three];
 
                         return (
                         <div className='career-results'>
-                            <h1>Career Recommendations</h1>
+                            <h1 className="resultsPage-SubTitle">Career Recommendations</h1>
                             {careers.map((career, index) => (
                             <div key={index} className="career_section">
                                 <h2 className="career_name">Career {index + 1}: {career.title}</h2>

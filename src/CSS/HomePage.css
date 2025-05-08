@@ -10,8 +10,22 @@ Font:
     rem: font-size based off root font-size (can scale with display)
 */
 
+/* import font */
+@font-face {
+    font-family: SignboardFont; /* Name given to this font */
+    src: url('../assets/wooden-log/Wodden\ Log/Wooden\ Log.ttf');
+}
+
 #homePageSubhead {
-    padding: 1.2%;
+    font-size: 2rem;
+    text-align: center;
+    color: black;
+    font-family: SignboardFont;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+#titleCaption {
     font-size: 1.9rem;
     text-align: center;
     color: #328E6E;
@@ -27,56 +41,53 @@ Font:
 }
 
 #homePageWhole {
-    background-color: #E1EEBC;
+    background-image: url("../assets/SignpostScene.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
+    height: 87vh;
+    width: 100vw;
     border-top: .5rem solid #90C67C;
     border-bottom: .5rem solid #90C67C;
     margin: 0rem;
 }
 
 #questionButton {
-    margin: 3%;
-    color: white;
-    background-color: #328E6E;
-    font-family: Georgia;
+    color: black;
+    background-color: transparent;
+    font-family: SignboardFont;
+    font-size: 1.5rem;
+    border: none;
     height: auto;
     width: auto;
 }
 
 #questionButton:hover {
-    margin: 3%;
     color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
+    background-color: transparent;
+    font-family: SignboardFont;
+    font-size: 1.5rem;
+    border-color: white;
+    border: none;
     height: auto;
     width: auto;
 }
 
-#homePageContainer{
-    padding-bottom: 4.45%;
-}
-
 #quizBlock {
-    border-radius: 3%;
-    margin: 3%;
-    border-style: solid;
-    border-width: 0.2rem;
-    border-color: #328E6E;
-    background-color: white;
+    margin-top: 2%;   
+    background-image: url('../assets/metalPlate.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40vw 60vh;
+    position: center;
+    width: auto;
+    height: auto; 
 }
 
 #quizDescription {
-    padding: 3%;
     text-align: center;
     display: block;
-    color: #67AE6E;
-    font-family: Georgia;
-    font-size: 1.2rem;
-}
-
-#squareImg {
-    display: block;
-    width: 50%;
-    aspect-ratio: 1 / 1;
-    margin: auto;
-    align-content: center;
+    color: black;
+    font-family: SignboardFont;
+    font-size: 1.5rem;
 }
