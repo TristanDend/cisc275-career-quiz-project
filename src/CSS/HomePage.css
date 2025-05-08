@@ -41,16 +41,30 @@ Font:
 }
 
 #homePageWhole {
+    /* background-size: contain; */
     background-image: url("../assets/SignpostScene.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
-    height: 87vh;
-    width: 100vw;
+    /* min-width: 100%;
+    min-height: 100%; */
+    width: 1536px;
+    height: 712.6px;
     border-top: .5rem solid #90C67C;
     border-bottom: .5rem solid #90C67C;
     margin: 0rem;
 }
+
+/* #signPostBlock {
+    background-size: cover;
+    background-image: url("../assets/Signpost.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
+    /* height: 87vh;
+    width: 100vw;
+    margin: 0rem;
+} */
 
 #questionButton {
     color: black;
@@ -73,15 +87,30 @@ Font:
     width: auto;
 }
 
-#quizBlock {
-    margin-top: 2%;   
+#quizBlock1 {
+    /* margin-top: 1.5rem;  */
+    background-image: url('../assets/metalPlate.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40vw 60vh;  
+    position: relative;
+    top: 3vh;
+    /* padding: auto;
+    width: auto;
+    height: auto;  */
+}
+
+#quizBlock2 {
+    /* margin-top: auto;  */
     background-image: url('../assets/metalPlate.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40vw 60vh;
-    position: center;
+    position: relative;
+    top: 7vh;
+    /* padding: auto;
     width: auto;
-    height: auto; 
+    height: auto;  */
 }
 
 #quizDescription {

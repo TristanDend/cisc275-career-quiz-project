@@ -89,6 +89,8 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
       borderBottom: '.5rem solid #90C67C'}}>
       <div id="page-style">
         <div style={{
+            width: '1536px',
+            height: '714px',
             top: '0', left: '0', right: '0', bottom: '0',
             position: 'absolute',
             backgroundSize: 'cover',
@@ -152,12 +154,12 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
               >Submit Answers</button>
             )}
 
-            {isLocalhost && (
+            {/* {isLocalhost && (
               <button
                 onClick={() => { randomizeSelections(); }}
                 id='submitButton'
               >Randomize Answers</button>
-            )}
+            )} */}
           </center>
         </div>
       </div>
