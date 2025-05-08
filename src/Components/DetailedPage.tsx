@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../CSS/DetailedPage.css';
-import { Button, Form} from 'react-bootstrap';
+import hike from '../assets/daytime_hike.png'
+import { Button, Form } from 'react-bootstrap';
 import { questions } from '../assets/DetailedPageQuestions'
 
 // Transferred state variables for page transitions
@@ -14,8 +15,10 @@ interface DetailedPageProps {
 export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQuizAnswered} : DetailedPageProps): React.JSX.Element {
     const [answers, takeAnswers] = useState<string[]>(new Array(questions.length).fill("")); // for all questions and answers in page
     const [q1Answers, q1TakeAnswers] = useState<string[]>([]); // for question 1 answers (specific due to being checklist)
+    const [currQuestion, changeQuestion] = useState<number>(0); // to keep track of what question the user is on
     const answerPercent = ((answers.filter((answer) => answer !== "").length / answers.length) * 100); // for progress bar answer check
     
+    // Debug and demo function to answer all questions on one button click
     function randomizeAnswers() {
         let newq1Answers = questions[0].options.map((option) => Math.random() > 0.5 ? option.optionText : "")
         q1TakeAnswers(newq1Answers.filter((answer) => answer));
@@ -33,6 +36,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
         takeAnswers(newAnswers);
     }
 
+    // updates the answers value for the text answer questions
     function changeTextAnswer(event: React.ChangeEvent<HTMLTextAreaElement>) {
         const newAnswers = [...answers];
         newAnswers[parseInt(event.target.id) - 1] = event.target.value;
@@ -74,74 +78,88 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
     function handleClear() {
         takeAnswers(Array<string>(answers.length).fill(""));
         q1TakeAnswers([]);
+        changeQuestion(0);
     }
 
     return (
-        <div id="page-style">
-            <div id="quiz-style">
-                <center>
-                    <h1 className='title'>Detailed Questions</h1>
-                </center>
-                {/* adds all the questions and answers for Detailed Question page */}
-                {Array.from({length: questions.length}, (_, index: number) => (
-                    <div key={index} style={{marginBottom: '2rem'}}>
-                        <p className='question-text' role="question">{questions[index].questionText}</p>
-                        {questions[index].questionType === "checkbox" && 
-                            Array.from({length: questions[index].options.length}, (_, ind: number) => (
+        <div style={{ 
+            borderTop: '.5rem solid #90C67C',
+            borderBottom: '.5rem solid #90C67C'}}>
+            {/* Full page besides the progress bar */}
+            <div id='page-style'>
+                <div style={{ 
+                        top: '0', left: '0', right: '0', bottom: '0',
+                        position: 'absolute',
+                        backgroundSize: 'cover',
+                        backgroundImage: `url(${hike})`,
+                        transform: `scale(${100 + answerPercent}%)`,
+                        transition: 'transform 0.3s ease',
+                        zIndex: '-1',
+                        overflow: 'hidden'
+                    }}></div>
+                <div id="quiz-style" style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }}>
+                    {/* Page Title */}
+                    <center><h1 className='title'>Detailed Questions</h1></center>
+                    
+                    {/* adds all the questions and answers for Detailed Question page one at a time. */}
+                    <div style={{ marginBottom: '2rem' }}>
+                        <p className='question-text' role="question">{questions[currQuestion].questionText}</p>
+                        {questions[currQuestion].questionType === "checkbox" && 
+                            Array.from({length: questions[currQuestion].options.length}, (_, ind: number) => (
                                 // Question 1
                                     <Form.Check
                                         className='answer-text'
                                         key={ind}
-                                        name={questions[index].questionId.toString()}
+                                        name={questions[currQuestion].questionId.toString()}
                                         type="checkbox"
-                                        value={questions[index].options[ind].optionText}
-                                        id={questions[index].questionId.toString()}
-                                        label={questions[index].options[ind].optionText}
-                                        checked={q1Answers.includes(questions[index].options[ind].optionText)}
+                                        value={questions[currQuestion].options[ind].optionText}
+                                        id={questions[currQuestion].questionId.toString()}
+                                        label={questions[currQuestion].options[ind].optionText}
+                                        checked={q1Answers.includes(questions[currQuestion].options[ind].optionText)}
                                         onChange={handleCheckBoxChange}
                                     />
                             ))
                         }
-                        {questions[index].questionType === "radio" && 
-                            Array.from({length: questions[index].options.length}, (_, ind: number) => (
+                        {questions[currQuestion].questionType === "radio" && 
+                            Array.from({length: questions[currQuestion].options.length}, (_, ind: number) => (
                                 // Questions 2 and 3
                                 <Form.Check
                                         className="answer-text"
-                                        name={questions[index].questionId.toString()}
+                                        name={questions[currQuestion].questionId.toString()}
                                         type="radio"
                                         key={ind}
-                                        value={questions[index].options[ind].optionText}
-                                        id={questions[index].questionId.toString()}
-                                        label={questions[index].options[ind].optionText}
-                                        checked={answers[questions[index].questionId - 1] === questions[index].options[ind].optionText}
+                                        value={questions[currQuestion].options[ind].optionText}
+                                        id={questions[currQuestion].questionId.toString()}
+                                        label={questions[currQuestion].options[ind].optionText}
+                                        checked={answers[questions[currQuestion].questionId - 1] === questions[currQuestion].options[ind].optionText}
                                         onChange={changeAnswer}
                                     />
                             ))
                         }
-                        {questions[index].questionType === "short-answer" && 
+                        {questions[currQuestion].questionType === "short-answer" && 
                             // Question 4 & Questions 6 - 9
                             <textarea
                                 className='short-text'
-                                id={questions[index].questionId.toString()}
-                                title={"answer-".concat((index + 1).toString())} 
+                                id={questions[currQuestion].questionId.toString()}
+                                title={"answer-".concat((currQuestion + 1).toString())} 
                                 role="answer"
-                                value={answers[index]}
+                                value={answers[currQuestion]}
                                 onChange={changeTextAnswer}
                                 />
                             }
-                        {questions[index].questionType === "slider" && 
+                        {questions[currQuestion].questionType === "slider" && 
                             // Question 5
                             <div>
                                 <input 
                                     className='slider'
-                                    id={questions[index].questionId.toString()}
+                                    id={questions[currQuestion].questionId.toString()}
                                     type="range"
                                     role="answer"
                                     min="1"
                                     max="10"
-                                    title={"answer-".concat((index + 1).toString())}
+                                    title={"answer-".concat((currQuestion + 1).toString())}
                                     list="scale"
-                                    value={answers[index]}
+                                    value={answers[currQuestion]}
                                     onChange={changeAnswer}
                                     />
                                 <datalist id="scale">
@@ -152,12 +170,15 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                             </div>
                             }
                     </div>
-                ))}
-                <center>
-                    <Button disabled={answerPercent !== 100} onClick={toResultsPage} id="submitButton">Submit Answers</Button>
-                    <Button disabled={!answerPercent} onClick={handleClear} id='clearButton'>Clear Answers</Button>
-                    <Button onClick={randomizeAnswers} id="submitButton">Randomize Answers</Button>
-                </center>
+                    {/* All user buttons to go between questions, clear answers, and submit results */}
+                    <center>
+                        <Button disabled={!currQuestion} onClick={() => {changeQuestion(currQuestion - 1)}} id='submitButton'>&lt;&lt; Previous</Button>
+                        <Button disabled={!answerPercent} onClick={handleClear} id='clearButton'>Clear Answers</Button>
+                        <Button hidden={currQuestion !== 8} disabled={answerPercent !== 100} onClick={toResultsPage} id="submitButton">Submit Answers</Button>
+                        <Button disabled={!answerPercent} hidden={currQuestion === 8} onClick={() => {changeQuestion(currQuestion + 1)}} id='submitButton'>Next &gt;&gt;</Button>
+                        <Button onClick={randomizeAnswers} id="submitButton">Randomize Answers</Button>
+                    </center>
+                </div>
             </div>
             {/* All elements necessary to display the progress bar */}
             <div className="progress-wrapper">

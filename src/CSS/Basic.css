@@ -7,18 +7,22 @@
 }
 
 #page-style {
-    background-color: #E1EEBC;
-    border-top: .5rem solid #90C67C;
-    border-bottom: .5rem solid #90C67C;
+    overflow: hidden;
+    position: relative;
 }
 
 #quiz-style {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 3%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     max-width: 800px;
     margin: 0 auto;
     padding: 1 rem;
     align-self: center;
     background-color: white;
-    border: 1px solid darkgreen;
+    border: 0.3rem solid #328E6E;
 }
 
 #submitButton {
@@ -96,13 +100,13 @@
 }
 
 .progress-wrapper {
+    z-index: 2;
     position: sticky;
     bottom: 0px;
 }
 
 .progress-bar {
     width: 100%;
-    z-index: 1000;
     background-color: #ccc;
     height: 25px;
     border: 1px solid black;
@@ -127,4 +131,21 @@
     display: flex;
     position: relative;
     transform: translate(47%, -2px);
+}
+
+#question-buttons {
+    padding: 0.5rem 1rem;
+    border: 1px solid black;
+    border-radius: '4px';
+    cursor: 'pointer';
+    min-width: '100px';
+    text-align: 'center';
+    background-color: rgb(241, 241, 241);
+    color: black;
+}
+
+#question-buttons:hover {
+    color: black;
+    border: 2px solid black;
+    background-color: #fff;
 }

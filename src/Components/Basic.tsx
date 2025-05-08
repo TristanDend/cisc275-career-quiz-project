@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import questions from '../assets/question.json'; // load question data
+import hike from '../assets/daytime_hike.png'
 import '../CSS/Basic.css';
 
 // data interfaces
@@ -83,122 +84,90 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
   const question = (questions as Question[])[currentIndex];
 
   return (
-    <div id="page-style">
-      <div id="quiz-style">
-        {/* Title */}
-        <center><h1 className="title">Basic Questions</h1></center>
-
-        {/* Single question view */}
-        <div style={{ marginBottom: '2rem' }}>
-          <p className="question-text">{question.questionText}</p>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {question.options.map((opt, idx) => {
-              const isSelected = selectedOptions[currentIndex].includes(opt.optionText);
-              return (
-                <button
-                  key={opt.optionId}
-                  onClick={() => { handleOptionSelect(idx); }}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    border: '1px solid #ccc',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    backgroundColor: isSelected ? '#4CAF50' : '#fff',
-                    color: isSelected ? '#fff' : '#000',
-                    minWidth: '100px',
-                    textAlign: 'center'
-                  }}
-                >{opt.optionText}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Navigation buttons */}
-        <center>
-          <button
-            onClick={() => { setCurrentIndex(i => Math.max(i - 1, 0)); }}
-            disabled={currentIndex === 0}
-            style={{
-              padding: '0.5rem 1rem',
-              marginRight: '1rem',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >Previous</button>
-
-          {currentIndex < totalQuestions - 1 ? (
-            <button
-              onClick={() => { setCurrentIndex(i => Math.min(i + 1, totalQuestions - 1)); }}
-              disabled={selectedOptions[currentIndex].length === 0}
-              style={{
-                padding: '0.5rem 1rem',
-                marginRight: '1rem',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >Next</button>
-          ) : (
-            <button
-              onClick={() => { toResultsPage(); }}
-              disabled={progressPercentage !== 100}
-              style={{
-                padding: '0.5rem 1rem',
-                marginRight: '1rem',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >Submit Answers</button>
-          )}
-
-          <button
-            onClick={() => { clearSelections(); }}
-            disabled={answeredCount === 0}
-            style={{
-              padding: '0.5rem 1rem',
-              marginRight: isLocalhost ? '1rem' : '0',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >Clear All</button>
-
-          {isLocalhost && (
-            <button
-              onClick={() => { randomizeSelections(); }}
-              style={{
-                padding: '0.5rem 1rem',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >Randomize</button>
-          )}
-        </center>
-      </div>
-
-      {/* Progress bar */}
-      <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-        <div
-          style={{
-            width: '100%',
-            backgroundColor: '#ccc',
-            height: '20px',
-            borderRadius: '4px',
+    <div style={{ 
+      borderTop: '.5rem solid #90C67C',
+      borderBottom: '.5rem solid #90C67C'}}>
+      <div id="page-style">
+        <div style={{
+            top: '0', left: '0', right: '0', bottom: '0',
+            position: 'absolute',
+            backgroundSize: 'cover',
+            backgroundImage: `url(${hike})`,
+            transform: `scale(${100 + progressPercentage}%)`,
+            transition: 'transform 0.3s ease',
+            zIndex: '-1',
             overflow: 'hidden'
-          }}
-        >
-          <div
-            style={{
-              width: `${progressPercentage}%`, // dynamic width
-              backgroundColor: 'green',
-              height: '100%'
-            }}
-          ></div>
+          }}></div>
+        <div id="quiz-style" style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }}>
+          {/* Title */}
+          <center><h1 className="title">Basic Questions</h1></center>
+
+          {/* Single question view */}
+          <div style={{ marginBottom: '2rem'}}>
+            <p className="question-text">{question.questionText}</p>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {question.options.map((opt, idx) => {
+                const isSelected = selectedOptions[currentIndex].includes(opt.optionText);
+                return (
+                  <button
+                    key={opt.optionId}
+                    onClick={() => { handleOptionSelect(idx); }}
+                    id='question-buttons'
+                    style={{
+                      backgroundColor: isSelected ? '#4CAF50' : 'rgb(241, 241, 241)',
+                      color: isSelected ? '#fff' : '#000',
+                    }}
+                  >{opt.optionText}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Navigation buttons */}
+          <center>
+            <button
+              onClick={() => { setCurrentIndex(i => Math.max(i - 1, 0)); }}
+              disabled={currentIndex === 0}
+              id='submitButton'
+            >&lt;&lt; Previous</button>
+
+            <button
+              onClick={() => { clearSelections(); }}
+              disabled={answeredCount === 0}
+              id='clearButton'
+            >Clear Answers</button>
+
+            {currentIndex < totalQuestions - 1 ? (
+              <button
+                onClick={() => { setCurrentIndex(i => Math.min(i + 1, totalQuestions - 1)); }}
+                disabled={selectedOptions[currentIndex].length === 0}
+                id='submitButton'
+              >Next &gt;&gt;</button>
+            ) : (
+              <button
+                onClick={() => { toResultsPage(); }}
+                disabled={progressPercentage !== 100}
+                id='submitButton'
+              >Submit Answers</button>
+            )}
+
+            {isLocalhost && (
+              <button
+                onClick={() => { randomizeSelections(); }}
+                id='submitButton'
+              >Randomize Answers</button>
+            )}
+          </center>
+        </div>
+      </div>
+    {/* Progress bar */}
+      <div className="progress-wrapper">
+        <div className="progress-bar" id="progressBar">
+          <div role="progressContent" id="progress-content" style={{
+            width: `${progressPercentage}%`}}>
+            <p className="progress-text">{progressPercentage.toFixed()}%</p>
+          </div>
         </div>
       </div>
     </div>

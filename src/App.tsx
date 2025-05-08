@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import {Footer} from './Components/footer'
-import {Header} from './Components/header'
+import { Footer } from './Components/footer'
+import { Header } from './Components/header'
 import { Button, Form } from 'react-bootstrap';
 import { HomePage } from './Components/HomePage'
 import { DetailedPage } from './Components/DetailedPage';
@@ -16,6 +16,7 @@ function parseJson<T>(keyString: string | null): T {
   if (keyString !== null) return JSON.parse(keyString) as T;
   return "" as T;
 }
+
 const prevKey = localStorage.getItem(saveKeyData);
 const keyData: string = parseJson(prevKey);
 
