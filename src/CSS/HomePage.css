@@ -45,6 +45,7 @@ Font:
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
+    /* background-size: cover; */
     height: 87vh;
     width: 100vw;
     border-top: .5rem solid #90C67C;
@@ -73,15 +74,24 @@ Font:
     width: auto;
 }
 
-#quizBlock {
-    margin-top: 2%;   
+#quizBlock1 {
+    /* margin-top: 1.5rem;    */
     background-image: url('../assets/metalPlate.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40vw 60vh;
-    position: center;
-    width: auto;
-    height: auto; 
+    position: relative;
+    top: 3vh;
+}
+
+#quizBlock2 {
+    /* margin-top: 1.5rem;    */
+    background-image: url('../assets/metalPlate.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40vw 60vh;
+    position: relative;
+    top: 7vh;
 }
 
 #quizDescription {
