@@ -36,12 +36,16 @@ export function Footer({setApiOpen}: FooterProps) {
         }
     }
 
+    //what is actually shown on the screen
+    //The buttons correspond to popups that are opened when the button is clicked
+    //The popups are closed when the close button is clicked
     return (
         <div className = "footer">
             <Button id = 'footer-button' onClick={() => {setAboutOpen(true)}}>
                 About Us
             </Button>
-            <Popup open = {aboutOpen} onClose = {aboutClose} modal nested className = "footer-popup">
+            {/*Popup for the about us section with short description of team*/}
+            <Popup open = {aboutOpen} onClose = {aboutClose} closeOnDocumentClick={false} modal nested className = "footer-popup">
                 {
                   <div className = "footer-popup">
                     <h2>About Us</h2>
@@ -63,7 +67,8 @@ export function Footer({setApiOpen}: FooterProps) {
             <Button id = 'footer-button' onClick={() => {setContactOpen(true)}}>
                 Contact Us
             </Button>
-            <Popup open = {contactOpen} onClose = {contactClose} modal nested className = "footer-popup">
+            {/*Popup for the Contact us section with all team emails*/}
+            <Popup open = {contactOpen} onClose = {contactClose} closeOnDocumentClick={false} modal nested className = "footer-popup">
                 {
                   <div className = "footer-popup">
                     <h2>Contact Us</h2>
@@ -79,6 +84,8 @@ export function Footer({setApiOpen}: FooterProps) {
                   </div>
                 }
               </Popup>
+            {/*Button to open the API key input popup*/}
+            {/*toggle for the API key input section with input field and submit button*/}
               <Button id = 'footer-button' onClick = {() => {apiToggle()}}>
                 Enter API Key
               </Button>
