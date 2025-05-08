@@ -220,7 +220,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
 
                         return (
                         <div className='career-results'>
-                            <h1>Career Recommendations</h1>
+                            <h1 className="resultsPage-SubTitle">Career Recommendations</h1>
                             {careers.map((career, index) => (
                             <div key={index} className="career_section">
                                 <h2 className="career_name">Career {index + 1}: {career.title}</h2>
