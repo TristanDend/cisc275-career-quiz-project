@@ -34,7 +34,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
     return (
         <div id="homePageWhole">
             {/* Title and Caption */}
-            <h1 id="homePageTitle"><strong>Career Pathfind</strong></h1>
+            <h1 id="homePageTitle"><strong>Career Pathfinder</strong></h1>
             <h2 id="titleCaption"><strong>Unearth Your Own Path</strong></h2>
             <br></br>
             <div id="quizBlock">
