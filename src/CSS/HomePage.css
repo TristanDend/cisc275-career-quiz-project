@@ -27,13 +27,13 @@ Font:
 }
 
 #titleCaption {
-    font-size: 1.9rem;
+    font-size: 2.5rem;
     text-align: center;
     color: #328E6E;
     font-family: Georgia;
     position: absolute;
     width: 100%;
-    top: 10%;
+    top: 15%;
 }
 
 #homePageTitle {
@@ -41,7 +41,7 @@ Font:
     text-align: center;
     color: #328E6E;
     font-family: Georgia;
-    font-size: 4rem;
+    font-size: 6rem;
     position: absolute;
     width: 100%;
 }
