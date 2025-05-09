@@ -8,6 +8,12 @@ Colors:
 Font:
     Georgia
     rem: font-size based off root font-size (can scale with display)
+
+Setting Set Image Height:
+    Page Height: 806.594
+    Header + Footer height = 46.84 * 2 = 93.68
+    Image height should be 712.914
+    Image width: 901
 */
 
 /* import font */
@@ -48,8 +54,8 @@ Font:
     background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
     /* min-width: 100%;
     min-height: 100%; */
-    width: 1536px;
-    height: 712.6px;
+    width: 1440px;
+    height: 712.914px;
     border-top: .5rem solid #90C67C;
     border-bottom: .5rem solid #90C67C;
     margin: 0rem;
@@ -94,7 +100,7 @@ Font:
     background-position: center;
     background-size: 40vw 60vh;  
     position: relative;
-    top: 3vh;
+    top: 4vh;
     /* padding: auto;
     width: auto;
     height: auto;  */
@@ -107,7 +113,7 @@ Font:
     background-position: center;
     background-size: 40vw 60vh;
     position: relative;
-    top: 7vh;
+    top: 8vh;
     /* padding: auto;
     width: auto;
     height: auto;  */
