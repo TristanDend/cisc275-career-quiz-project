@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Container, Col, Row } from 'react-bootstrap';
 import '../CSS/HomePage.css';
+import signPost from '../assets/SignpostScene.png'
 
 // homepage props to import state
 interface HomePageProps {
@@ -36,7 +37,6 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
             {/* Title and Caption */}
             <h1 id="homePageTitle"><strong>Career Pathfinder</strong></h1>
             <h2 id="titleCaption"><strong>Unearth Your Own Path</strong></h2>
-            <br></br>
             <div id="quizBlock1">
                 {/* Basic Quiz Title */}
                 <div id="homePageSubhead">Short Trail</div>
@@ -55,6 +55,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
                 {/* Button to go to Detailed Questions */}
                 <center><Button id="questionButton" onClick = {() => {changeActive("detailed")}}>{'<'}== Take Longer Trail</Button></center>
             </div>
+            <img src={signPost} id="homePageBackgroundImage" alt="signpost"/>
         </div>
     )
 }

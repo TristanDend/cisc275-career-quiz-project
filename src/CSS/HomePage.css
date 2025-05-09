@@ -8,12 +8,7 @@ Colors:
 Font:
     Georgia
     rem: font-size based off root font-size (can scale with display)
-
-Setting Set Image Height:
-    Page Height: 806.594
-    Header + Footer height = 46.84 * 2 = 93.68
-    Image height should be 712.914
-    Image width: 901
+    
 */
 
 /* import font */
@@ -36,6 +31,7 @@ Setting Set Image Height:
     text-align: center;
     color: #328E6E;
     font-family: Georgia;
+    position: absolute;
 }
 
 #homePageTitle {
@@ -44,21 +40,29 @@ Setting Set Image Height:
     color: #328E6E;
     font-family: Georgia;
     font-size: 4rem;
+    position: absolute;
 }
 
 #homePageWhole {
+    position: relative;
     /* background-size: contain; */
-    background-image: url("../assets/SignpostScene.png");
+    /* background-image: url("../assets/SignpostScene.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
+    background-size: 100vw 87vh; vw, vh = screen width, screen height */
     /* min-width: 100%;
     min-height: 100%; */
-    width: 1440px;
-    height: 712.914px;
+    /* width: 1440px;
+    height: 712.914px; */
     border-top: .5rem solid #90C67C;
     border-bottom: .5rem solid #90C67C;
-    margin: 0rem;
+    /* margin: 0rem; */
+}
+
+#homePageBackgroundImage {
+    max-width: 100%;
+    width: 100%;
+    display: block;
 }
 
 /* #signPostBlock {
@@ -95,6 +99,7 @@ Setting Set Image Height:
 
 #quizBlock1 {
     /* margin-top: 1.5rem;  */
+    position: absolute;
     background-image: url('../assets/metalPlate.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -108,6 +113,7 @@ Setting Set Image Height:
 
 #quizBlock2 {
     /* margin-top: auto;  */
+    position: absolute;
     background-image: url('../assets/metalPlate.png');
     background-repeat: no-repeat;
     background-position: center;
