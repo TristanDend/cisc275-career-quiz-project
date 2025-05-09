@@ -8,7 +8,7 @@ Colors:
 Font:
     Georgia
     rem: font-size based off root font-size (can scale with display)
-    
+
 */
 
 /* import font */
@@ -18,7 +18,7 @@ Font:
 }
 
 #homePageSubhead {
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
     color: black;
     font-family: SignboardFont;
@@ -32,6 +32,8 @@ Font:
     color: #328E6E;
     font-family: Georgia;
     position: absolute;
+    width: 100%;
+    top: 10%;
 }
 
 #homePageTitle {
@@ -41,6 +43,7 @@ Font:
     font-family: Georgia;
     font-size: 4rem;
     position: absolute;
+    width: 100%;
 }
 
 #homePageWhole {
@@ -80,7 +83,7 @@ Font:
     color: black;
     background-color: transparent;
     font-family: SignboardFont;
-    font-size: 1.5rem;
+    font-size: 2rem;
     border: none;
     height: auto;
     width: auto;
@@ -90,7 +93,7 @@ Font:
     color: white;
     background-color: transparent;
     font-family: SignboardFont;
-    font-size: 1.5rem;
+    font-size: 2rem;
     border-color: white;
     border: none;
     height: auto;
@@ -103,12 +106,11 @@ Font:
     background-image: url('../assets/metalPlate.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 40vw 60vh;  
-    position: relative;
-    top: 4vh;
-    /* padding: auto;
-    width: auto;
-    height: auto;  */
+    background-size: 60vw 75vh;  
+    top: 35%;
+    padding: 1%;
+    width: 100%;
+    height: auto; 
 }
 
 #quizBlock2 {
@@ -117,12 +119,11 @@ Font:
     background-image: url('../assets/metalPlate.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 40vw 60vh;
-    position: relative;
-    top: 8vh;
-    /* padding: auto;
-    width: auto;
-    height: auto;  */
+    background-size: 60vw 75vh;
+    top: 60%;
+    padding: 1%;
+    width: 100%;
+    height: auto; 
 }
 
 #quizDescription {
@@ -130,5 +131,5 @@ Font:
     display: block;
     color: black;
     font-family: SignboardFont;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
