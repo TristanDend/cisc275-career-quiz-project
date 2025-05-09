@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../CSS/DetailedPage.css';
 import hike from '../assets/daytime_hike.png'
+import flag from '../assets/finishFlag.png'
+import run from '../assets/stickmanRunning.gif'
 import { Button, Form } from 'react-bootstrap';
 import { questions } from '../assets/DetailedPageQuestions'
-import { relative } from 'path';
 
 // Transferred state variables for page transitions
 interface DetailedPageProps {
@@ -89,21 +90,18 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
             }}>
             {/* Full page besides the progress bar */}
             <div id='page-style'>
-                <div style={{ 
-                        width: '1536px',
-                        height: '714px',
-                        top: '0', left: '0', right: '0', bottom: '0',
+                <img src={hike} style={{ 
                         position: 'absolute',
-                        backgroundSize: 'cover',
-                        backgroundImage: `url(${hike})`,
+                        width: '100%',
+                        display: 'block',
                         transform: `scale(${100 + answerPercent}%)`,
                         transition: 'transform 0.3s ease',
                         zIndex: '-1',
                         overflow: 'hidden'
-                    }}></div>
+                    }}></img>
                 <div id="quiz-style" style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }}>
                     {/* Page Title */}
-                    <center><h1 className='title'>Detailed Questions</h1></center>
+                    <center><h1 className='title'>Long Trail</h1></center>
                     
                     {/* adds all the questions and answers for Detailed Question page one at a time. */}
                     <div style={{ marginBottom: '2rem' }}>
@@ -179,7 +177,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         <Button disabled={!currQuestion} onClick={() => {changeQuestion(currQuestion - 1)}} id='submitButton'>&lt;&lt; Previous</Button>
                         <Button disabled={!answerPercent} onClick={handleClear} id='clearButton'>Clear Answers</Button>
                         <Button hidden={currQuestion !== 8} disabled={answerPercent !== 100} onClick={toResultsPage} id="submitButton">Submit Answers</Button>
-                        <Button disabled={!answerPercent} hidden={currQuestion === 8} onClick={() => {changeQuestion(currQuestion + 1)}} id='submitButton'>Next &gt;&gt;</Button>
+                        <Button disabled={!answers[currQuestion]} hidden={currQuestion === 8} onClick={() => {changeQuestion(currQuestion + 1)}} id='submitButton'>Next &gt;&gt;</Button>
                         {/* <Button onClick={randomizeAnswers} id="submitButton">Randomize Answers</Button> */}
                     </center>
                 </div>
@@ -188,9 +186,16 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
             <div className="progress-wrapper">
                 <div className="progress-bar" id="progressBar">
                     <div role="progressContent" id="progress-content" style={{
-                        width: `${answerPercent}%`}}>
+                        width: `${answerPercent.toFixed(0)}%`}}>
                         <p className="progress-text">{answerPercent.toFixed(0)}%</p>
                     </div>
+                    <img hidden={answerPercent === 100} src={run} id="person-run" style={{
+                        left: `${(answerPercent - 1).toFixed(0)}%`,
+                        backgroundColor: 'rgb(241, 241, 241)',
+                        border: '2px solid black',
+                        borderRadius: '100%'
+                    }}></img>
+                    <img src={flag} id="finish-flag"></img>
                 </div>
             </div>
         </div>
