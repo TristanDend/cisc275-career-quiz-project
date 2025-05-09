@@ -18,7 +18,7 @@ Font:
 }
 
 #homePageSubhead {
-    font-size: 3rem;
+    font-size: calc(0.5rem + 5vh);
     text-align: center;
     color: black;
     font-family: SignboardFont;
@@ -83,7 +83,7 @@ Font:
     color: black;
     background-color: transparent;
     font-family: SignboardFont;
-    font-size: 2rem;
+    font-size: calc(0.5rem + 3vh);
     border: none;
     height: auto;
     width: auto;
@@ -93,7 +93,7 @@ Font:
     color: white;
     background-color: transparent;
     font-family: SignboardFont;
-    font-size: 2rem;
+    font-size: calc(0.5rem + 3vh);
     border-color: white;
     border: none;
     height: auto;
@@ -131,5 +131,5 @@ Font:
     display: block;
     color: black;
     font-family: SignboardFont;
-    font-size: 2rem;
+    font-size: calc(0.5rem + 3vh);
 }
