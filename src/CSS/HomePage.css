@@ -8,6 +8,11 @@ Colors:
 Font:
     Georgia
     rem: font-size based off root font-size (can scale with display)
+
+Page Dimensions:
+    Height of header and footer: 43.53
+    Height of body: 799.97
+    Image Height Set to: 799.97 - 2*43.53 = 
 */
 
 /* import font */
@@ -45,11 +50,11 @@ Font:
     background-image: url("../assets/SignpostScene.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
+    background-size: 100vw 100vh; /* vw, vh = screen width, screen height */
     /* min-width: 100%;
     min-height: 100%; */
-    width: 1536px;
-    height: 712.6px;
+    width: 1440px;
+    height: 712.91px;
     border-top: .5rem solid #90C67C;
     border-bottom: .5rem solid #90C67C;
     margin: 0rem;
@@ -94,7 +99,7 @@ Font:
     background-position: center;
     background-size: 40vw 60vh;  
     position: relative;
-    top: 3vh;
+    top: 5vh;
     /* padding: auto;
     width: auto;
     height: auto;  */
@@ -107,7 +112,7 @@ Font:
     background-position: center;
     background-size: 40vw 60vh;
     position: relative;
-    top: 7vh;
+    top: 9vh;
     /* padding: auto;
     width: auto;
     height: auto;  */
