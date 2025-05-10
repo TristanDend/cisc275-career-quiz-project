@@ -15,7 +15,7 @@
     display: grid;
     padding: 2rem;
     border-radius: 3%;
-    height: 650px;
+    height: 90%;
     width: 800px;
     margin: 0 auto;
     align-self: center;
@@ -147,7 +147,7 @@
 
 .question-text {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-family: Georgia;
     text-align: center;
     color: #328E6E;
@@ -177,7 +177,7 @@
 }
 
 .answer-text {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-family: Georgia;
     gap: 1rem;
     line-height: 2;
