@@ -77,7 +77,7 @@ export function Footer({setApiOpen}: FooterProps) {
                     <ul>
                         <li>tdendorf@udel.edu</li>
                         <li>zywang@udel.edu</li>
-                        <li>qijai@udel.edu</li>
+                        <li>qijia@udel.edu</li>
                         <li>jfgordon@udel.edu</li>
                     </ul>
                     <Button onClick={contactClose} id = 'footer-button'>Close</Button>
