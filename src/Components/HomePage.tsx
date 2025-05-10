@@ -55,6 +55,11 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
                 {/* Button to go to Detailed Questions */}
                 <center><Button disabled={apiKeyWork !== 2} id="questionButton" onClick = {() => {changeActive("detailed")}}>{'<'}== Take Longer Trail</Button></center>
             </div>
+            <div id="quizBlock3">
+                <span id="quizDescription">Please enter a valid ChatGPT</span>
+                <span id="quizDescription">API Key to start the quiz.</span>
+                <span id="quizDescriptionsi">Powered by AI</span>
+            </div>
             <img src={signPost} id="homePageBackgroundImage" alt="signpost"/>
         </div>
     )

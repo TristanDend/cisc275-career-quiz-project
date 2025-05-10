@@ -58,6 +58,7 @@
     border-radius: 10px;
     padding: 10px;
     text-align: center;
+    border: 2px solid #216e53;
 }
 
 .api-test-button {

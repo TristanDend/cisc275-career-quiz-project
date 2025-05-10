@@ -166,15 +166,15 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
       <div className="progress-wrapper">
         <div className="progress-bar" id="progressBar">
           <div role="progressContent" id="progress-content" style={{
-            width: `${progressPercentage.toFixed(0)}%`}}>
-            <p className="progress-text">{progressPercentage.toFixed()}%</p>
-            <img hidden={progressPercentage === 100} src={walk} id="person-walk" style={{
-              left: `${(progressPercentage - 1).toFixed(0)}%`,
+            width: `${ progressPercentage === 100 ? 105 : progressPercentage.toFixed(0)}%`}}>
+            <p className="progress-text">{progressPercentage === 100 ? '105%' : (!progressPercentage ? '' : `${progressPercentage.toFixed(0)}%`)}</p>
+          </div>
+          <img src={walk} id="person-walk" style={{
+              left: `${ progressPercentage === 100 ? 105 : (progressPercentage - 1).toFixed(0)}%`,
               backgroundColor: 'rgb(241, 241, 241)',
               border: '2px solid black',
               borderRadius: '100%'
             }}></img>
-          </div>
           <img src={flag} id="finish-flag"></img>
         </div>
       </div>

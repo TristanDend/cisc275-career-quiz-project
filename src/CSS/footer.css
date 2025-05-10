@@ -31,4 +31,5 @@
   backdrop-filter: blur(50%);
   border-radius: 10px;
   padding: 10px;
+  border: 2px solid #216e53;
 }

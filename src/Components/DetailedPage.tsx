@@ -187,10 +187,10 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                 <div className="progress-bar" id="progressBar">
                     <div role="progressContent" id="progress-content" style={{
                         width: `${answerPercent.toFixed(0)}%`}}>
-                        <p className="progress-text">{answerPercent.toFixed(0)}%</p>
+                        <p className="progress-text">{answerPercent === 100 ? '105%' : (!answerPercent ? '' : `${answerPercent.toFixed(0)}%`)}</p>
                     </div>
-                    <img hidden={answerPercent === 100} src={run} id="person-run" style={{
-                        left: `${(answerPercent - 1).toFixed(0)}%`,
+                    <img src={run} id="person-run" style={{
+                        left: `${ answerPercent === 100 ? 105 : (answerPercent - 1).toFixed(0)}%`,
                         backgroundColor: 'rgb(241, 241, 241)',
                         border: '2px solid black',
                         borderRadius: '100%'
