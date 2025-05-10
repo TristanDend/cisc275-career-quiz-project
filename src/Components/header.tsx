@@ -51,10 +51,10 @@ export function Header({apiKeyWork, setOnHome, setOnBasic, setOnDetailed, setOnR
                 Home
             </Button>
             <Button id = 'header-button' onClick={() => {changeActive("basic")}} disabled={apiKeyWork !== 2}>
-                Simple Quiz
+                Short Trail
             </Button>
             <Button id = 'header-button' onClick={() => {changeActive("detailed")}} disabled={apiKeyWork !== 2}>
-                Detailed Quiz
+                Long Trail
             </Button>
         </div>
     )

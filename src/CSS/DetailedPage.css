@@ -12,29 +12,26 @@
 }
 
 #quiz-style {
+    display: grid;
     padding: 2rem;
     border-radius: 3%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
     height: 650px;
     width: 800px;
     margin: 0 auto;
-    padding: 1rem;
     align-self: center;
-    /* align-content:normal; */
+    text-align: center;
     background-color: white;
     border: 0.3rem solid #328E6E;
 }
 
 .progress-wrapper {
-    z-index: 2;
     position: sticky;
     bottom: 0px;
 }
 
 .progress-bar {
     width: 100%;
-    background-color: #ccc;
+    background-image: url('../assets/sandyPath.jpg');
     height: 25px;
     border-top: 1px solid black;
     order: top;
@@ -48,6 +45,21 @@
     animation: stripeForward 1s linear infinite;
 }
 
+#person-run {
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 25px;
+    transition: left 0.4s ease;
+}
+
+#finish-flag {
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 25px;
+}
+
 @keyframes stripeForward {
     0% { background-position: 0px 0px};
     100% { background-position: 10px 0px};
@@ -57,7 +69,9 @@
     color: white;
     display: flex;
     position: relative;
-    transform: translate(47%, -2px);
+    font-size: large;
+    left: 46%;
+    top: -2px;
 }
 
 #scale {

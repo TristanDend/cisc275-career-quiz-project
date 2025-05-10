@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import questions from '../assets/question.json'; // load question data
 import hike from '../assets/daytime_hike.png'
+import flag from '../assets/finishFlag.png'
+import walk from '../assets/stickmanWalking.gif'
 import '../CSS/Basic.css';
 
 // data interfaces
@@ -88,21 +90,18 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
       borderTop: '.5rem solid #90C67C',
       borderBottom: '.5rem solid #90C67C'}}>
       <div id="page-style">
-        <div style={{
-            width: '1536px',
-            height: '714px',
-            top: '0', left: '0', right: '0', bottom: '0',
+        <img src={hike} style={{
             position: 'absolute',
-            backgroundSize: 'cover',
-            backgroundImage: `url(${hike})`,
+            width: '100%',
+            display: 'block',
             transform: `scale(${100 + progressPercentage}%)`,
             transition: 'transform 0.3s ease',
             zIndex: '-1',
             overflow: 'hidden'
-          }}></div>
+          }}></img>
         <div id="quiz-style" style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }}>
           {/* Title */}
-          <center><h1 className="title">Basic Questions</h1></center>
+          <center><h1 className="title">Short Trail</h1></center>
 
           {/* Single question view */}
           <div style={{ marginBottom: '2rem'}}>
@@ -163,13 +162,20 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
           </center>
         </div>
       </div>
-    {/* Progress bar */}
+      {/* Progress bar */}
       <div className="progress-wrapper">
         <div className="progress-bar" id="progressBar">
           <div role="progressContent" id="progress-content" style={{
-            width: `${progressPercentage}%`}}>
-            <p className="progress-text">{progressPercentage.toFixed()}%</p>
+            width: `${ progressPercentage === 100 ? 105 : progressPercentage.toFixed(0)}%`}}>
+            <p className="progress-text">{progressPercentage === 100 ? '105%' : (!progressPercentage ? '' : `${progressPercentage.toFixed(0)}%`)}</p>
           </div>
+          <img src={walk} id="person-walk" style={{
+              left: `${ progressPercentage === 100 ? 105 : (progressPercentage - 1).toFixed(0)}%`,
+              backgroundColor: 'rgb(241, 241, 241)',
+              border: '2px solid black',
+              borderRadius: '100%'
+            }}></img>
+          <img src={flag} id="finish-flag"></img>
         </div>
       </div>
     </div>

@@ -44,7 +44,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
                 <span id="quizDescription">More Simple Questions, Takes Less Time</span>
                 <span id="quizDescription">18 Questions, ~2 minutes</span>
                 {/* Button to go to Basic Questions */}
-                <center><Button id="questionButton" onClick = {() => {changeActive('basic')}}>Take Short Trail =={'>'}</Button></center>
+                <center><Button disabled={apiKeyWork !== 2} id="questionButton" onClick = {() => {changeActive('basic')}}>Take Short Trail =={'>'}</Button></center>
             </div>
             <div id="quizBlock2">
                 {/* Detailed Quiz Title */}
@@ -53,7 +53,12 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
                 <span id="quizDescription">Deeper Questions, Better Results</span>
                 <span id="quizDescription">9 Questions, ~5 minutes</span>
                 {/* Button to go to Detailed Questions */}
-                <center><Button id="questionButton" onClick = {() => {changeActive("detailed")}}>{'<'}== Take Longer Trail</Button></center>
+                <center><Button disabled={apiKeyWork !== 2} id="questionButton" onClick = {() => {changeActive("detailed")}}>{'<'}== Take Longer Trail</Button></center>
+            </div>
+            <div id="quizBlock3">
+                <span id="quizDescription">Please enter a valid ChatGPT</span>
+                <span id="quizDescription">API Key to start the quiz.</span>
+                <span id="quizDescriptionsi">Powered by AI</span>
             </div>
             <img src={signPost} id="homePageBackgroundImage" alt="signpost"/>
         </div>

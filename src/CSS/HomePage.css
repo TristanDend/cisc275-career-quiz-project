@@ -107,7 +107,7 @@ Font:
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60vw 75vh;  
-    top: 35%;
+    top: 29.5%;
     padding: 1%;
     width: 100%;
     height: auto; 
@@ -120,7 +120,19 @@ Font:
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60vw 75vh;
-    top: 60%;
+    top: 50.5%;
+    padding: 1%;
+    width: 100%;
+    height: auto; 
+}
+
+#quizBlock3 {
+    position: absolute;
+    background-image: url('../assets/metalPlate.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60vw 50vh;
+    top: 72.5%;
     padding: 1%;
     width: 100%;
     height: auto; 
@@ -130,6 +142,14 @@ Font:
     text-align: center;
     display: block;
     color: black;
+    font-family: SignboardFont;
+    font-size: calc(0.5rem + 3vh);
+}
+
+#quizDescriptionsi {
+    text-align: center;
+    display: block;
+    color: red;
     font-family: SignboardFont;
     font-size: calc(0.5rem + 3vh);
 }
