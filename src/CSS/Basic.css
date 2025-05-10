@@ -13,9 +13,9 @@
 
 #quiz-style {
     display: grid;
-    padding: 3rem;
+    padding: 5.2rem;
     border-radius: 1.5%;
-    height: 90%;
+    height: 200%;
     width: 800px;
     margin: 0 auto;
     align-self: center;
