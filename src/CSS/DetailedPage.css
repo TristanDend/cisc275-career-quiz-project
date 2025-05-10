@@ -12,27 +12,28 @@
 }
 
 #quiz-style {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding: 2rem;
     border-radius: 3%;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    max-width: 800px;
+    height: 650px;
+    width: 800px;
     margin: 0 auto;
-    padding: 1 rem;
+    padding: 1rem;
     align-self: center;
+    /* align-content:normal; */
     background-color: white;
     border: 0.3rem solid #328E6E;
 }
 
 .progress-wrapper {
+    z-index: 2;
     position: sticky;
     bottom: 0px;
 }
 
 .progress-bar {
     width: 100%;
-    z-index: 1000;
     background-color: #ccc;
     height: 25px;
     border-top: 1px solid black;
@@ -64,6 +65,8 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 #submitButton {

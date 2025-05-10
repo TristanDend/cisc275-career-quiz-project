@@ -8,6 +8,7 @@ Colors:
 Font:
     Georgia
     rem: font-size based off root font-size (can scale with display)
+
 */
 
 /* import font */
@@ -17,7 +18,7 @@ Font:
 }
 
 #homePageSubhead {
-    font-size: 2rem;
+    font-size: calc(0.5rem + 5vh);
     text-align: center;
     color: black;
     font-family: SignboardFont;
@@ -26,10 +27,13 @@ Font:
 }
 
 #titleCaption {
-    font-size: 1.9rem;
+    font-size: 2.5rem;
     text-align: center;
     color: #328E6E;
     font-family: Georgia;
+    position: absolute;
+    width: 100%;
+    top: 15%;
 }
 
 #homePageTitle {
@@ -37,26 +41,49 @@ Font:
     text-align: center;
     color: #328E6E;
     font-family: Georgia;
-    font-size: 4rem;
+    font-size: 6rem;
+    position: absolute;
+    width: 100%;
 }
 
 #homePageWhole {
-    background-image: url("../assets/SignpostScene.png");
+    position: relative;
+    /* background-size: contain; */
+    /* background-image: url("../assets/SignpostScene.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100vw 87vh; vw, vh = screen width, screen height */
+    /* min-width: 100%;
+    min-height: 100%; */
+    /* width: 1440px;
+    height: 712.914px; */
+    border-top: .5rem solid #90C67C;
+    border-bottom: .5rem solid #90C67C;
+    /* margin: 0rem; */
+}
+
+#homePageBackgroundImage {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+}
+
+/* #signPostBlock {
+    background-size: cover;
+    background-image: url("../assets/Signpost.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100vw 87vh; /* vw, vh = screen width, screen height */
-    height: 87vh;
+    /* height: 87vh;
     width: 100vw;
-    border-top: .5rem solid #90C67C;
-    border-bottom: .5rem solid #90C67C;
     margin: 0rem;
-}
+} */
 
 #questionButton {
     color: black;
     background-color: transparent;
     font-family: SignboardFont;
-    font-size: 1.5rem;
+    font-size: calc(0.5rem + 3vh);
     border: none;
     height: auto;
     width: auto;
@@ -66,21 +93,36 @@ Font:
     color: white;
     background-color: transparent;
     font-family: SignboardFont;
-    font-size: 1.5rem;
+    font-size: calc(0.5rem + 3vh);
     border-color: white;
     border: none;
     height: auto;
     width: auto;
 }
 
-#quizBlock {
-    margin-top: 2%;   
+#quizBlock1 {
+    /* margin-top: 1.5rem;  */
+    position: absolute;
     background-image: url('../assets/metalPlate.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 40vw 60vh;
-    position: center;
-    width: auto;
+    background-size: 60vw 75vh;  
+    top: 35%;
+    padding: 1%;
+    width: 100%;
+    height: auto; 
+}
+
+#quizBlock2 {
+    /* margin-top: auto;  */
+    position: absolute;
+    background-image: url('../assets/metalPlate.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60vw 75vh;
+    top: 60%;
+    padding: 1%;
+    width: 100%;
     height: auto; 
 }
 
@@ -89,5 +131,5 @@ Font:
     display: block;
     color: black;
     font-family: SignboardFont;
-    font-size: 1.5rem;
+    font-size: calc(0.5rem + 3vh);
 }

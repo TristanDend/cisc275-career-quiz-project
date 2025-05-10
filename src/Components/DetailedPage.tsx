@@ -3,6 +3,7 @@ import '../CSS/DetailedPage.css';
 import hike from '../assets/daytime_hike.png'
 import { Button, Form } from 'react-bootstrap';
 import { questions } from '../assets/DetailedPageQuestions'
+import { relative } from 'path';
 
 // Transferred state variables for page transitions
 interface DetailedPageProps {
@@ -84,10 +85,13 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
     return (
         <div style={{ 
             borderTop: '.5rem solid #90C67C',
-            borderBottom: '.5rem solid #90C67C'}}>
+            borderBottom: '.5rem solid #90C67C',
+            }}>
             {/* Full page besides the progress bar */}
             <div id='page-style'>
                 <div style={{ 
+                        width: '1536px',
+                        height: '714px',
                         top: '0', left: '0', right: '0', bottom: '0',
                         position: 'absolute',
                         backgroundSize: 'cover',
@@ -176,7 +180,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         <Button disabled={!answerPercent} onClick={handleClear} id='clearButton'>Clear Answers</Button>
                         <Button hidden={currQuestion !== 8} disabled={answerPercent !== 100} onClick={toResultsPage} id="submitButton">Submit Answers</Button>
                         <Button disabled={!answerPercent} hidden={currQuestion === 8} onClick={() => {changeQuestion(currQuestion + 1)}} id='submitButton'>Next &gt;&gt;</Button>
-                        <Button onClick={randomizeAnswers} id="submitButton">Randomize Answers</Button>
+                        {/* <Button onClick={randomizeAnswers} id="submitButton">Randomize Answers</Button> */}
                     </center>
                 </div>
             </div>
