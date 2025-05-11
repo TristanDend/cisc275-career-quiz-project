@@ -7,22 +7,30 @@
 }
 
 #page-style {
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
+    border-top: .5rem solid #90C67C;
+    border-bottom: .5rem solid #90C67C;
 }
 
 #quiz-style {
+    z-index: 2;
+    position: absolute;
     display: grid;
     padding: 2rem;
-    border-radius: 3%;
-    height: 650px;
-    width: 800px;
+    top: 10%;
+    right: 25%;
+    height: 75%;
+    width: 50%;
     margin: 0 auto;
     padding: 1 rem;
     align-self: center;
     text-align: center;
     background-color: white;
     border: 0.3rem solid #328E6E;
+    border-radius: 3%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 #submitButton {
@@ -165,4 +173,11 @@
     color: black;
     border: 2px solid black;
     background-color: #fff;
+}
+
+#quizBackgroundImage {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
 }

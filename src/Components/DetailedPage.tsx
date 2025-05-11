@@ -89,8 +89,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
             borderBottom: '.5rem solid #90C67C',
             }}>
             {/* Full page besides the progress bar */}
-            <div id='page-style'>
-                <img src={hike} style={{ 
+            <img src={hike} style={{ 
                         position: 'absolute',
                         width: '100%',
                         display: 'block',
@@ -99,6 +98,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         zIndex: '-1',
                         overflow: 'hidden'
                     }}></img>
+            <div id='page-style'>
                 <div id="quiz-style" style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }}>
                     {/* Page Title */}
                     <center><h1 className='title'>Long Trail</h1></center>

@@ -86,82 +86,80 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
   const question = (questions as Question[])[currentIndex];
 
   return (
-    <div style={{ 
-      borderTop: '.5rem solid #90C67C',
-      borderBottom: '.5rem solid #90C67C'}}>
-      <div id="page-style">
-        <img src={hike} style={{
-            position: 'absolute',
-            width: '100%',
-            display: 'block',
-            transform: `scale(${100 + progressPercentage}%)`,
-            transition: 'transform 0.3s ease',
-            zIndex: '-1',
-            overflow: 'hidden'
-          }}></img>
-        <div id="quiz-style" style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }}>
-          {/* Title */}
-          <center><h1 className="title">Short Trail</h1></center>
+    // <div style={{ 
+    //   borderTop: '.5rem solid #90C67C',
+    //   borderBottom: '.5rem solid #90C67C',
+    //   maxWidth: '100%',
+    //   width: '100%',
+    //   position: 'relative'}}>
+    <div id="page-style">
+      <div id="quiz-style" /* style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }} */>
+        {/* Title */}
+        <center><h1 className="title">Short Trail</h1></center>
 
-          {/* Single question view */}
-          <div style={{ marginBottom: '2rem'}}>
-            <p className="question-text">{question.questionText}</p>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-              {question.options.map((opt, idx) => {
-                const isSelected = selectedOptions[currentIndex].includes(opt.optionText);
-                return (
-                  <button
-                    key={opt.optionId}
-                    onClick={() => { handleOptionSelect(idx); }}
-                    id='question-buttons'
-                    style={{
-                      backgroundColor: isSelected ? '#4CAF50' : 'rgb(241, 241, 241)',
-                      color: isSelected ? '#fff' : '#000',
-                    }}
-                  >{opt.optionText}
-                  </button>
-                );
-              })}
-            </div>
+        {/* Single question view */}
+        <div style={{ marginBottom: '2rem'}}>
+          <p className="question-text">{question.questionText}</p>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {question.options.map((opt, idx) => {
+              const isSelected = selectedOptions[currentIndex].includes(opt.optionText);
+              return (
+                <button
+                  key={opt.optionId}
+                  onClick={() => { handleOptionSelect(idx); }}
+                  id='question-buttons'
+                  style={{
+                    backgroundColor: isSelected ? '#4CAF50' : 'rgb(241, 241, 241)',
+                    color: isSelected ? '#fff' : '#000',
+                  }}
+                >{opt.optionText}
+                </button>
+              );
+            })}
           </div>
-
-          {/* Navigation buttons */}
-          <center>
-            <button
-              onClick={() => { setCurrentIndex(i => Math.max(i - 1, 0)); }}
-              disabled={currentIndex === 0}
-              id='submitButton'
-            >&lt;&lt; Previous</button>
-
-            <button
-              onClick={() => { clearSelections(); }}
-              disabled={answeredCount === 0}
-              id='clearButton'
-            >Clear Answers</button>
-
-            {currentIndex < totalQuestions - 1 ? (
-              <button
-                onClick={() => { setCurrentIndex(i => Math.min(i + 1, totalQuestions - 1)); }}
-                disabled={selectedOptions[currentIndex].length === 0}
-                id='submitButton'
-              >Next &gt;&gt;</button>
-            ) : (
-              <button
-                onClick={() => { toResultsPage(); }}
-                disabled={progressPercentage !== 100}
-                id='submitButton'
-              >Submit Answers</button>
-            )}
-
-            {/* {isLocalhost && (
-              <button
-                onClick={() => { randomizeSelections(); }}
-                id='submitButton'
-              >Randomize Answers</button>
-            )} */}
-          </center>
         </div>
+
+        {/* Navigation buttons */}
+        <center>
+          <button
+            onClick={() => { setCurrentIndex(i => Math.max(i - 1, 0)); }}
+            disabled={currentIndex === 0}
+            id='submitButton'
+          >&lt;&lt; Previous</button>
+
+          <button
+            onClick={() => { clearSelections(); }}
+            disabled={answeredCount === 0}
+            id='clearButton'
+          >Clear Answers</button>
+
+          {currentIndex < totalQuestions - 1 ? (
+            <button
+              onClick={() => { setCurrentIndex(i => Math.min(i + 1, totalQuestions - 1)); }}
+              disabled={selectedOptions[currentIndex].length === 0}
+              id='submitButton'
+            >Next &gt;&gt;</button>
+          ) : (
+            <button
+              onClick={() => { toResultsPage(); }}
+              disabled={progressPercentage !== 100}
+              id='submitButton'
+            >Submit Answers</button>
+          )}
+
+          {/* {isLocalhost && (
+            <button
+              onClick={() => { randomizeSelections(); }}
+              id='submitButton'
+            >Randomize Answers</button>
+          )} */}
+        </center>
       </div>
+      <img src={hike} id="quizBackgroundImage"style={{
+          transform: `scale(${100 + progressPercentage}%)`,
+          // zIndex: '-4',
+          // overflow: 'hidden'
+        }}></img>
       {/* Progress bar */}
       <div className="progress-wrapper">
         <div className="progress-bar" id="progressBar">
@@ -179,6 +177,7 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
         </div>
       </div>
     </div>
+    // </div>
   );
 };
 
