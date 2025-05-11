@@ -68,116 +68,128 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
   };
 
   // randomize selections (for localhost testing)
-  const hostname = window.location.hostname;
-  const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
-  const randomizeSelections = (): void => {
-    const randomized = (questions as Question[]).map(q => {
-      if (q.allowMultiple) {
-        let picks = q.options.filter(() => Math.random() > 0.5).map(opt => opt.optionText);
-        if (picks.length === 0) picks = [q.options[Math.floor(Math.random() * q.options.length)].optionText];
-        return picks;
-      } else {
-        return [q.options[Math.floor(Math.random() * q.options.length)].optionText];
-      }
-    });
-    setSelectedOptions(randomized);
-  };
+  // const hostname = window.location.hostname;
+  // const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+  // const randomizeSelections = (): void => {
+  //   const randomized = (questions as Question[]).map(q => {
+  //     if (q.allowMultiple) {
+  //       let picks = q.options.filter(() => Math.random() > 0.5).map(opt => opt.optionText);
+  //       if (picks.length === 0) picks = [q.options[Math.floor(Math.random() * q.options.length)].optionText];
+  //       return picks;
+  //     } else {
+  //       return [q.options[Math.floor(Math.random() * q.options.length)].optionText];
+  //     }
+  //   });
+  //   setSelectedOptions(randomized);
+  // };
 
   const question = (questions as Question[])[currentIndex];
 
   return (
-    // <div style={{ 
-    //   borderTop: '.5rem solid #90C67C',
-    //   borderBottom: '.5rem solid #90C67C',
-    //   maxWidth: '100%',
-    //   width: '100%',
-    //   position: 'relative'}}>
-    <div id="page-style">
-      <div id="quiz-style" /* style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }} */>
-        {/* Title */}
-        <center><h1 className="title">Short Trail</h1></center>
+    <div style={{ borderTop: '.5rem solid #90C67C',
+      borderBottom: '.5rem solid #90C67C'}}>
+      <div id="page-style">
+        <div id="quiz-style">
+          {/* Title */}
+          <center><h1 className="title">Short Trail</h1></center>
 
-        {/* Single question view */}
-        <div style={{ marginBottom: '2rem'}}>
-          <p className="question-text">{question.questionText}</p>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {question.options.map((opt, idx) => {
-              const isSelected = selectedOptions[currentIndex].includes(opt.optionText);
-              return (
-                <button
-                  key={opt.optionId}
-                  onClick={() => { handleOptionSelect(idx); }}
-                  id='question-buttons'
-                  style={{
-                    backgroundColor: isSelected ? '#4CAF50' : 'rgb(241, 241, 241)',
-                    color: isSelected ? '#fff' : '#000',
-                  }}
-                >{opt.optionText}
-                </button>
-              );
-            })}
+          {/* Single question view */}
+          <div>
+            {/* Question text */}
+            <p className="question-text">{question.questionText}</p>
+            <div id="quiz-buttons">
+              {question.options.map((opt, idx) => {
+                const isSelected = selectedOptions[currentIndex].includes(opt.optionText);
+                // Question answer options
+                return (
+                  <button
+                    key={opt.optionId}
+                    onClick={() => { handleOptionSelect(idx); }}
+                    id='question-buttons'
+                    style={{
+                      backgroundColor: isSelected ? '#4CAF50' : 'rgb(241, 241, 241)',
+                      color: isSelected ? '#fff' : '#000',
+                    }}
+                  >{opt.optionText}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          {/* Quiz navigation buttons */}
+          <center id="nav-buttons">
+
+            {/* Previous button */}
+            <button
+              onClick={() => { setCurrentIndex(i => Math.max(i - 1, 0)); }}
+              disabled={currentIndex === 0}
+              id='submitButton'
+            >&lt;&lt; Previous</button>
+
+            {/* Next/Submit Buttons */}
+            {currentIndex < totalQuestions - 1 ? (
+              <button
+                onClick={() => { setCurrentIndex(i => Math.min(i + 1, totalQuestions - 1)); }}
+                disabled={selectedOptions[currentIndex].length === 0}
+                id='submitButton'
+              >Next &gt;&gt;</button>
+            ) : (
+              <button
+                onClick={() => { toResultsPage(); }}
+                disabled={progressPercentage !== 100}
+                id='submitButton'
+              >Submit Answers</button>
+            )}
+
+            {/* Clear button */}
+            <button
+              onClick={() => { clearSelections(); }}
+              disabled={answeredCount === 0}
+              id='submitButton'
+            >Clear Answers</button>
+
+            {/* Randomize Answer Button for testing/demo */}
+            {/* {isLocalhost && (
+              <button
+                onClick={() => { randomizeSelection(); }}
+                id='submitButton'
+              >Randomize Answers</button>
+            )} */}
+
+          </center>
         </div>
 
-        {/* Navigation buttons */}
-        <center>
-          <button
-            onClick={() => { setCurrentIndex(i => Math.max(i - 1, 0)); }}
-            disabled={currentIndex === 0}
-            id='submitButton'
-          >&lt;&lt; Previous</button>
+        {/* Hiking Trail Background */}
+        <img src={hike} id="quizBackgroundImage"style={{ 
+          transform: `scale(${100 + progressPercentage}%)` }}/>
 
-          <button
-            onClick={() => { clearSelections(); }}
-            disabled={answeredCount === 0}
-            id='clearButton'
-          >Clear Answers</button>
-
-          {currentIndex < totalQuestions - 1 ? (
-            <button
-              onClick={() => { setCurrentIndex(i => Math.min(i + 1, totalQuestions - 1)); }}
-              disabled={selectedOptions[currentIndex].length === 0}
-              id='submitButton'
-            >Next &gt;&gt;</button>
-          ) : (
-            <button
-              onClick={() => { toResultsPage(); }}
-              disabled={progressPercentage !== 100}
-              id='submitButton'
-            >Submit Answers</button>
-          )}
-
-          {/* {isLocalhost && (
-            <button
-              onClick={() => { randomizeSelections(); }}
-              id='submitButton'
-            >Randomize Answers</button>
-          )} */}
-        </center>
       </div>
-      <img src={hike} id="quizBackgroundImage"style={{
-          transform: `scale(${100 + progressPercentage}%)`,
-          // zIndex: '-4',
-          // overflow: 'hidden'
-        }}></img>
+
       {/* Progress bar */}
       <div className="progress-wrapper">
+        {/* Progress bar background */}
         <div className="progress-bar" id="progressBar">
+
+          {/* Progress content */}
           <div role="progressContent" id="progress-content" style={{
-            width: `${ progressPercentage === 100 ? 105 : progressPercentage.toFixed(0)}%`}}>
-            <p className="progress-text">{progressPercentage === 100 ? '105%' : (!progressPercentage ? '' : `${progressPercentage.toFixed(0)}%`)}</p>
+            width: `${progressPercentage === 100 ? 105 : progressPercentage.toFixed(0)}%`}}>
+              
+            {/* Progress percentage */}
+            <p className="progress-text">
+              {!progressPercentage ? '' : `${progressPercentage.toFixed(0)}%`}
+            </p>
           </div>
+
+          {/* Walking person image */}
           <img src={walk} id="person-walk" style={{
-              left: `${ progressPercentage === 100 ? 105 : (progressPercentage - 1).toFixed(0)}%`,
-              backgroundColor: 'rgb(241, 241, 241)',
-              border: '2px solid black',
-              borderRadius: '100%'
-            }}></img>
-          <img src={flag} id="finish-flag"></img>
+              left: `${progressPercentage === 100 ? 105 : (progressPercentage - 1).toFixed(0)}%`}}/>
+
+          {/* Finish Line */}
+          <img src={flag} id="finish-flag"/>
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 

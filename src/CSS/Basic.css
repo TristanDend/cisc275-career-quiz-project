@@ -1,183 +1,142 @@
-.title {
-    margin-bottom: 2rem;
-    font-weight: bold;
-    font-size: 4rem;
-    font-family: Georgia;
-    color: #328E6E;
-}
-
 #page-style {
-    /* overflow: hidden; */
+    overflow: hidden;
     position: relative;
-    border-top: .5rem solid #90C67C;
-    border-bottom: .5rem solid #90C67C;
 }
 
 #quiz-style {
     z-index: 2;
+    margin-top: 2rem; margin-bottom: 2rem;
     position: absolute;
     display: grid;
-    padding: 2rem;
-    top: 10%;
-    right: 25%;
-    height: 75%;
-    width: 50%;
-    margin: 0 auto;
-    padding: 1 rem;
-    align-self: center;
-    text-align: center;
+    top: 10%; right: 25%;
+    height: 75%; width: 50%;
+    padding-left: 1rem; padding-right: 1rem;
+    border: 0.7vh solid #328E6E; border-radius: 3%;
     background-color: white;
-    border: 0.3rem solid #328E6E;
-    border-radius: 3%;
-    margin-top: 2rem;
+}
+
+.title {
     margin-bottom: 2rem;
+    position: absolute;
+    top: 7.5%; right: 22.5%;
+    font-family: Georgia;
+    font-weight: bold;
+    font-size: 10vh; font-size: 5vw;
+    color: #328E6E;
+}
+
+.question-text {
+    position: relative;
+    top: 12.5vh;
+    font-size: 2.5vh; font-size: 1.5vw;
+    font-family: Georgia;
+    text-align: center;
+    color: #328E6E;
+}
+
+#quiz-buttons {
+    position: relative;
+    top: 13vh;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+#question-buttons {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    text-align: center;
+    font-size: 2.1vh; font-size: 1.1vw;
+    border: 1px solid black;
+    border-radius: 0.7vh;
+}
+
+#question-buttons:hover {
+    border: 2px solid black;
+}
+
+#nav-buttons {
+    position: relative;
+    top: 25%;
 }
 
 #submitButton {
     margin: 3%;
-    font-size: 25px;
+    padding: 10px;
+    padding-left: 20px; padding-right: 20px; 
+    font-family: Georgia;
+    font-size: 5vh;
+    border: 2px solid #216E53;
+    border-radius: 1.25vh;
     color: white;
     background-color: #328E6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    border: 2px solid #216E53;
-    cursor: pointer;
-    padding: 7px;
-    padding-right: 10px;
-    padding-left: 10px;
-    border-radius: 5px;
 }
 
 #submitButton:hover {
-    margin: 3%;
-    color: white;
     background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
 }
 
 #submitButton:disabled {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    opacity: 0.7;
+    background-color: #67ae6e9a;
 }
 
-#clearButton {
-    margin: 3%;
-    color: white;
-    font-family: Georgia;
-    background-color: #328E6E;
-    height: auto;
-    width: auto;
-    border: 2px solid #216E53;
-    padding: 7px;
-    padding-right: 10px;
-    padding-left: 10px;
-    border-radius: 5px;
-}
-
-#clearButton:disabled {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    opacity: 0.7;
-}
-
-#clearButton:hover {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-}
-
-.question-text {
-    font-size: 1.1rem;
-    font-family: Georgia;
-    text-align: center;
+#quizBackgroundImage {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    transition: transform 0.3s ease;
 }
 
 .progress-wrapper {
-    z-index: 2;
+    z-index: 3;
     position: sticky;
-    bottom: 0px;
+    bottom: 0vh;
 }
 
 .progress-bar {
     width: 100%;
+    height: 3.5vh;
+    border-top: 0.2vh solid black;
     background-image: url('../assets/sandyPath.jpg');
-    height: 25px;
-    border-top: 1px solid black;
-    order: top;
 }
 
 #progress-content {
-    background: repeating-linear-gradient(150deg, rgb(0, 115, 0), 0%, rgb(1, 241, 1), 1%);
+    position: absolute;
+    height: 97%;
     transition: width 0.4s ease;
-    height: 100%;
-    background-size: 10px 10px;
+    background: repeating-linear-gradient(150deg, rgb(0, 115, 0) 0%, rgb(1, 241, 1) 1%);
+    background-size: 50vh 50vw;
     animation: stripeForward 1s linear infinite;
+}
+
+@keyframes stripeForward {
+    0% { background-position: 0% 0% };
+    100% { background-position: 10% 0% };
+}
+
+.progress-text {
+    position: absolute;
+    display: flex;
+    top: -35%; left: 40%;
+    font-size: 3.5vh;
+    color: white;
 }
 
 #person-walk {
     position: absolute;
     right: 0px;
     height: 100%;
-    width: 25px;
+    width: 3.4vh;
     transition: left 0.4s ease;
+    border: 0.3vh solid black;
+    border-radius: 100%;
+    background-color: rgb(241, 241, 241);
 }
 
 #finish-flag {
     position: absolute;
     right: 0px;
     height: 100%;
-    width: 25px;
-}
-
-@keyframes stripeForward {
-    0% { background-position: 0px 0px };
-    100% { background-position: 10px 0px };
-}
-
-.progress-text {
-    color: white;
-    display: flex;
-    position: relative;
-    font-size: large;
-    left: 46%;
-    top: -2px;
-}
-
-#question-buttons {
-    padding: 0.5rem 1rem;
-    border: 1px solid black;
-    border-radius: '4px';
-    cursor: 'pointer';
-    min-width: '100px';
-    text-align: 'center';
-    background-color: rgb(241, 241, 241);
-    color: black;
-}
-
-#question-buttons:hover {
-    color: black;
-    border: 2px solid black;
-    background-color: #fff;
-}
-
-#quizBackgroundImage {
-    max-width: 100%;
-    width: 100%;
-    display: block;
-    transition: transform 0.3s ease;
+    width: 3.4vh;
 }
