@@ -1,237 +1,216 @@
-/* .title {
-    margin-bottom: 2rem;
-    font-weight: bold;
-    font-size: 4rem;
+#detailed-page-style {
+    overflow: hidden;
+    position: relative;
+}
+
+#detailed-quiz-style {
+    z-index: 2;
+    margin-top: 2vh; margin-bottom: 2vh;
+    position: absolute;
+    display: grid;
+    top: 10%; right: 25%;
+    height: 75%; width: 50%;
+    padding-left: 1vh; padding-right: 1vh;
+    border: 0.7vh solid #328E6E; border-radius: 3%;
+    background-color: white;
+}
+
+.detailed-title {
+    margin-bottom: 2vh;
+    position: absolute;
+    top: 7.5%; right: 22.5%;
     font-family: Georgia;
+    font-weight: bold;
+    font-size: 10vh; font-size: 5vw;
     color: #328E6E;
 }
 
-#page-style {
-    overflow: hidden;
+.detailed-question-text {
     position: relative;
-    border-top: .5rem solid #90C67C;
-    border-bottom: .5rem solid #90C67C;
-}
-
-#quiz-style {
-    display: grid;
-    padding: 2rem;
-    border-radius: 3%;
-    height: 650px;
-    width: 800px;
-    margin: 0 auto;
-    align-self: center;
+    top: 16vh;
+    font-family: Georgia;
+    font-size: 2.5vh; font-size: 1.5vw;
     text-align: center;
-    background-color: white;
-    border: 0.3rem solid #328E6E;
-    border-radius: 3%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    color: #328E6E;
 }
 
-.progress-wrapper {
-    position: sticky;
-    bottom: 0px;
+.detailed-check-radio-wrapper {
+    column-count: 2;
+    column-gap: 0vh;
 }
 
-.progress-bar {
-    width: 100%;
-    background-image: url('../assets/sandyPath.jpg');
-    height: 25px;
-    border-top: 1px solid black;
-    order: top;
-}
-
-#progress-content {
-    background: repeating-linear-gradient(150deg, rgb(0, 115, 0) 0%, rgb(1, 241, 1) 1%);
-    transition: width 0.4s ease;
-    height: 100%;
-    background-size: 10px 10px;
-    animation: stripeForward 1s linear infinite;
-}
-
-#person-run {
-    position: absolute;
-    right: 0px;
-    height: 100%;
-    width: 25px;
-    transition: left 0.4s ease;
-}
-
-#finish-flag {
-    position: absolute;
-    right: 0px;
-    height: 100%;
-    width: 25px;
-}
-
-@keyframes stripeForward {
-    0% { background-position: 0px 0px};
-    100% { background-position: 10px 0px};
-}
-
-.progress-text {
-    color: white;
-    display: flex;
+.detailed-checkbox-radio {
     position: relative;
-    font-size: large;
-    left: 46%;
-    top: -2px;
+    display: flex;
+    top: 16vh; 
+    line-height: 3vw; gap: 1vw;
+    font-family: Georgia;
+    font-size: 1.25vw;
+    justify-content: center;
+    align-items: center;
 }
 
-#scale {
+.detailed-checkbox-radio input {
+    cursor: pointer;
+    border: 0.25vh solid black;
+    background-color: white;
+}
+
+.detailed-checkbox-radio input:checked {
+    border: 0.25vh solid black;
+    background-color: #00cb00;
+}
+
+.detailed-short-text {
+    position: relative;
+    top: 16vh; left: 5%;
+    resize: none;
+    height: 25vh; width: 90%;
+    font-family: Georgia;
+    font-size: 3vh;
+    text-align: center;
+    border: 0.2vh solid black;
+    color: rgb(52, 52, 52);
+    background-color: rgb(241, 241, 241);
+}
+
+.detailed-short-text:hover {
+    border: 0.3vh solid black;
+    color: black;
+    background-color: white;
+}
+
+.detailed-slider {
+    position: relative;
+    top: 17vh; left: 5%;
+    width: 90%;
+}
+
+.detailed-slider::-moz-range-progress {
+    height: 1vh;
+    border: 0.2vh solid #000;
+    background-color: rgb(35, 176, 0); 
+}
+
+.detailed-slider::-moz-range-thumb {
+    cursor: pointer;
+    height: 3vh; width: 3vh;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    background-color: lightgray;
+}
+
+.detailed-slider::-moz-range-track {
+    height: 0.5vh;
+    background: gray;
+    border: 0.1vh solid #232323aa;
+}
+
+.detailed-slider::-moz-range-thumb:hover {
+    border: 0.3vh solid black;
+    background: white;
+}
+
+.detailed-slider::-moz-range-thumb:active {
+    border: 0.3vh solid black;
+    background: white;
+}
+
+#detailed-scale {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    top: 18vh; left: 5%;
+    width: 90%;
+    padding-left: 1vh;
 }
 
-#submitButton {
+#detailed-scale-text {
+    font-size: 3vh;
+}
+
+#detailed-nav-buttons {
+    position: relative;
+    top: 19%;
+}
+
+#detailed-submitButton {
     margin: 3%;
-    font-size: 25px;
+    padding: 2vh;
+    padding-left: 4vh; padding-right: 4vh; 
+    font-family: Georgia;
+    font-size: 5vh;
+    border: 0.5vh solid #216E53;
+    border-radius: 1.25vh;
     color: white;
     background-color: #328E6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    border: 2px solid #216e53;
-    cursor: pointer;
 }
 
-#submitButton:hover {
-    margin: 3%;
-    color: white;
+#detailed-submitButton:hover {
     background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    cursor: pointer;
 }
 
-#submitButton:disabled {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
+#detailed-submitButton:disabled {
+    background-color: #67ae6e9a;
 }
 
-#clearButton {
-    margin: 3%;
-    font-size: 25px;
-    color: white;
-    background-color: #328E6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    border: 2px solid #216e53;
-    cursor: pointer;
-}
-
-#clearButton:disabled {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-}
-
-#clearButton:hover {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    cursor: pointer;
-}
-
-.question-text {
-    font-weight: bold;
-    font-size: 1.1rem;
-    font-family: Georgia;
-    text-align: center;
-    color: #328E6E;
-}
-
-.short-text {
-    border: 1px solid black;
-    background-color: rgb(241, 241, 241);
-    font-size: 1.1rem;
-    font-family: Georgia;
-    text-align: center;
-    color: rgb(52, 52, 52);
+#detailed-quizBackgroundImage {
+    display: block;
+    max-width: 100%;
     width: 100%;
-    height: 10rem;
-    resize: none;
+    transition: transform 0.3s ease;
 }
 
-.short-text:hover {
-    border: 2px solid black;
-    background-color: white;
-    font-size: 1.1rem;
-    font-family: Georgia;
-    text-align: center;
-    color: black;
+.detailed-progress-wrapper {
+    z-index: 3;
+    position: sticky;
+    bottom: 0vh;
+}
+
+.detailed-progress-bar {
     width: 100%;
-    height: 10rem;
+    height: 3.5vh;
+    border-top: 0.2vh solid black;
+    background-image: url('../assets/sandyPath.jpg');
 }
 
-.answer-text {
-    font-size: 1.1rem;
-    font-family: Georgia;
-    gap: 1rem;
-    line-height: 2;
+#detailed-progress-content {
+    position: absolute;
+    height: 97%;
+    transition: width 0.4s ease;
+    background: repeating-linear-gradient(150deg, rgb(0, 115, 0) 0%, rgb(1, 241, 1) 1%);
+    background-size: 50vh 50vw;
+    animation: stripeForward 1s linear infinite;
+}
+
+@keyframes stripeForward {
+    0% { background-position: 0vh 0vh };
+    100% { background-position: 5vh 0vh };
+}
+
+.detailed-progress-text {
+    position: absolute;
     display: flex;
-    justify-content: center;
+    top: -35%; left: 44.5%;
+    font-size: 3.5vh;
+    color: white;
 }
 
-.answer-text input {
-    background-color: white;
-    border: 2px solid black;
-    cursor: pointer;
+#detailed-person-run {
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 3.4vh;
+    transition: left 0.4s ease;
+    border: 0.3vh solid black;
+    border-radius: 100%;
+    background-color: rgb(241, 241, 241);
 }
 
-.answer-text input:checked {
-    background-color: #00cb00;
-    border: 2px solid black;
+#detailed-finish-flag {
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 3.4vh;
 }
-
-#answer-text-holder {
-    max-width: 300px;
-}
-
-.slider {
-    width: 100%;
-}
-
-.slider::-moz-range-progress {
-    background: rgb(35, 176, 0);
-    border: 1px solid #000;
-    height: 7px;
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-    background: lightgray;
-    height: 20px;
-    width: 20px;
-    border: 1px solid black;
-}
-
-.slider::-moz-range-track {
-    background: gray;
-    height: 5px;
-}
-
-.slider::-moz-range-thumb:hover {
-    background: white;
-}
-
-.slider::-moz-range-thumb:active {
-    background: white;
-} */

@@ -22,7 +22,8 @@ export const questions: Question[] = [
             { optionId: 4, optionText: "Social Studies and History" },
             { optionId: 5, optionText: "Art" }, 
             { optionId: 6, optionText: "Music" }, 
-            { optionId: 7, optionText: "Foreign Language"}
+            { optionId: 7, optionText: "Foreign Language"},
+            { optionId: 8, optionText: "I don't know"}
         ] 
     },
     { 
@@ -36,7 +37,8 @@ export const questions: Question[] = [
             { optionId: 4, optionText: "Social Studies and History" },
             { optionId: 5, optionText: "Art" }, 
             { optionId: 6, optionText: "Music" }, 
-            { optionId: 7, optionText: "Foreign Language"}
+            { optionId: 7, optionText: "Foreign Language"},
+            { optionId: 8, optionText: "I don't know"}
         ] 
     },
     { 
@@ -48,7 +50,8 @@ export const questions: Question[] = [
             { optionId: 2, optionText: "Associate's" },
             { optionId: 3, optionText: "Bachelor's" },
             { optionId: 4, optionText: "Master's" },
-            { optionId: 5, optionText: "PHD" }
+            { optionId: 5, optionText: "PHD" },
+            { optionId: 6, optionText: "I don't know" }
         ]
     },
     {  
