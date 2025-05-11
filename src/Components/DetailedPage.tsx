@@ -21,22 +21,22 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
     const answerPercent = ((answers.filter((answer) => answer !== "").length / answers.length) * 100); // for progress bar answer check
     
     // Debug and demo function to answer all questions on one button click
-    // function randomizeAnswers() {
-    //     let newq1Answers = questions[0].options.map((option) => Math.random() > 0.5 ? option.optionText : "")
-    //     q1TakeAnswers(newq1Answers.filter((answer) => answer));
-    //     const newAnswers = [
-    //         newq1Answers.filter((answer) => answer).join(),
-    //         questions[1].options[Math.floor(Math.random() * 6)].optionText,
-    //         questions[2].options[Math.floor(Math.random() * 4)].optionText,
-    //         "My favorite hobby is playing video games because they offer an endless source of entertainment and excitement. With such a wide variety of genres, stories, and gameplay styles, there's always something new to discover. Whether it's exploring vast open worlds, solving challenging puzzles, or competing with friends, video games provide a constantly evolving experience that never gets old.",
-    //         Math.floor(Math.random() * 10 + 1).toString(),
-    //         "I hope to earn lots of money from my job because I want to be very rich and have lots of dollarydoos to spend lots of doubloons.",
-    //         "I would spend my time going for a long walk on the beach with the goodest of boys, my gray dobbermann Craig Jenson. I would bring my frisbee to play catch with him and we would have a great time.",
-    //         "My deepest fear is forgetting my memories—being swallowed by something like Dementia. It's not just forgetting facts or faces; it's the slow erosion of everything that makes you you. Every moment, every experience, no matter how small, shapes your identity. And to lose them, piece by piece, is like watching your soul rot away while you're still alive. You don’t just forget where you put your keys—you forget your childhood, your dreams, your loved ones, even your own name. You become a stranger trapped in your own decaying mind, helpless to stop the unraveling. And worse, those who love you are forced to stand by, powerless, watching the light in your eyes dim day by day. They grieve you while you’re still breathing. Eventually, you're not a person anymore—just a shell, a haunted echo of someone who once lived. There’s no peace in it, only the cruel, silent horror of vanishing while still being seen.",
-    //         "My best soft skills are communication, time management, consistency, problem-solving, teamwork, and adaptability. "
-    //     ]
-    //     takeAnswers(newAnswers);
-    // }
+    function randomizeAnswers() {
+        let newq1Answers = questions[0].options.map((option) => Math.random() > 0.5 ? option.optionText : "")
+        q1TakeAnswers(newq1Answers.filter((answer) => answer));
+        const newAnswers = [
+            newq1Answers.filter((answer) => answer).join(),
+            questions[1].options[Math.floor(Math.random() * 6)].optionText,
+            questions[2].options[Math.floor(Math.random() * 4)].optionText,
+            "My favorite hobby is playing video games because they offer an endless source of entertainment and excitement. With such a wide variety of genres, stories, and gameplay styles, there's always something new to discover. Whether it's exploring vast open worlds, solving challenging puzzles, or competing with friends, video games provide a constantly evolving experience that never gets old.",
+            Math.floor(Math.random() * 10 + 1).toString(),
+            "I hope to earn lots of money from my job because I want to be very rich and have lots of dollarydoos to spend lots of doubloons.",
+            "I would spend my time going for a long walk on the beach with the goodest of boys, my gray dobbermann Craig Jenson. I would bring my frisbee to play catch with him and we would have a great time.",
+            "My deepest fear is forgetting my memories—being swallowed by something like Dementia. It's not just forgetting facts or faces; it's the slow erosion of everything that makes you you. Every moment, every experience, no matter how small, shapes your identity. And to lose them, piece by piece, is like watching your soul rot away while you're still alive. You don’t just forget where you put your keys—you forget your childhood, your dreams, your loved ones, even your own name. You become a stranger trapped in your own decaying mind, helpless to stop the unraveling. And worse, those who love you are forced to stand by, powerless, watching the light in your eyes dim day by day. They grieve you while you’re still breathing. Eventually, you're not a person anymore—just a shell, a haunted echo of someone who once lived. There’s no peace in it, only the cruel, silent horror of vanishing while still being seen.",
+            "My best soft skills are communication, time management, consistency, problem-solving, teamwork, and adaptability. "
+        ]
+        takeAnswers(newAnswers);
+    }
 
     // updates the answers value for the text answer questions
     function changeTextAnswer(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -195,8 +195,10 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         <Button disabled={!answerPercent} onClick={handleClear} 
                             id='detailed-submitButton'>Clear Answers</Button>
                         
-                        {/* Randiomize Answers button for testing/demo */}
-                        {/* <Button onClick={randomizeAnswers} id="submitButton">Randomize Answers</Button> */}
+                        {/* Randomize Answers button for testing/demo */}
+                        <Button onClick={randomizeAnswers} 
+                            style={{ border: '0vh', color: 'black', backgroundColor: 'white', position: 'absolute', 
+                                        right: '0vh', bottom: '0vh'}}>Randomize Answers</Button>
                     
                     </center>
                 </div>
