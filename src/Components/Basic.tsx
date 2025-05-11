@@ -68,52 +68,46 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
   };
 
   // randomize selections (for localhost testing)
-  const hostname = window.location.hostname;
-  const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
-  const randomizeSelections = (): void => {
-    const randomized = (questions as Question[]).map(q => {
-      if (q.allowMultiple) {
-        let picks = q.options.filter(() => Math.random() > 0.5).map(opt => opt.optionText);
-        if (picks.length === 0) picks = [q.options[Math.floor(Math.random() * q.options.length)].optionText];
-        return picks;
-      } else {
-        return [q.options[Math.floor(Math.random() * q.options.length)].optionText];
-      }
-    });
-    setSelectedOptions(randomized);
-  };
+  // const hostname = window.location.hostname;
+  // const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+  // const randomizeSelections = (): void => {
+  //   const randomized = (questions as Question[]).map(q => {
+  //     if (q.allowMultiple) {
+  //       let picks = q.options.filter(() => Math.random() > 0.5).map(opt => opt.optionText);
+  //       if (picks.length === 0) picks = [q.options[Math.floor(Math.random() * q.options.length)].optionText];
+  //       return picks;
+  //     } else {
+  //       return [q.options[Math.floor(Math.random() * q.options.length)].optionText];
+  //     }
+  //   });
+  //   setSelectedOptions(randomized);
+  // };
 
   const question = (questions as Question[])[currentIndex];
 
   return (
-    <div style={{ 
-      borderTop: '.5rem solid #90C67C',
+    <div style={{borderTop: '.5rem solid #90C67C',
       borderBottom: '.5rem solid #90C67C'}}>
-      <div id="page-style">
-        <img src={hike} style={{
-            position: 'absolute',
-            width: '100%',
-            display: 'block',
-            transform: `scale(${100 + progressPercentage}%)`,
-            transition: 'transform 0.3s ease',
-            zIndex: '-1',
-            overflow: 'hidden'
-          }}></img>
-        <div id="quiz-style" style={{ borderRadius: '3%', marginTop: '2rem', marginBottom: '2rem' }}>
-          {/* Title */}
-          <center><h1 className="title">Short Trail</h1></center>
+      {/* Full page besides progress bar */}
+      <div id="basic-page-style">
+        <div id="basic-quiz-style">
+          {/* Quiz Title */}
+          <center><h1 className="basic-title">Short Trail</h1></center>
 
           {/* Single question view */}
-          <div style={{ marginBottom: '2rem'}}>
-            <p className="question-text">{question.questionText}</p>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div>
+            {/* Question text */}
+            <p className="basic-question-text">{question.questionText}</p>
+            
+            {/* Question answer buttons */}
+            <div id="basic-quiz-buttons">
               {question.options.map((opt, idx) => {
                 const isSelected = selectedOptions[currentIndex].includes(opt.optionText);
                 return (
                   <button
                     key={opt.optionId}
                     onClick={() => { handleOptionSelect(idx); }}
-                    id='question-buttons'
+                    id='basic-question-buttons'
                     style={{
                       backgroundColor: isSelected ? '#4CAF50' : 'rgb(241, 241, 241)',
                       color: isSelected ? '#fff' : '#000',
@@ -125,57 +119,76 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
             </div>
           </div>
 
-          {/* Navigation buttons */}
-          <center>
+          {/* Quiz navigation buttons */}
+          <center id="basic-nav-buttons">
+
+            {/* Previous button */}
             <button
               onClick={() => { setCurrentIndex(i => Math.max(i - 1, 0)); }}
               disabled={currentIndex === 0}
-              id='submitButton'
+              id='basic-submitButton'
             >&lt;&lt; Previous</button>
 
-            <button
-              onClick={() => { clearSelections(); }}
-              disabled={answeredCount === 0}
-              id='clearButton'
-            >Clear Answers</button>
-
+            {/* Next/Submit Buttons */}
             {currentIndex < totalQuestions - 1 ? (
               <button
                 onClick={() => { setCurrentIndex(i => Math.min(i + 1, totalQuestions - 1)); }}
                 disabled={selectedOptions[currentIndex].length === 0}
-                id='submitButton'
+                id='basic-submitButton'
               >Next &gt;&gt;</button>
             ) : (
               <button
                 onClick={() => { toResultsPage(); }}
                 disabled={progressPercentage !== 100}
-                id='submitButton'
+                id='basic-submitButton'
               >Submit Answers</button>
             )}
 
+            {/* Clear button */}
+            <button
+              onClick={() => { clearSelections(); }}
+              disabled={answeredCount === 0}
+              id='basic-submitButton'
+            >Clear Answers</button>
+
+            {/* Randomize Answer Button for testing/demo */}
             {/* {isLocalhost && (
               <button
-                onClick={() => { randomizeSelections(); }}
+                onClick={() => { randomizeSelection(); }}
                 id='submitButton'
               >Randomize Answers</button>
             )} */}
+
           </center>
         </div>
+
+        {/* Hiking Trail Background */}
+        <img src={hike} id="basic-quizBackgroundImage"style={{ 
+          transform: `scale(${100 + progressPercentage}%)` }}/>
+
       </div>
+
       {/* Progress bar */}
-      <div className="progress-wrapper">
-        <div className="progress-bar" id="progressBar">
-          <div role="progressContent" id="progress-content" style={{
-            width: `${ progressPercentage === 100 ? 105 : progressPercentage.toFixed(0)}%`}}>
-            <p className="progress-text">{progressPercentage === 100 ? '105%' : (!progressPercentage ? '' : `${progressPercentage.toFixed(0)}%`)}</p>
+      <div className="basic-progress-wrapper">
+        {/* Progress bar background */}
+        <div className="basic-progress-bar">
+
+          {/* Progress content */}
+          <div role="progressContent" id="basic-progress-content" style={{
+            width: `${progressPercentage === 100 ? 105 : progressPercentage.toFixed(0)}%`}}>
+              
+            {/* Progress percentage */}
+            <p className="basic-progress-text">
+              {!progressPercentage ? '' : `${progressPercentage.toFixed(0)}%`}
+            </p>
           </div>
-          <img src={walk} id="person-walk" style={{
-              left: `${ progressPercentage === 100 ? 105 : (progressPercentage - 1).toFixed(0)}%`,
-              backgroundColor: 'rgb(241, 241, 241)',
-              border: '2px solid black',
-              borderRadius: '100%'
-            }}></img>
-          <img src={flag} id="finish-flag"></img>
+
+          {/* Walking person image */}
+          <img src={walk} id="basic-person-walk" style={{
+              left: `${progressPercentage === 100 ? 105 : (progressPercentage - 1).toFixed(0)}%`}}/>
+
+          {/* Finish Line */}
+          <img src={flag} id="basic-finish-flag"/>
         </div>
       </div>
     </div>

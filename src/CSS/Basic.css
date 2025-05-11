@@ -1,168 +1,138 @@
-.title {
-    margin-bottom: 2rem;
-    font-weight: bold;
-    font-size: 4rem;
-    font-family: Georgia;
-    color: #328E6E;
-}
-
-#page-style {
+#basic-page-style {
     overflow: hidden;
     position: relative;
 }
 
-#quiz-style {
-    display: grid;
-    padding: 2rem;
-    border-radius: 3%;
-    height: 650px;
-    width: 800px;
-    margin: 0 auto;
-    padding: 1 rem;
-    align-self: center;
-    text-align: center;
-    background-color: white;
-    border: 0.3rem solid #328E6E;
-}
-
-#submitButton {
-    margin: 3%;
-    font-size: 25px;
-    color: white;
-    background-color: #328E6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    border: 2px solid #216E53;
-    cursor: pointer;
-    padding: 7px;
-    padding-right: 10px;
-    padding-left: 10px;
-    border-radius: 5px;
-}
-
-#submitButton:hover {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-}
-
-#submitButton:disabled {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    opacity: 0.7;
-}
-
-#clearButton {
-    margin: 3%;
-    color: white;
-    font-family: Georgia;
-    background-color: #328E6E;
-    height: auto;
-    width: auto;
-    border: 2px solid #216E53;
-    padding: 7px;
-    padding-right: 10px;
-    padding-left: 10px;
-    border-radius: 5px;
-}
-
-#clearButton:disabled {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-    opacity: 0.7;
-}
-
-#clearButton:hover {
-    margin: 3%;
-    color: white;
-    background-color: #67AE6E;
-    font-family: Georgia;
-    height: auto;
-    width: auto;
-}
-
-.question-text {
-    font-size: 1.1rem;
-    font-family: Georgia;
-    text-align: center;
-}
-
-.progress-wrapper {
+#basic-quiz-style {
     z-index: 2;
+    margin-top: 2vh; margin-bottom: 2vh;
+    position: absolute;
+    display: grid;
+    top: 10%; right: 25%;
+    height: 75%; width: 50%;
+    padding-left: 1vh; padding-right: 1vh;
+    border: 0.7vh solid #328E6E; border-radius: 3%;
+    background-color: white;
+}
+
+.basic-title {
+    margin-bottom: 2vh;
+    position: absolute;
+    top: 7.5%; right: 22.5%;
+    font-family: Georgia;
+    font-weight: bold;
+    font-size: 10vh; font-size: 5vw;
+    color: #328E6E;
+}
+
+.basic-question-text {
+    position: relative;
+    top: 12.5vh;
+    font-family: Georgia;
+    font-size: 2.5vh; font-size: 1.5vw;
+    text-align: center;
+    color: #328E6E;
+}
+
+#basic-quiz-buttons {
+    position: relative;
+    top: 13vh;
+    display: flex;
+    gap: 1vh;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+#basic-question-buttons {
+    padding: 1vh 2vh;
+    cursor: pointer;
+    text-align: center;
+    font-size: 2.1vh; font-size: 1.1vw;
+    border: 0.2vh solid black;
+    border-radius: 0.7vh;
+}
+
+#basic-question-buttons:hover {
+    border: 0.4vh solid black;
+}
+
+#basic-nav-buttons {
+    position: relative;
+    top: 20%;
+}
+
+#basic-submitButton {
+    margin: 3%;
+    padding: 2vh;
+    padding-left: 4vh; padding-right: 4vh; 
+    font-family: Georgia;
+    font-size: 5vh;
+    border: 0.5vh solid #216E53;
+    border-radius: 1.25vh;
+    color: white;
+    background-color: #328E6E;
+}
+
+#basic-submitButton:hover {
+    background-color: #67AE6E;
+}
+
+#basic-submitButton:disabled {
+    background-color: #67ae6e9a;
+}
+
+#basic-quizBackgroundImage {
+    display: block;
+    max-width: 100%; width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.basic-progress-wrapper {
+    z-index: 3;
     position: sticky;
-    bottom: 0px;
+    bottom: 0vh;
 }
 
-.progress-bar {
-    width: 100%;
+.basic-progress-bar {
+    height: 3.5vh; width: 100%;
+    border-top: 0.2vh solid black;
     background-image: url('../assets/sandyPath.jpg');
-    height: 25px;
-    border-top: 1px solid black;
-    order: top;
 }
 
-#progress-content {
-    background: repeating-linear-gradient(150deg, rgb(0, 115, 0), 0%, rgb(1, 241, 1), 1%);
+#basic-progress-content {
+    position: absolute;
+    height: 97%;
     transition: width 0.4s ease;
-    height: 100%;
-    background-size: 10px 10px;
+    background: repeating-linear-gradient(150deg, rgb(0, 115, 0) 0%, rgb(1, 241, 1) 1%);
+    background-size: 50vh 50vw;
     animation: stripeForward 1s linear infinite;
 }
 
-#person-walk {
-    position: absolute;
-    right: 0px;
-    height: 100%;
-    width: 25px;
-    transition: left 0.4s ease;
-}
-
-#finish-flag {
-    position: absolute;
-    right: 0px;
-    height: 100%;
-    width: 25px;
-}
-
 @keyframes stripeForward {
-    0% { background-position: 0px 0px };
-    100% { background-position: 10px 0px };
+    0% { background-position: 0vh 0vh };
+    100% { background-position: 5vh 0vh };
 }
 
-.progress-text {
-    color: white;
+.basic-progress-text {
+    position: absolute;
     display: flex;
-    position: relative;
-    font-size: large;
-    left: 46%;
-    top: -2px;
+    top: -35%; left: 44.5%;
+    font-size: 3.5vh;
+    color: white;
 }
 
-#question-buttons {
-    padding: 0.5rem 1rem;
-    border: 1px solid black;
-    border-radius: '4px';
-    cursor: 'pointer';
-    min-width: '100px';
-    text-align: 'center';
+#basic-person-walk {
+    position: absolute;
+    right: 0vh;
+    height: 100%; width: 3.4vh;
+    transition: left 0.4s ease;
+    border: 0.3vh solid black;
+    border-radius: 100%;
     background-color: rgb(241, 241, 241);
-    color: black;
 }
 
-#question-buttons:hover {
-    color: black;
-    border: 2px solid black;
-    background-color: #fff;
+#basic-finish-flag {
+    position: absolute;
+    right: 0vh;
+    height: 100%; width: 3.4vh; 
 }
