@@ -15,16 +15,17 @@ interface HomePageProps {
 export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : HomePageProps): React.JSX.Element {
 
 
+    // This function takes the name of the button clicked, and displays the correct page accordingly
+    // false = close, true = open
     function changeActive(buttonName: string) {
-        //case for if the home button is clicked
 
-        //case for if the basic button is clicked
+        // case for if the basic button is clicked 
         if(buttonName === "basic"){
             setOnHome(false);
             setOnBasic(true);
             setOnDetailed(false);
         }
-        //case for if the detailed button is clicked
+        // case for if the detailed button is clicked
         else if(buttonName === "detailed"){
             setOnHome(false);
             setOnBasic(false);
@@ -55,11 +56,13 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
                 {/* Button to go to Detailed Questions */}
                 <center><Button disabled={apiKeyWork !== 2} id="questionButton" onClick = {() => {changeActive("detailed")}}>{'<'}== Take Longer Trail</Button></center>
             </div>
+            {/* Block to remind users to enter a valid api key for ChatGPT */}
             <div id="quizBlock3">
                 <span id="quizDescription">Please enter a valid ChatGPT</span>
                 <span id="quizDescription">API Key to start the quiz.</span>
                 <span id="quizDescriptionsi">Powered by AI</span>
             </div>
+            {/* background image sits here, scaling to resolution size */}
             <img src={signPost} id="homePageBackgroundImage" alt="signpost"/>
         </div>
     )
