@@ -47,7 +47,7 @@
     padding: 1vh 2vh;
     cursor: pointer;
     text-align: center;
-    font-size: 2.1vh; font-size: 1.1vw;
+    font-size: 1.1vw;
     border: 0.2vh solid black;
     border-radius: 0.7vh;
 }
@@ -66,7 +66,7 @@
     padding: 2vh;
     padding-left: 4vh; padding-right: 4vh; 
     font-family: Georgia;
-    font-size: 5vh;
+    font-size: 4vh;
     border: 0.5vh solid #216E53;
     border-radius: 1.25vh;
     color: white;
