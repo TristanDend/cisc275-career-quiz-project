@@ -65,7 +65,7 @@
     position: relative;
     top: 16vh; left: 5%;
     resize: none;
-    height: 25vh; width: 90%;
+    height: 18vh; width: 90%;
     font-family: Georgia;
     font-size: 3vh;
     text-align: center;
@@ -136,7 +136,7 @@
 }
 
 #detailed-submitButton {
-    margin: 4%;
+    margin: 2%;
     padding: 1vh;
     padding-left: 3vh; padding-right: 3vh; 
     font-family: Georgia;
