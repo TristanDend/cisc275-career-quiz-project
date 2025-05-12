@@ -9,23 +9,33 @@ import { ChatCompletion } from 'openai/resources/chat';
 import basicInstructions from '../assets/BasicInstructions';
 import detailedInstructions from '../assets/DetailedInstructions';
 
+// Defining a type to describe the ChatGPT responses 
+// worked is a boolean for whether ChatGPT worked
+// everything from response onward is the type of the response sent by ChatGPT
 type yesResponse = { worked: true; response: ChatCompletion & 
     { _request_id?: string | null | undefined; }};
+
+// this is the type if ChatGPT sends an error, worked field is the same as above
 type noError = { worked: false; error: Error };
 
 // props interface for user answers
 interface ResultsPageProps {
-    userAnswers: string[][];
-    quizAnswered: string;
+    userAnswers: string[][]; // storing user answers
+    quizAnswered: string; // which quiz was done
     apiKey: string;
 }
 
+// the two interfaces below define a structure for the careers provided by ChatGPT
+/**
+ * Three careers are provided by ChatGPT (held in CareerResponse)
+ * Career interface defines the format of all the information given by chatGPT
+ */
 interface Career {
     title: string;
     salary: number;
     education_level?: string; // optional if not always included
     description: string[];
-    reason: string[];
+    reason: string[]; // why it fits the user
   }
   
   interface CareerResponse {
@@ -38,27 +48,39 @@ interface Career {
 // allows time for ChatGPT to get response without stopping the website
 async function processResults(quizAnswered: string, userAnswers: string[][], apiKey: string): Promise<yesResponse | noError | undefined>  {
 
-    // empty string as detail instructions
+    // empty string as default instructions
     let instructions: string = "";
 
+    // choosing which instruction to feed into ChatGPT, depending on which quiz was answered
     if (quizAnswered.toLowerCase() === "basic quiz") {
         instructions = basicInstructions;
     } else {
         instructions = detailedInstructions;
     }
 
+    // Here is where the response is created
     const client = new OpenAI({apiKey: apiKey, dangerouslyAllowBrowser: true});
     try {
+        
+        // the actual response
         const response = await client.chat.completions.create({
             model: "gpt-4.1-mini",
             messages: [
+                // using the role, ChatGPT first follows the system instructions before the user instructions
                 { role: "system", content: instructions},
                 { role: "user", content: `Give me three career recommendations based on these answers: ${userAnswers}, to the following questions: ${
                     quizAnswered === "basic" ? basicQuestions : questions}`
                     
                 }],
-                store: false,
+                store: false, // response is not kept
+
                 //format of response to clearly express results
+                /**
+                 * Response format is a json_schema, which defines a strict structure of the output
+                 *      From line 84 -> line 182
+                 * This strict structure is later used to map the response to variables of Career and CareerResponse type
+                 * Saving it in variables makes the output MUCH easier to work with
+                 */
                 response_format: {
                     type: "json_schema",
                     json_schema: {
@@ -164,10 +186,11 @@ async function processResults(quizAnswered: string, userAnswers: string[][], api
     }
 }
 
+// main body of results page
 export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPageProps): React.JSX.Element {
-    const [response, setResponse] = useState<Awaited<ReturnType<typeof processResults>> | null>(null);
-    const [loadResults, setLoadResults] = useState<boolean>(true);
-    const [finishResults, setFinishResults] = useState<boolean>(false);
+    const [response, setResponse] = useState<Awaited<ReturnType<typeof processResults>> | null>(null); // ChatGPT response
+    const [loadResults, setLoadResults] = useState<boolean>(true); // For loading screen, tells if the response is loading
+    const [finishResults, setFinishResults] = useState<boolean>(false); // For loading screen, tells if response is done 
 
     // Turns response into a useable value
     useEffect(() => {
