@@ -132,15 +132,15 @@
 
 #detailed-nav-buttons {
     position: relative;
-    top: 19%;
+    top: 20%;
 }
 
 #detailed-submitButton {
-    margin: 3%;
-    padding: 2vh;
-    padding-left: 4vh; padding-right: 4vh; 
+    margin: 4%;
+    padding: 1vh;
+    padding-left: 3vh; padding-right: 3vh; 
     font-family: Georgia;
-    font-size: 5vh;
+    font-size: 4vh;
     border: 0.5vh solid #216E53;
     border-radius: 1.25vh;
     color: white;
@@ -163,6 +163,7 @@
 }
 
 .detailed-progress-wrapper {
+    overflow: hidden;
     z-index: 3;
     position: sticky;
     bottom: 0vh;
