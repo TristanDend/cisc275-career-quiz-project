@@ -99,14 +99,19 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
     return (
         <div style={{borderTop: '.5rem solid #90C67C',
             borderBottom: '.5rem solid #90C67C'}}>
+
             {/* Full page besides the progress bar */}
             <div id='detailed-page-style'>
+
+                {/* Quiz portion of the page */}
                 <div id="detailed-quiz-style">
-                    {/* Quiz Title */}
+
+                    {/* Detailed Quiz title */}
                     <center><h1 className='detailed-title'>Long Trail</h1></center>
                     
-                    {/* Quiz (Single question view) */}
+                    {/* Single question and answer choices */}
                     <div>
+
                         {/* Question text */}
                         <p className='detailed-question-text' role="question">
                             {questions[currQuestion].questionText}</p>
@@ -115,6 +120,8 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         <div className='detailed-check-radio-wrapper'>
                             {questions[currQuestion].questionType === "checkbox" && 
                                 Array.from({length: questions[currQuestion].options.length}, (_, ind: number) => (
+
+                                    // Question 1 answer options
                                     <Form.Check
                                         className='detailed-checkbox-radio'
                                         key={ind}
@@ -135,6 +142,8 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         <div className='detailed-check-radio-wrapper'>
                             {questions[currQuestion].questionType === "radio" && 
                                 Array.from({length: questions[currQuestion].options.length}, (_, ind: number) => (
+
+                                    // Questions 2 and 3 answer options
                                     <Form.Check
                                         className='detailed-checkbox-radio'
                                         name={questions[currQuestion].questionId.toString()}
@@ -152,8 +161,10 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                             }
                         </div>
 
-                        {/* Questions 4, 6 - 9 (Short answer text boxes) */}
+                        {/* Questions 4, 6-9 (Short answer text boxes) */}
                         {questions[currQuestion].questionType === "short-answer" && 
+
+                            // Questions 4, 6-9 textbox for answering
                             <textarea
                                 className='detailed-short-text'
                                 id={questions[currQuestion].questionId.toString()}
@@ -167,6 +178,8 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         {/* Question 5 (Scale from 1-10) */}
                         {questions[currQuestion].questionType === "slider" && 
                             <div>
+
+                                {/* Question 5 full slider for answering */}
                                 <input 
                                     className='detailed-slider'
                                     id={questions[currQuestion].questionId.toString()}
@@ -179,7 +192,8 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                                     value={answers[currQuestion]}
                                     onChange={changeAnswer}
                                 />
-                                {/* Numbers displayed for scale */}
+
+                                {/* Numbers 1-10 displayed for slider */}
                                 <datalist id="detailed-scale">
                                     {Array.from({length: 10}, (_, ind: number) => (
                                         <option id="detailed-scale-text" key={ind} value=
@@ -226,6 +240,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
 
             {/* Progress bar */}
             <div className="detailed-progress-wrapper">
+
                 {/* Progress bar background */}
                 <div className="detailed-progress-bar">
 
