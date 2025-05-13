@@ -14,18 +14,21 @@ describe('BasicQuestions Component', () => {
       <BasicQuestions setBasicAns={dummySetOnBasicAns} setOnBasic={dummySetOnBasic} setOnResults={dummySetOnResults} setQuizAnswered={dummySetQuizAnswered}/>
     );
     
-    expect(screen.getByText('Basic Questions')).toBeInTheDocument();
-    
+    expect(screen.getByText('Short Trail')).toBeInTheDocument();
     expect(screen.getByText(/What topics interest you\?/i)).toBeInTheDocument();
   });
   
-  
-  
-  test('renders Get Answers button', () => {
+  test('renders basic buttons: prev, next, and the for testing randomize answers', () => {
     render(
       <BasicQuestions setBasicAns={dummySetOnBasicAns} setOnBasic={dummySetOnBasic} setOnResults={dummySetOnResults} setQuizAnswered={dummySetQuizAnswered} />
     );
-    const getAnswersButton = screen.getByText('Get Answers');
-    expect(getAnswersButton).toBeInTheDocument();
+    const prevButton = screen.getByRole("button", {name: "<< Previous"}); // get previous button
+    const nextButton = screen.getByRole("button", {name: "Next >>"}); // get next button
+    const randomButton = screen.getByRole("button", {name: /randomize answers/i}); // get random answers button
+    const clearButton = screen.getByRole("button", {name: /clear answers/i}); // get clear answers button
+    expect(clearButton).toBeInTheDocument();
+    expect(prevButton).toBeInTheDocument();
+    expect(nextButton).toBeInTheDocument();
+    expect(randomButton).toBeInTheDocument();
   });
 });

@@ -12,7 +12,9 @@ describe("DetailedPage Component Tests", () => {
         const detailedTitle = screen.getByText("Long Trail"); // get title element
         const prevButton = screen.getByRole("button", {name: "<< Previous"}); // get previous button
         const nextButton = screen.getByRole("button", {name: "Next >>"}); // get next button
-        const randomButton = screen.getByRole("button", {name: /randomize answers/i}); // get next button
+        const randomButton = screen.getByRole("button", {name: /randomize answers/i}); // get random answers button
+        const clearButton = screen.getByRole("button", {name: /clear answers/i}); // get clear answers button
+        expect(clearButton).toBeInTheDocument();
         expect(detailedTitle).toBeInTheDocument();
         expect(prevButton).toBeInTheDocument();
         expect(nextButton).toBeInTheDocument();
