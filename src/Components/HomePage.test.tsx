@@ -8,16 +8,16 @@ beforeEach(() => {
 });
 
 test('Can find certain text', () => {
-    // test Da Quiz is on the screen
-    const quizTitle = screen.getByText("Da Quiz");
+    // test Career Pathfinder is on the screen
+    const quizTitle = screen.getByText("Career Pathfinder");
     expect(quizTitle).toBeInTheDocument();
 
-    // test basic questions is on the screen
-    const basicQuestionTitle = screen.getByText("Basic Questions");
+    // test Short Trail is on the screen
+    const basicQuestionTitle = screen.getByText("Short Trail");
     expect(basicQuestionTitle).toBeInTheDocument();
 
-    // test detailed questions is on the screen
-    const detailedQuestionTitle = screen.getByText("Detailed Questions");
+    // test Longer trail is on the screen
+    const detailedQuestionTitle = screen.getByText("Longer Trail");
     expect(detailedQuestionTitle).toBeInTheDocument();
 });
 
