@@ -13,8 +13,8 @@ describe('Header Component Tests', () => {
     });
     test("renders header buttons", () => {
         const homeButton = screen.getByText(/home/i);
-        const basicButton = screen.getByText(/simple quiz/i);
-        const detailedButton = screen.getByText(/detailed quiz/i);
+        const basicButton = screen.getByText(/short trail/i);
+        const detailedButton = screen.getByText(/long trail/i);
         expect(homeButton).toBeInTheDocument();
         expect(basicButton).toBeInTheDocument();
         expect(detailedButton).toBeInTheDocument();
