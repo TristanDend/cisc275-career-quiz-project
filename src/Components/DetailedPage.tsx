@@ -107,6 +107,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                                         key={ind}
                                         name={questions[currQuestion].questionId.toString()}
                                         type="checkbox"
+                                        role="answer"
                                         value={questions[currQuestion].options[ind].optionText}
                                         id={questions[currQuestion].questionId.toString().concat(` + ${ind}`)}
                                         label={questions[currQuestion].options[ind].optionText}
@@ -125,6 +126,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                                         className='detailed-checkbox-radio'
                                         name={questions[currQuestion].questionId.toString()}
                                         type="radio"
+                                        role="answer"
                                         key={ind}
                                         value={questions[currQuestion].options[ind].optionText}
                                         id={questions[currQuestion].questionId.toString().concat(` - ${ind}`)}
@@ -204,7 +206,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                 </div>
                 
                 {/* Hiking Trail Background */}
-                <img src={hike} id="detailed-quizBackgroundImage" style={{ 
+                <img src={hike} role="detailed-bgImg" id="detailed-quizBackgroundImage" style={{ 
                     transform: `scale(${100 + answerPercent}%)`}}/>
 
             </div>
