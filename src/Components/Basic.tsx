@@ -68,8 +68,8 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
   };
 
   // randomize selections (for localhost testing)
-  // const hostname = window.location.hostname;
-  // const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+  const hostname = window.location.hostname;
+  const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
   const randomizeSelections = (): void => {
     const randomized = (questions as Question[]).map(q => {
       if (q.allowMultiple) {
@@ -152,7 +152,7 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
             >Clear Answers</button>
 
             {/* Randomize Answer Button for testing/demo */}
-            {/*isLocalhost && */(
+            {isLocalhost && (
               <button
                 onClick={() => { randomizeSelections(); }}
                 style={{position: 'absolute', right: '0vh', bottom: '0vh'}}
