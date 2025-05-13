@@ -17,28 +17,33 @@ function parseJson<T>(keyString: string | null): T {
   return "" as T;
 }
 
+// Get api key from local storage if it exists there
 const prevKey = localStorage.getItem(saveKeyData);
 const keyData: string = parseJson(prevKey);
 
 function App() {
   
+  // update api key taken from local storage
   function updateKey(): number {
     if (localStorage.getItem(saveKeyData)) return 2;
     else return 0;
   }
 
   const [key, setKey] = useState<string>(keyData.toString());
-  const [isHome, setHome] = useState<boolean>(true);
-  const [isBasic, setBasic] = useState<boolean>(false);
-  const [isDetailed, setDetailed] = useState<boolean>(false);
-  const [isResultPage, setResultPage] = useState<boolean>(false);
-  const [apiKeyShow, setApiShow] = useState<boolean>(false);
-  const [apiKeyWork, setApiKeyWork] = useState<number>(updateKey());
-  const [checkApiKey, setCheckApiKey] = useState<boolean>(false);
-  const [userAnswers, setUserAnswers] = useState<string[][]>([]);
-  const [quizAnswered, setQuizAnswered] = useState<string>("");
+  const [isHome, setHome] = useState<boolean>(true); // sets whether home page is on
+  const [isBasic, setBasic] = useState<boolean>(false); // sets whether basic quiz page is on
+  const [isDetailed, setDetailed] = useState<boolean>(false); // sets whether detailed quiz page is on
+  const [isResultPage, setResultPage] = useState<boolean>(false); // sets whether results page is on
+  const [apiKeyShow, setApiShow] = useState<boolean>(false); // sets whether api page is on
+  const [apiKeyWork, setApiKeyWork] = useState<number>(updateKey()); // whether api key was valid
+  const [checkApiKey, setCheckApiKey] = useState<boolean>(false); // whether api key has been checked or not
+  const [userAnswers, setUserAnswers] = useState<string[][]>([]); // holding user answers
+  const [quizAnswered, setQuizAnswered] = useState<string>(""); // which quiz was answered
 
   async function testAPI(): Promise<boolean> {
+
+    // functions opens a test session of ChatGPT, in order to check to see if the API key was valid
+    // returns true if worked, false if not
     const testClient = new OpenAI({apiKey: key, dangerouslyAllowBrowser: true});
     try {
       const test = await testClient.chat.completions.create({
@@ -53,6 +58,7 @@ function App() {
     } 
   }
 
+  // check API, then if true, set the API key
   function checkAPI() {
     testAPI().then(setCheckApiKey);
   }
@@ -71,6 +77,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* API Popup which appears if the inputted API key was incorrect */}
       <Popup className='api-test' open={apiKeyWork === 1} closeOnDocumentClick={false}>
         {
           <div className='api-test'>
@@ -83,12 +90,26 @@ function App() {
           </div>
         }
       </Popup>
+
+      {/* Header */}
       <Header apiKeyWork={apiKeyWork} setOnHome={setHome} setOnBasic={setBasic} setOnDetailed={setDetailed} setOnResults={setResultPage}></Header>
+
+      {/* Home Page */}
       {isHome && <HomePage apiKeyWork={apiKeyWork} setOnBasic={setBasic} setOnHome={setHome} setOnDetailed={setDetailed}></HomePage>}
+
+      {/* Basic Questions Page */}
       {isBasic && <Basic setBasicAns={setUserAnswers} setOnBasic={setBasic} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></Basic>}
+
+      {/* Detailed Questions Page */}
       {isDetailed && <DetailedPage setDetailedAns={setUserAnswers} setOnDetailed={setDetailed} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></DetailedPage>}
+
+      {/* Results Page */}
       {isResultPage && <ResultPage userAnswers={userAnswers} quizAnswered={quizAnswered} apiKey={key}></ResultPage>}
+
+      {/* Footer */}
       <Footer setApiOpen = {setApiShow}></Footer>
+      
+      {/* API Key Submission Section */}
       <div className="App-footer">
         {apiKeyShow && <Form className = "apiKeyEntry" data-testid='APIKeyForm'>
           <Form.Label>API Key:</Form.Label>
