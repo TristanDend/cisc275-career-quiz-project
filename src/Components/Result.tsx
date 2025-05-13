@@ -194,7 +194,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
 
     // Turns response into a useable value
     useEffect(() => {
-        processResults(quizAnswered, userAnswers, apiKey).then(setResponse)
+        processResults(quizAnswered, userAnswers, apiKey).then(setResponse) // calling ChatGPT and setting the response field
 
         // Sets loadResults to false and finishResults to true after 5 seconds
         const loadTimer = setTimeout(() => {
@@ -202,7 +202,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
             setFinishResults(true);
             const finishTimer = setTimeout(() => {
                 setFinishResults(false);
-            }, 4000) // 4 seconds
+            }, 4000) // 4 seconds for finish loading animation
             return () => {clearTimeout(finishTimer)}
         }, 5530); // 5.53 seconds
 
@@ -211,7 +211,9 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
 
     return (
         <div className="resultsPage-Style">
+            {/* Either shows Basic Results or Detailed Results */}
             <center><h1 className='resultsPage-Title'>{quizAnswered} Results</h1></center>
+            {/* Popup shows loading animation while results are still loading */}
             <Popup open={loadResults} closeOnDocumentClick={false}>
                 {
                   <div id="ResultsInitialPopup">
@@ -222,6 +224,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                   </div>
                 }
             </Popup>
+            {/* Popup below shows a finish loading animation when results are in */}
             <Popup open={finishResults} closeOnDocumentClick={false}>
                 {
                     <div id="ResultsInitialPopup">
@@ -232,10 +235,11 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                     </div>
                 }
             </Popup>
-            {response && response.worked && (
+
+            {response && response.worked && ( // check that responses are working properly
                     (() => {
-                        const content: string = response.response.choices[0].message.content ?? '{}';
-                        let data: CareerResponse = JSON.parse(content) as CareerResponse;
+                        const content: string = response.response.choices[0].message.content ?? '{}'; // accessing the content part of ChatGPT message
+                        let data: CareerResponse = JSON.parse(content) as CareerResponse; // mapping content to data in the structure of CareerResponse
 
                         // Parse the response to extract career information
                         // Assuming the response is in the format you provided, you can access the careers like this:
@@ -244,18 +248,20 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                         return (
                         <div className='career-results'>
                             <h1 className="resultsPage-SubTitle">Career Recommendations</h1>
-                            {careers.map((career, index) => (
-                            <div key={index} className="career_section">
-                                <h2 className="career_name">Career {index + 1}: {career.title}</h2>
-
+                            {careers.map((career, index) => ( // map applied to each individual career
+                            <div key={index} className="career_section"> 
+                                <h2 className="career_name">Career {index + 1}: {career.title}</h2> {/*career title goes here*/}
                                 <h3 className="career_subheading">Description</h3>
+
+                                {/*career description goes below, shown as a bullet point list*/}
                                 <ul className="career_text_list">{career.description.map((des_sentence, index) => (
                                     <li key={index}>{des_sentence}</li>
                                 ))}</ul>
 
                                 <h3 className="career_subheading">Salary</h3>
-                                <p className="career_text_list">${career.salary.toLocaleString()}</p>
+                                <p className="career_text_list">${career.salary.toLocaleString()}</p> {/*career salary goes here*/}
 
+                                {/* checks if there is an education level first, then displays it here */}
                                 {career.education_level && (
                                 <>
                                     <h3 className="career_subheading">Education Level</h3>
@@ -263,6 +269,7 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                                 </>
                                 )}
 
+                                {/*career reasoning goes below, as a bullet point list*/}
                                 <h3 className="career_subheading">Reason</h3>
                                 <ul className="career_text_list">{career.reason.map((reason_sentence, index) => (
                                     <li key={index}>{reason_sentence}</li>
@@ -281,7 +288,6 @@ export function ResultPage({ userAnswers, quizAnswered, apiKey }: ResultsPagePro
                     <p>{response.error.message}</p>
                 </div>
             )}
-            {/* <div>{quizAnswered} Answers: {JSON.stringify(userAnswers)}</div> */}
         </div>
     )
 }
