@@ -80,7 +80,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
         takeAnswers(newAnswers);
     }
 
-    // turns the quiz off and turns results page on and brings answers over
+    // turns the detailed page off, turns the results page on, and transfers the user answers over for results
     function toResultsPage() {
         const answerArray: string[][] = new Array<string[]>(answers.length).fill([])
         setDetailedAns(answerArray.map((answer: string[], index: number) => answer = [answers[index]]))
@@ -89,7 +89,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
         setOnResults(true);
     }
 
-    // clears all values when "Clear Answers" is pressed
+    // resets all answer values to unanswered states when user clicks the "Clear Answers" button
     function handleClear() {
         takeAnswers(Array<string>(answers.length).fill(""));
         q1TakeAnswers([]);
