@@ -86,11 +86,10 @@ function App() {
       <Popup className='api-test' open={apiKeyWork === 1} closeOnDocumentClick={false}>
         {
           <div className='api-test'>
-            Invalid API key, please input a valid API key.
+            <h4>Invalid API key, please input a valid API key.</h4>
             <Button className="api-test-button" onClick={() => {
               setCheckApiKey(false);
               setApiKeyWork(0);
-              close();
             }}>Close</Button>
           </div>
         }
@@ -117,8 +116,8 @@ function App() {
       {/* API Key Submission Section */}
       <div className="App-footer">
         {apiKeyShow && <Form className = "apiKeyEntry" data-testid='APIKeyForm'>
-          <Form.Label>API Key:</Form.Label>
-          <Form.Control role="APIKeyinput" type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+          <Form.Label htmlFor="API_Input">API Key:</Form.Label>
+          <Form.Control id="API_Input" type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
           <br></br>
           <Button className="Submit-Button" onClick={checkAPI}>Check API {checkApiKey && <div>✔️</div>}</Button>
           <Button className="Submit-Button" onClick={handleSubmit} disabled={!checkApiKey}>Submit</Button>

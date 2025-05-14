@@ -121,23 +121,25 @@ test('NAVIGATION: header quiz button + home button = home', () => {
 //   expect(mainPageTitle).toBeInTheDocument();
 // });
 
-test('API checker rejects invalid keys', () => {
+test('API checker rejects invalid keys', async () => {
   // find and click api key button in header
   const apiKeyButton = screen.getByRole("button", {name: "Enter API Key"});
 
-  act(() => {
-    apiKeyButton.click();
+  await act( async () => {
+    await userEvent.click(apiKeyButton);
   });
 
-  const apiKeyTextField = screen.getByRole("APIKeyinput");
+  // find the api key input field (by its label) and the button to check the api key
+  const apiKeyTextField = screen.getByLabelText(/api key/i);
   const checkAPIKey = screen.getByRole("button", {name: "Check API"});
 
-  act(() => {
-    userEvent.type(apiKeyTextField, 'foomogus');
-    checkAPIKey.click();
+  // something random is typed in textbox, then check api key is clicked
+  await act( async () => {
+    await userEvent.type(apiKeyTextField, 'foomo\n');
+    await userEvent.click(checkAPIKey);
   });
 
   // check that invalid key popup shows up
-  const invalidKeyPopup = screen.getByText(/Invalid API key, please input a valid API key./i)
+  const invalidKeyPopup = await screen.findByRole("heading", {level: 4, name: /Invalid API key, please input a valid API key./i})
   expect(invalidKeyPopup).toBeInTheDocument();
 });
