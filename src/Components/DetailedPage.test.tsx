@@ -21,22 +21,35 @@ describe("DetailedPage Component Tests", () => {
         expect(randomButton).toBeInTheDocument();
     });
 
-    // test("There are the same amount of questions as answers.", () => {
-    //     const questionElements = screen.getAllByRole("question"); // get all question elements
-    //     const answerElements = screen.getAllByRole("answer"); // get all answer elements
-    //     expect(questionElements.length === answerElements.length);
-    // });
+    test("There are the same amount of questions as answers.", () => {
+        const questionElements = screen.getAllByRole("question"); // get all question elements
+        const answerElements = screen.getAllByRole("answer"); // get all answer elements
+        expect(questionElements.length === answerElements.length);
+    });
 
-    // test("Progress bar updates based on user input.", async () => {
-    //     const answerElements = screen.getAllByRole("answer"); // get all answer elements
-    //     const progressbar = screen.getByRole("progressContent"); // get the progress bar element
-    //     await act(async () => {
-    //         userEvent.type(answerElements[0], "TestAnswer1");
-    //     });
-    //     expect(parseInt(progressbar.style.width) > 0);
-    //     await act(async () => {
-    //         userEvent.clear(answerElements[0]);
-    //     });
-    //     expect(parseInt(progressbar.style.width) === 0);
-    // });
+    test("Progress bar updates based on user input.", async () => {
+        const answerElements = screen.getAllByRole("answer"); // get all answer elements
+        const progressbar = screen.getByRole("detailed-progressContent"); // get the progress bar element
+        await act(async () => {
+            userEvent.type(answerElements[0], "TestAnswer1");
+        });
+        expect(parseInt(progressbar.style.width) > 0);
+        await act(async () => {
+            userEvent.clear(answerElements[0]);
+        });
+        expect(parseInt(progressbar.style.width) === 0);
+    });
+
+    test("Background zooms in based on user input.", async () => {
+        const answerElements = screen.getAllByRole("answer"); // get all answer elements
+        const detailedBgImg = screen.getByRole("detailed-bgImg"); // get the background image for detailed quiz
+        await act (async () => {
+            userEvent.type(answerElements[0], "TestAnswer1");
+        });
+        expect(parseInt(detailedBgImg.style.scale) > 100);
+        await act (async () => {
+            userEvent.clear(answerElements[0]);
+        });
+        expect(parseInt(detailedBgImg.style.scale) === 100);
+    })
 })
