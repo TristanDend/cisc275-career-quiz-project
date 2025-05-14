@@ -5,6 +5,7 @@ import signPost from '../assets/SignpostScene.png'
 
 // homepage props to import state
 interface HomePageProps {
+    isTestingMode: boolean // testing mode to bypass api key check
     apiKeyWork: number // whether api key works
     setOnBasic: (onBasic: boolean) => void // function to turn on basic page
     setOnHome: (onHome: boolean) => void // function to turn on home page
@@ -12,7 +13,7 @@ interface HomePageProps {
 }
 
 
-export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : HomePageProps): React.JSX.Element {
+export function HomePage({isTestingMode, apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : HomePageProps): React.JSX.Element {
 
 
     // This function takes the name of the button clicked, and displays the correct page accordingly
@@ -45,7 +46,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
                 <span id="quizDescription">More Simple Questions, Takes Less Time</span>
                 <span id="quizDescription">18 Questions, ~2 minutes</span>
                 {/* Button to go to Basic Questions */}
-                <center><Button disabled={apiKeyWork !== 2} id="questionButton" onClick = {() => {changeActive('basic')}}>Take Short Trail =={'>'}</Button></center>
+                <center><Button disabled={!isTestingMode && apiKeyWork !== 2} id="questionButton" onClick = {() => {changeActive('basic')}}>Take Short Trail =={'>'}</Button></center>
             </div>
             <div id="quizBlock2">
                 {/* Detailed Quiz Title */}
@@ -54,7 +55,7 @@ export function HomePage({apiKeyWork, setOnBasic, setOnHome, setOnDetailed} : Ho
                 <span id="quizDescription">Deeper Questions, Better Results</span>
                 <span id="quizDescription">9 Questions, ~5 minutes</span>
                 {/* Button to go to Detailed Questions */}
-                <center><Button disabled={apiKeyWork !== 2} id="questionButton" onClick = {() => {changeActive("detailed")}}>{'<'}== Take Longer Trail</Button></center>
+                <center><Button disabled={!isTestingMode && apiKeyWork !== 2} id="questionButton" onClick = {() => {changeActive("detailed")}}>{'<'}== Take Longer Trail</Button></center>
             </div>
             {/* Block to remind users to enter a valid api key for ChatGPT */}
             <div id="quizBlock3">

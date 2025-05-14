@@ -39,6 +39,7 @@ function App() {
   const [checkApiKey, setCheckApiKey] = useState<boolean>(false); // whether api key has been checked or not
   const [userAnswers, setUserAnswers] = useState<string[][]>([]); // holding user answers
   const [quizAnswered, setQuizAnswered] = useState<string>(""); // which quiz was answered
+  const [isTestingMode, setIsTestingMode] = useState<boolean>(false); // testing mode to bypass api key check for quiz
 
   async function testAPI(): Promise<boolean> {
 
@@ -75,6 +76,10 @@ function App() {
     setKey(event.target.value);
   }
 
+  // check whether user is local host, in order to enable testing mode button
+  const hostname = window.location.hostname;
+  const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+
   return (
     <div className="App">
       {/* API Popup which appears if the inputted API key was incorrect */}
@@ -95,7 +100,7 @@ function App() {
       <Header apiKeyWork={apiKeyWork} setOnHome={setHome} setOnBasic={setBasic} setOnDetailed={setDetailed} setOnResults={setResultPage}></Header>
 
       {/* Home Page */}
-      {isHome && <HomePage apiKeyWork={apiKeyWork} setOnBasic={setBasic} setOnHome={setHome} setOnDetailed={setDetailed}></HomePage>}
+      {isHome && <HomePage isTestingMode={isTestingMode} apiKeyWork={apiKeyWork} setOnBasic={setBasic} setOnHome={setHome} setOnDetailed={setDetailed}></HomePage>}
 
       {/* Basic Questions Page */}
       {isBasic && <Basic setBasicAns={setUserAnswers} setOnBasic={setBasic} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></Basic>}
@@ -119,6 +124,10 @@ function App() {
           <Button className="Submit-Button" onClick={handleSubmit} disabled={!checkApiKey}>Submit</Button>
         </Form>}
       </div>
+      {/* testing mode button */}
+      {isLocalhost && (
+        <button onClick={() => {(setIsTestingMode(true))}}>testing mode</button>
+      )}
     </div>
   );
 }

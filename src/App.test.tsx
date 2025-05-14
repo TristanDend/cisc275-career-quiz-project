@@ -2,9 +2,14 @@ import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import App from './App';
 
-// renders the app before each test
+// renders the app before each test, and finds and clicks testing mode button
 beforeEach(() => {
   render(<App />)
+  const testModeButton = screen.getByRole("button", {name: /testing mode/i});
+  act(() => {
+    testModeButton.click();
+  });
+  
 });
 
 test('find title text Da Quiz', () => {
@@ -13,16 +18,16 @@ test('find title text Da Quiz', () => {
   expect(quizTitle).toBeInTheDocument();
 });
 
-// test('The basic question button goes to basic quiz', () => {
-//   // find and click short trail button
-//   const basicQuestionButton = screen.getByRole("button", {name: /take short trail/i});
-//   act(() => {
-//     basicQuestionButton.click();
-//   });
-//   // check for page by looking for the heading
-//   const basicQuestionTitle = screen.getByRole("heading", {level: 1, name: /short trail/i});
-//   expect(basicQuestionTitle).toBeInTheDocument();
-// });
+test('The basic question button goes to basic quiz', () => {
+  // find and click short trail button
+  const shortTrailButton = screen.getByRole("button", {name: /take short trail/i});
+  act(() => {
+    shortTrailButton.click();
+  });
+  // check for page by looking for the heading
+  const basicQuestionTitle = screen.getByRole("heading", {level: 1, name: /short trail/i});
+  expect(basicQuestionTitle).toBeInTheDocument();
+});
 
 // test('The detailed question button goes to detailed quiz', () => {
 //     // find and click longer trail button
