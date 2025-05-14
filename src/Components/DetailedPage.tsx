@@ -20,7 +20,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
     const [currQuestion, changeQuestion] = useState<number>(0); // keeps track of which question the user is on (0 = Q1, 1 = Q2, etc.)
     const answerPercent = ((answers.filter((answer) => answer !== "").length / answers.length) * 100); // stores the percentage of answered questions for progress bar
     
-    // Debug and demo function to answer all questions on one button click (for localhost testing)
+    // Debug and demo function to answer all questions on one button click (localhost testing only)
     function randomizeAnswers() {
         let newq1Answers = questions[0].options.map((option) => Math.random() > 0.5 ? option.optionText : "")
         q1TakeAnswers(newq1Answers.filter((answer) => answer));
@@ -224,7 +224,7 @@ export function DetailedPage({setDetailedAns, setOnDetailed, setOnResults, setQu
                         <Button disabled={!answerPercent} onClick={handleClear} 
                             id='detailed-submitButton'>Clear Answers</Button>
                         
-                        {/* Randomize Answers button for testing/demo (for localhost testing)*/}
+                        {/* Randomize Answers button for testing/demo (localhost testing only)*/}
                         {window.location.hostname === 'localhost' && <Button onClick={randomizeAnswers} 
                             style={{ border: '0vh', color: 'black', backgroundColor: 'white', position: 'absolute', 
                                         right: '0vh', bottom: '0vh'}}>Randomize Answers</Button>}

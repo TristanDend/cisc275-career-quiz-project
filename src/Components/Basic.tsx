@@ -6,15 +6,15 @@ import walk from '../assets/stickmanWalking.gif'
 import '../CSS/Basic.css';
 
 // data interfaces
-type Option = { optionId: string; optionText: string; };
-type Question = { questionId: string; questionText: string; allowMultiple: boolean; options: Option[]; };
+type Option = { optionId: string; optionText: string; }; // Option type for question option variables
+type Question = { questionId: string; questionText: string; allowMultiple: boolean; options: Option[]; }; // Question type for question variables
 
 // props interface for navigation functions
 interface BasicPageProps {
-  setBasicAns: (basicAns: string[][]) => void;
-  setOnBasic: (onBasic: boolean) => void;
-  setOnResults: (onResults: boolean) => void;
-  setQuizAnswered: (quizAnswered: string) => void;
+  setBasicAns: (basicAns: string[][]) => void; // stores the user answers for results page
+  setOnBasic: (onBasic: boolean) => void; // function to turn on basic page
+  setOnResults: (onResults: boolean) => void; // function to turn on results page
+  setQuizAnswered: (quizAnswered: string) => void; // stores which quiz the user submitted for results page
 }
 
 const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, setOnResults, setQuizAnswered }) => {
@@ -104,6 +104,7 @@ const BasicQuestions: React.FC<BasicPageProps> = ({ setBasicAns, setOnBasic, set
               {question.options.map((opt, idx) => {
                 const isSelected = selectedOptions[currentIndex].includes(opt.optionText);
                 return (
+                  // Question answer options
                   <button
                     key={opt.optionId}
                     onClick={() => { handleOptionSelect(idx); }}

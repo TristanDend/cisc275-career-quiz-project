@@ -60,7 +60,8 @@ function App() {
 
   // check API, then if true, set the API key
   function checkAPI() {
-    testAPI().then(setCheckApiKey);
+    if (!key) testAPI().then(setCheckApiKey);
+    else setApiKeyWork(1);
   }
 
   // sets the local storage item to the api key the user inputed
@@ -85,7 +86,6 @@ function App() {
             <Button className="api-test-button" onClick={() => {
               setCheckApiKey(false);
               setApiKeyWork(0);
-              close();
             }}>Close</Button>
           </div>
         }
