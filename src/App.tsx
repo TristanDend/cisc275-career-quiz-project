@@ -118,7 +118,7 @@ function App() {
       <div className="App-footer">
         {apiKeyShow && <Form className = "apiKeyEntry" data-testid='APIKeyForm'>
           <Form.Label>API Key:</Form.Label>
-          <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+          <Form.Control role="APIKeyinput" type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
           <br></br>
           <Button className="Submit-Button" onClick={checkAPI}>Check API {checkApiKey && <div>✔️</div>}</Button>
           <Button className="Submit-Button" onClick={handleSubmit} disabled={!checkApiKey}>Submit</Button>

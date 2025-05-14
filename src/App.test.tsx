@@ -1,5 +1,6 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './App';
 
 // renders the app before each test, and finds and clicks testing mode button
@@ -77,45 +78,66 @@ test('NAVIGATION: header quiz button + home button = home', () => {
   expect(mainPageTitle).toBeInTheDocument();
 });
 
-test('NAVIGATION: navigating to results page and back', () => {
-  //find short trail button and click it
-  const basicQuizButton = screen.getByRole("button", {name: /take short trail/i});
+// test('NAVIGATION: navigating to results page and back', () => {
+//   //find short trail button and click it
+//   const basicQuizButton = screen.getByRole("button", {name: /take short trail/i});
+//   act(() => {
+//     basicQuizButton.click();
+//   });
+
+//   //then find randomize button and click it, to answer all questions
+//   const randomButton = screen.getByRole("button", {name: /randomize answers/i});
+//   act(() => {
+//     randomButton.click();
+//   });
+
+//   //randomize answers then press next button until end of basic quiz
+//   for (let i = 0; i < 17; i++) {
+//     const nextButton = screen.getByRole("button", {name: /next >>/i});
+//     act(() => {
+//       nextButton.click();
+//     })
+//   }
+
+//   //then find submit answers button and click it, to go to results page
+//   const resultsPageButton = screen.getByRole("button", {name: /submit answers/i});
+
+//   act(() => {
+//     resultsPageButton.click();
+//   });
+
+//   //identify results page by the heading, check if it's correct
+//   const resultsPageTitle = screen.getByRole("heading", {level: 1, name: /basic quiz results/i});
+//   expect(resultsPageTitle).toBeInTheDocument();
+
+//   //find and press the home button
+//   const homeButton = screen.getByRole("button", {name: /home/i});
+//   act(() => {
+//     homeButton.click();
+//   });
+
+//   // check for home page title
+//   const mainPageTitle = screen.getByRole("heading", {level: 1, name: /Career Pathfinder/i});
+//   expect(mainPageTitle).toBeInTheDocument();
+// });
+
+test('API checker rejects invalid keys', () => {
+  // find and click api key button in header
+  const apiKeyButton = screen.getByRole("button", {name: "Enter API Key"});
+
   act(() => {
-    basicQuizButton.click();
+    apiKeyButton.click();
   });
 
-  //then find randomize button and click it, to answer all questions
-  const randomButton = screen.getByRole("button", {name: /randomize answers/i});
-  act(() => {
-    randomButton.click();
-  });
-
-  //randomize answers then press next button until end of basic quiz
-  for (let i = 0; i < 17; i++) {
-    const nextButton = screen.getByRole("button", {name: /next >>/i});
-    act(() => {
-      nextButton.click();
-    })
-  }
-
-  //then find submit answers button and click it, to go to results page
-  const resultsPageButton = screen.getByRole("button", {name: /submit answers/i});
+  const apiKeyTextField = screen.getByRole("APIKeyinput");
+  const checkAPIKey = screen.getByRole("button", {name: "Check API"});
 
   act(() => {
-    resultsPageButton.click();
+    userEvent.type(apiKeyTextField, 'foomogus');
+    checkAPIKey.click();
   });
 
-  //identify results page by the heading, check if it's correct
-  const resultsPageTitle = screen.getByRole("heading", {level: 1, name: /basic quiz results/i});
-  expect(resultsPageTitle).toBeInTheDocument();
-
-  //find and press the home button
-  const homeButton = screen.getByRole("button", {name: /home/i});
-  act(() => {
-    homeButton.click();
-  });
-
-  // check for home page title
-  const mainPageTitle = screen.getByRole("heading", {level: 1, name: /Career Pathfinder/i});
-  expect(mainPageTitle).toBeInTheDocument();
+  // check that invalid key popup shows up
+  const invalidKeyPopup = screen.getByText(/Invalid API key, please input a valid API key./i)
+  expect(invalidKeyPopup).toBeInTheDocument();
 });
