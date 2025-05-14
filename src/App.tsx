@@ -97,7 +97,7 @@ function App() {
       </Popup>
 
       {/* Header */}
-      <Header apiKeyWork={apiKeyWork} setOnHome={setHome} setOnBasic={setBasic} setOnDetailed={setDetailed} setOnResults={setResultPage}></Header>
+      <Header isTestingMode={isTestingMode} apiKeyWork={apiKeyWork} setOnHome={setHome} setOnBasic={setBasic} setOnDetailed={setDetailed} setOnResults={setResultPage}></Header>
 
       {/* Home Page */}
       {isHome && <HomePage isTestingMode={isTestingMode} apiKeyWork={apiKeyWork} setOnBasic={setBasic} setOnHome={setHome} setOnDetailed={setDetailed}></HomePage>}
@@ -126,7 +126,7 @@ function App() {
       </div>
       {/* testing mode button */}
       {isLocalhost && (
-        <button onClick={() => {(setIsTestingMode(true))}}>testing mode</button>
+        <Button onClick={() => {(setIsTestingMode(true))}}>testing mode</Button>
       )}
     </div>
   );
