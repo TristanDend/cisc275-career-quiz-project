@@ -39,6 +39,7 @@ function App() {
   const [checkApiKey, setCheckApiKey] = useState<boolean>(false); // whether api key has been checked or not
   const [userAnswers, setUserAnswers] = useState<string[][]>([]); // holding user answers
   const [quizAnswered, setQuizAnswered] = useState<string>(""); // which quiz was answered
+  const [isTestingMode, setIsTestingMode] = useState<boolean>(false); // testing mode to bypass api key check for quiz
 
   async function testAPI(): Promise<boolean> {
 
@@ -75,27 +76,30 @@ function App() {
     setKey(event.target.value);
   }
 
+  // check whether user is local host, in order to enable testing mode button
+  const hostname = window.location.hostname;
+  const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+
   return (
     <div className="App">
       {/* API Popup which appears if the inputted API key was incorrect */}
       <Popup className='api-test' open={apiKeyWork === 1} closeOnDocumentClick={false}>
         {
           <div className='api-test'>
-            Invalid API key, please input a valid API key.
+            <h4>Invalid API key, please input a valid API key.</h4>
             <Button className="api-test-button" onClick={() => {
               setCheckApiKey(false);
               setApiKeyWork(0);
-              close();
             }}>Close</Button>
           </div>
         }
       </Popup>
 
       {/* Header */}
-      <Header apiKeyWork={apiKeyWork} setOnHome={setHome} setOnBasic={setBasic} setOnDetailed={setDetailed} setOnResults={setResultPage}></Header>
+      <Header isTestingMode={isTestingMode} apiKeyWork={apiKeyWork} setOnHome={setHome} setOnBasic={setBasic} setOnDetailed={setDetailed} setOnResults={setResultPage}></Header>
 
       {/* Home Page */}
-      {isHome && <HomePage apiKeyWork={apiKeyWork} setOnBasic={setBasic} setOnHome={setHome} setOnDetailed={setDetailed}></HomePage>}
+      {isHome && <HomePage isTestingMode={isTestingMode} apiKeyWork={apiKeyWork} setOnBasic={setBasic} setOnHome={setHome} setOnDetailed={setDetailed}></HomePage>}
 
       {/* Basic Questions Page */}
       {isBasic && <Basic setBasicAns={setUserAnswers} setOnBasic={setBasic} setOnResults={setResultPage} setQuizAnswered={setQuizAnswered}></Basic>}
@@ -112,13 +116,17 @@ function App() {
       {/* API Key Submission Section */}
       <div className="App-footer">
         {apiKeyShow && <Form className = "apiKeyEntry" data-testid='APIKeyForm'>
-          <Form.Label>API Key:</Form.Label>
-          <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+          <Form.Label htmlFor="API_Input">API Key:</Form.Label>
+          <Form.Control id="API_Input" type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
           <br></br>
           <Button className="Submit-Button" onClick={checkAPI}>Check API {checkApiKey && <div>✔️</div>}</Button>
           <Button className="Submit-Button" onClick={handleSubmit} disabled={!checkApiKey}>Submit</Button>
         </Form>}
       </div>
+      {/* testing mode button */}
+      {isLocalhost && (
+        <Button onClick={() => {(setIsTestingMode(true))}}>testing mode</Button>
+      )}
     </div>
   );
 }

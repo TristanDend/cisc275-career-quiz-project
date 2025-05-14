@@ -6,6 +6,7 @@ interface headerProps {
     // The type is "a function that consumes a boolean and returns nothing"
     //apiKeyWork: number represents the API key status in the form of a three value boolean
     // 0 = no API key, 1 = API key is invalid, 2 = API key is valid
+    isTestingMode: boolean 
     apiKeyWork: number
     setOnHome: (onHome: boolean) => void
     setOnBasic: (onBasic: boolean) => void
@@ -14,7 +15,7 @@ interface headerProps {
   }
   
 
-export function Header({apiKeyWork, setOnHome, setOnBasic, setOnDetailed, setOnResults}: headerProps) {
+export function Header({isTestingMode, apiKeyWork, setOnHome, setOnBasic, setOnDetailed, setOnResults}: headerProps) {
     //setting up states
 
     //Function changes the active button and sets the state of the other buttons to false
@@ -50,10 +51,10 @@ export function Header({apiKeyWork, setOnHome, setOnBasic, setOnDetailed, setOnR
             <Button id = 'header-button' onClick={() => {changeActive("home")}}> 
                 Home
             </Button>
-            <Button id = 'header-button' onClick={() => {changeActive("basic")}} disabled={apiKeyWork !== 2}>
+            <Button id = 'header-button' onClick={() => {changeActive("basic")}} disabled={!isTestingMode && apiKeyWork !== 2}>
                 Short Trail
             </Button>
-            <Button id = 'header-button' onClick={() => {changeActive("detailed")}} disabled={apiKeyWork !== 2}>
+            <Button id = 'header-button' onClick={() => {changeActive("detailed")}} disabled={!isTestingMode && apiKeyWork !== 2}>
                 Long Trail
             </Button>
         </div>
